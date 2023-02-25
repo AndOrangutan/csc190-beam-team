@@ -4,6 +4,11 @@ Team Beam Team's final project.
 
 ## Todo
 
+- Install instructions
+    - `git clone --bare https://github.com/AndOrangutan/csc190-beam-team csc190-beam-team`
+    - `git worktree add main`
+    - `cd main`
+
 ### Sprint 00
 
 <!-- This is just here in case your editor has a way to list local todos, this list is easily jumpable -->
