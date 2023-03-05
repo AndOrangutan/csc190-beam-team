@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
     "expo": "~48.0.5",
     "expo-status-bar": "~1.4.4",
     "nativewind": "^2.0.11",
@@ -18,7 +19,6 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.0.14",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
     "eslint": "^8.35.0",
     "eslint-config-universe": "^11.2.0",
