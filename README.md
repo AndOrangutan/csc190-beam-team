@@ -28,10 +28,9 @@ Hello Beam Team, **we are going to need a stack.** Place personal recommendation
         - Expo - An an open-source platform for making universal native apps for Android, iOS, and the web with JavaScript and React.
         - Typescript - Types are useful for not writing bugs. If you think you like writing JavaScript without types in VSCode, yuo are still taking advamtage of infered types since the LSP is really built for typecript and not JavaScript. Don't go and learn Typscript, learn JavaScript, then the 3ish core additions you'll use in TS.
         - Tailwindscss - Still not certain if this should be included so please test it. It is super cool being able to style style your JSX components this way.
-        - TODO:
-            - ESLint - A static code analysis tool for identifying problematic patterns found in JavaScript code. ules in ESLint are configurable, and customized rules can be defined and loaded. ESLint covers both code quality and coding style issues.
-            - Prettier - An opinionated code formatter; Supports many languages; Integrates with most editors.
-    - Setup
+        - ESLint - A static code analysis tool for identifying problematic patterns found in JavaScript code. ules in ESLint are configurable, and customized rules can be defined and loaded. ESLint covers both code quality and coding style issues.
+        - Prettier - An opinionated code formatter; Supports many languages; Integrates with most editors.
+    - Project Setup (how I setup the project, you don't need to do this)
         - `$ npx create-expo-app skeleton-project -t expo-template-blank-typescript`
         - `$ mv skeleton-project/* ./`
         - `$ yarn add nativewind`
@@ -42,9 +41,21 @@ Hello Beam Team, **we are going to need a stack.** Place personal recommendation
             - [Nativewind and typescript](https://www.nativewind.dev/getting-started/typescript)
         - `$ yarn add --dev eslint-config-universe`
         - `$ yarn add --dev eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser`
+    - Environemtn Setup:
+        - Install Node.js
+            - https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+            - https://nodejs.org/en/download/
+        - Install Yarn
+            - https://classic.yarnpkg.com/lang/en/docs/install
+        - Get your android emulator or ios simulator setup
+            - https://youtu.be/0-S5a0eXPoc
+        - VSCode plugins you'll probably want
+            - https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
+            - https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+            - https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+            - https://marketplace.visualstudio.com/items?itemName=byCedric.vscode-expo
     - Start:
         - `$ yarn start`
-        - At this point select android or ios depending on which you can emulate/simulate. There is good documentation, but if you are on linux or MacOS expect to have to do some manual config.
 
 ### Team Management
 
