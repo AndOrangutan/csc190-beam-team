@@ -41,14 +41,14 @@ Hello Beam Team, **we are going to need a stack.** Place personal recommendation
             - [Nativewind and typescript](https://www.nativewind.dev/getting-started/typescript)
         - `$ yarn add --dev eslint-config-universe`
         - `$ yarn add --dev eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser`
-    - Environemtn Setup:
+    - Environment Setup:
         - Install Node.js
             - https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
             - https://nodejs.org/en/download/
         - Install Yarn
             - https://classic.yarnpkg.com/lang/en/docs/install
         - Get your android emulator or ios simulator setup
-            - https://youtu.be/0-S5a0eXPoc
+            - This seems like a decent video (just watch what partains to your needs) https://youtu.be/0-S5a0eXPoc
         - VSCode plugins you'll probably want
             - https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
             - https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
@@ -72,7 +72,7 @@ Hello Beam Team, **we are going to need a stack.** Place personal recommendation
             - I will also add (think of this as checking out) `BT-56-skeleton-project`
             - `git worktree add BT-56-skeleton-project`
             - ![image](https://user-images.githubusercontent.com/40435989/222939600-d6041149-d0c6-4da7-a26d-f2f26e9fcb94.png)
-            - In the above, you can now see I have access to both the current `main` branch and the `BT-56...` one. All I have to do to change between these different branches is actually just opeing up the `csc190-beam-team/main` or `csc190-beam-team/BT-56-skeleton-project` directories. You now don't have to change branches, just change directories.
+            - In the above, you can now see I have access to both the current `main` branch and the `BT-56...` one. All I have to do to change between these different branches is actually just changing the directory (like `cd ../main` to change to main branch from any other branch). You now don't have to change branches.
             - If I wanted to start a new branch, all I would have to do is `git worktree add <branch name here>`.
             - This is way more efficient when you have to use multiple branches.
     - Start:
