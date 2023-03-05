@@ -40,8 +40,8 @@ Hello Beam Team, **we are going to need a stack.** Place personal recommendation
         - Do modifications in following links
             - [Nativewind and expo](https://www.nativewind.dev/quick-starts/expo)
             - [Nativewind and typescript](https://www.nativewind.dev/getting-started/typescript)
-        - `yarn add --dev eslint-config-universe`
-        - `yarn add --dev eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser`
+        - `$ yarn add --dev eslint-config-universe`
+        - `$ yarn add --dev eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser`
     - Start:
         - `$ yarn start`
         - At this point select android or ios depending on which you can emulate/simulate. There is good documentation, but if you are on linux or MacOS expect to have to do some manual config.
