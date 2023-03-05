@@ -31,12 +31,15 @@ Hello Beam Team, **we are going to need a stack.** Place personal recommendation
         - TODO:
             - ESLint - A static code analysis tool for identifying problematic patterns found in JavaScript code. ules in ESLint are configurable, and customized rules can be defined and loaded. ESLint covers both code quality and coding style issues.
             - Prettier - An opinionated code formatter; Supports many languages; Integrates with most editors.
-    - Setup:
-        - `$ npx create-expo-app ARPFMarp -t expo-template-blank-typescript`
-        - `$ cd ARPFMarp`
+    - Setup
+        - `$ npx create-expo-app skeleton-project -t expo-template-blank-typescript`
+        - `$ mv skeleton-project/* ./`
         - `$ yarn add nativewind`
         - `$ yarn add --dev tailwindcss`
         - `$ npx tailwindcss init`
+        - Do modifications in following links
+            - [Nativewind and expo](https://www.nativewind.dev/quick-starts/expo)
+            - [Nativewind and typescript](https://www.nativewind.dev/getting-started/typescript)
     - Start:
         - `$ yarn start`
         - At this point select android or ios depending on which you can emulate/simulate. There is good documentation, but if you are on linux or MacOS expect to have to do some manual config.
