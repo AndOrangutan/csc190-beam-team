@@ -77,6 +77,9 @@ Hello Beam Team, **we are going to need a stack.** Place personal recommendation
             - This is way more efficient when you have to use multiple branches.
     - Start:
         - `$ yarn start`
+        - At this point select android or ios depending on which you can emulate/simulate. There is good documentation, but if you are on linux or MacOS expect to have to do some manual config.
+    - Example:
+    ![Peek 2023-02-26 15-34](https://user-images.githubusercontent.com/40435989/221444565-20127409-03ba-4f01-b948-2839e321e61d.gif)
 
 ### Team Management
 
@@ -84,4 +87,3 @@ Hello Beam Team, **we are going to need a stack.** Place personal recommendation
     - [editorconfig/editorconfig](https://github.com/editorconfig/editorconfig)
         - Universal editor configuration for uniform editor settings for things like spaces, character sets, indention style, and more
 
-### Node Based Web Stack
