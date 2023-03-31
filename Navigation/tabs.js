@@ -74,12 +74,13 @@ const Tabs = () => {
         }}
       >
         
-   <Tab.Screen 
+  <Tab.Screen 
   name="HOME" 
   component={HomeScreen} 
   options={{
+    tabBarShowLabel: false,
     tabBarIcon: ({ focused }) => (
-      <View style={{ alignItems: 'center', justifyContent: 'center', top: 20 }}>
+      <View style={{ alignItems: 'center', justifyContent: 'center', top: 15 }}>
         <Image
           source={require('../assets/Home.png')}
           resizeMode="contain"
@@ -90,8 +91,7 @@ const Tabs = () => {
           }}
         />
         <Text
-          style={{
-            color: focused ? '#e32f45' : '#748c97', fontSize: 12}}>
+          style={{color: focused ? '#e32f45' : '#748c97', fontSize: 12}}>
           HOME
         </Text> 
       </View>
@@ -99,11 +99,13 @@ const Tabs = () => {
   }}
 />
 
+
         <Tab.Screen 
-        name="Events" component={EventScreen} 
+        name="Events" 
+        component={EventScreen} 
         options={{
     tabBarIcon: ({ focused }) => (
-      <View style={{ alignItems: 'center', justifyContent: 'center', top: 20 }}>
+      <View style={{ alignItems: 'center', justifyContent: 'center', top: 15 }}>
         <Image
           source={require('../assets/Events.png')}
           resizeMode="contain"
@@ -132,7 +134,7 @@ const Tabs = () => {
             style={{
               width: 30,
               height: 30,
-              top: 5,
+              top: 0,
               tintColor:'#fff'
             }}
             />
@@ -146,7 +148,7 @@ const Tabs = () => {
         component={ProgramScreen}
         options={{
     tabBarIcon: ({ focused }) => (
-      <View style={{ alignItems: 'center', justifyContent: 'center', top: 20 }}>
+      <View style={{ alignItems: 'center', justifyContent: 'center', top: 15 }}>
         <Image
           source={require('../assets/Program.png')}
           resizeMode="contain"
@@ -166,7 +168,7 @@ const Tabs = () => {
   }} />
         <Tab.Screen name="More" component={MoreScreen} options={{
     tabBarIcon: ({ focused }) => (
-      <View style={{ alignItems: 'center', justifyContent: 'center', top: 20 }}>
+      <View style={{ alignItems: 'center', justifyContent: 'center', top: 15 }}>
         <Image
           source={require('../assets/More.png')}
           resizeMode="contain"
@@ -179,7 +181,7 @@ const Tabs = () => {
         <Text
           style={{
             color: focused ? '#e32f45' : '#748c97', fontSize: 12}}>
-          More
+          MORE
         </Text> 
       </View>
     ),
