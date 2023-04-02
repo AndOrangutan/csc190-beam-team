@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 
 const MapScreen = ({ home }) => {
   return (
-    <View style={styles.container}>
+    <View className="flex-1 items-center justify-center bg-teal-300">
       <Text>Map</Text>
       <Button title="clickhere" onpress={() => alert('Button Pressed')} />
     </View>

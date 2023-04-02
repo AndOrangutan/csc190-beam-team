@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 
 const ProgramScreen = ({ more }) => {
   return (
-    <View style={styles.container}>
+    <View className="flex-1 items-center justify-center bg-teal-300">
       <Text>program Screen</Text>
       <Button title="clickhere" onpress={() => alert('Button Pressed')} />
     </View>
