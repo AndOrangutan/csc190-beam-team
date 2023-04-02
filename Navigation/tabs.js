@@ -3,9 +3,9 @@ import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native';
 
 import EventScreen from '../Screens/EventsScreen';
 import HomeScreen from '../Screens/HomeScreen';
-import ProgramScreen from '../Screens/ProgramScreen';
-import MoreScreen from '../Screens/MoreScreen';
 import MapScreen from '../Screens/MapScreen';
+import MoreScreen from '../Screens/MoreScreen';
+import ProgramScreen from '../Screens/ProgramScreen';
 
 const styles = StyleSheet.create({
   shadow: {
