@@ -5,7 +5,7 @@ import { View, Text } from 'react-native';
 import TabNavigator from './TabNavigator';
 
 export type RootStackParamList = {
-  Main: undefinded;
+  Main: undefined;
   MyModal: { userId: string; name: string };
   // Order: { order: any };
 };
