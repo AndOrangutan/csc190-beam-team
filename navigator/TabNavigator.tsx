@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useLayoutEffect } from 'react';
 import { View, Text } from 'react-native';
 import { Icon } from '@rneui/themed';
+import { color } from '@rneui/base';
 
 import CalendarScreen from '../screens/CalendarScreen';
 import EventsScreen from '../screens/EventsScreen';
@@ -36,18 +37,43 @@ const TabNavigator = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarActiveTintColor: '#59C1CC',
-        tabBarInactiveTintColor: 'gray',
+        tabBarInactiveTintColor: 'gray', // inactive color
+        tabBarShowLabel: false, // disable showing name component
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === 'Home') {
-            return <Icon name="home" type="entypo" color={focused ? '#59C1CC' : 'gray'} />;
+            return (
+              <View>
+                <Icon name="home" type="entypo" color={focused ? '#e32f45' : 'gray'} />
+                <Text style={{ color: focused ? 'red' : '#748c97', fontSize: 12 }}>Home</Text>
+              </View>
+            );
           } else if (route.name === 'Events') {
-            return <Icon name="clipboard" type="entypo" color={focused ? '#59C1CC' : 'gray'} />;
+            return (
+              <View>
+                <Icon name="clipboard" type="entypo" color={focused ? '#e32f45' : 'gray'} />
+                <Text style={{ color: focused ? 'red' : '#748c97', fontSize: 12 }}>Events</Text>
+              </View>
+            );
           } else if (route.name === 'Map') {
-            return <Icon reverse name="map" type="entypo" color={focused ? '#e32f45' : '#e32f45'} />;
+            return (
+              <View>
+                <Icon reverse name="map" type="entypo" color={focused ? 'red' : '#e32f45'} />
+              </View>
+            );
           } else if (route.name === 'Calendar') {
-            return <Icon name="calendar" type="entypo" color={focused ? '#59C1CC' : 'gray'} />;
+            return (
+              <View>
+                <Icon name="calendar" type="entypo" color={focused ? '#e32f45' : 'gray'} />
+                <Text style={{ color: focused ? 'red' : '#748c97', fontSize: 12 }}>Calendar</Text>
+              </View>
+            );
           } else if (route.name === 'More') {
-            return <Icon name="menu" type="entypo" color={focused ? '#59C1CC' : 'gray'} />;
+            return (
+              <View>
+                <Icon name="menu" type="entypo" color={focused ? '#e32f45' : 'gray'} />
+                <Text style={{ color: focused ? 'red' : '#748c97', fontSize: 12 }}>More</Text>
+              </View>
+            );
           }
         },
       })}>
