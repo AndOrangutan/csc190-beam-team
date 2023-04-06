@@ -40,6 +40,7 @@ Hello Beam Team, **we are going to need a stack.** Place personal recommendation
         - [Typescript(Javascript Super Set)](https://www.typescriptlang.org/docs/)
         - [TailwindCSS(Styling Library)](https://tailwindcss.com/docs/installation)
         - [Hex color to TailwindCSS color](https://tailwind-color-finder.vercel.app/)
+        - [Icons](https://oblador.github.io/react-native-vector-icons/)
 
 - Example:
 ![Peek 2023-02-26 15-34](https://user-images.githubusercontent.com/40435989/221444565-20127409-03ba-4f01-b948-2839e321e61d.gif)
