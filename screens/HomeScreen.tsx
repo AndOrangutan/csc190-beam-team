@@ -1,12 +1,14 @@
 import { color } from '@rneui/base';
-import { View, Text, SafeAreaView, Linking, ScrollView } from 'react-native';
+import { View, Text, SafeAreaView, Linking, ScrollView, Image } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 const HomeScreen = () => {
   return (
     <SafeAreaView className="h-full items-center justify-center bg-sky-900">
-      <ScrollView>
+      <ScrollView className='w-full'>
         {/* <Text className="font-medium text-2xl text-blue-500">HomeScreen</Text> */}
+
+        {/* First Section/First Block */}
         <View className='h-60'></View>
         <View className="items-center justify-evenly bg-yellow-500 w-full p-4">
           <Text className="font-bold text-white text-2xl mb-4">The American River Parkway</Text>
@@ -19,6 +21,8 @@ const HomeScreen = () => {
             Learn More About the Parkway
           </Text>
         </View>
+
+        {/* Section with Youtube Video */}
         <View className='bg-[#44984E] p-2 items-center'>
           <Text className='font-bold text-white text-2xl mb-4 text-center'>The American River Parkway is in Crisis!</Text>
           <YoutubePlayer height={250} width={400} videoId={'Rti2dcophlE'} />
@@ -26,6 +30,62 @@ const HomeScreen = () => {
           <Text className='text-center font-bold text-blue-700 text-sm underline' 
           onPress={() => {Linking.openURL("https://arpf.org/voiceoftheparkway/")}}>Learn More About the Voice of the Parkway Coalition</Text>
         </View>
+
+        {/* Gray background section with images and text */}
+        <View className='bg-[#CACBCE]'>
+            {/* Public affairs */}
+            <View className='flex-row items-center p-2 gap-3'>
+              <Image source={{uri: "https://arpf.org/wp-content/uploads/DJI_0009-scaled.jpg"}} style={{height: 200, width: 200, resizeMode: 'contain'}} />
+              <View className='flex-1 items-center'>
+                <Text className='text-[#303031] font-bold text-lg'>Public Affairs</Text>
+                <Text className='text-center'>Over the past few years, American River Parkway Foundation 
+                  supporters increasingly requested that we take a more proactive 
+                  role in voicing Parkway concerns. <Text className='font-bold'>We listened!</Text>
+                </Text>
+                <Text className='font-bold text-xs text-blue-700' onPress={() => {Linking.openURL("https://arpf.org/public-affairs/")}}>See How We're Finding Solutions</Text>
+              </View>
+            </View>
+            {/* Parkway in Peril */}
+            <View className='flex-row items-center p-2 gap-3'>
+              <Image source={{uri: "https://arpf.org/wp-content/uploads/Volunteer-Page-Graphics-6.png"}} style={{height: 200, width: 200, resizeMode: 'contain' }} />
+              <View className='flex-1 items-center'>
+                <Text className='text-[#303031] font-bold text-lg'>Parkway in Peril</Text>
+                <Text className='text-center'>In 2021, more than 200 fires burned over 15% of 
+                the Parkway. The American River Parkway Foundation developed Parkway in Peril to highlight the issue.
+                </Text>
+                <Text className='font-bold text-xs text-blue-700' onPress={() => {Linking.openURL("https://arpf.org/parkway-in-peril/")}}>View Parkway in Peril</Text>
+              </View>
+            </View>
+        </View>
+        {/* End of Gray section */}
+
+        {/* Purple section */}
+        <View className='bg-[#730040]'>
+            {/* Volunteer */}
+            <View className='flex-row items-center p-2 gap-3'>
+              <Image source={{uri: "https://arpf.org/wp-content/uploads/Group-Clean-Ups.png"}} style={{height: 200, width: 200, resizeMode: 'contain'}} />
+              <View className='flex-1 items-center'>
+                <Text className='text-white font-bold text-lg'>Volunteer</Text>
+                <Text className='text-center text-white'>Volunteers play an essential role in 
+                conservation of the Parkway.
+                </Text>
+                <Text className='font-bold text-xs text-white' onPress={() => {Linking.openURL("https://arpf.org/volunteer/")}}>See How You Can Volunteer</Text>
+              </View>
+            </View>
+            {/* American River Parkway Foundation Programs */}
+            <View className='flex-row items-center p-2 gap-3'>
+              <Image source={{uri: "https://arpf.org/wp-content/uploads/Infranstructure.png"}} style={{height: 200, width: 200, resizeMode: 'contain' }} />
+              <View className='flex-1 items-center'>
+                <Text className='text-white font-bold text-lg text-center'>American River Parkway Foundation Programs</Text>
+                <Text className='text-center text-white'>The American River Parkway Foundation operates programs 
+                that contribute to the conservation of the Parkway.
+                </Text>
+                <Text className='font-bold text-xs text-white' onPress={() => {Linking.openURL("https://arpf.org/what-we-do/programs/")}}>See our Programs</Text>
+              </View>
+            </View>
+        </View>
+
+
       </ScrollView>
     </SafeAreaView>
   );
