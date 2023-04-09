@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { Text, View } from 'react-native';
-import RootNavigator from './navigator/RootNavigator';
 
+import RootNavigator from './navigator/RootNavigator';
 import HomeScreen from './screens/HomeScreen';
 
 export default function App() {
