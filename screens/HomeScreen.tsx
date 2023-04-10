@@ -12,15 +12,15 @@ const HomeScreen = () => {
 
   // array of arp images (placeholders for cards)
   const arpImages = [
-    { id: 1, image: require('../assets/arp1.jpg') },
-    { id: 2, image: require('../assets/arp2.jpg') },
-    { id: 3, image: require('../assets/arp3.jpg') },
+    { id: 1, image: require('../assets/arp1-new.png') },
+    { id: 2, image: require('../assets/arp2-new.png') },
+    { id: 3, image: require('../assets/arp3-new.png') },
   ];
 
   // render images in the carousel
   const renderArpImage = ({ item }) => {
     return (
-      <Image source={item.image} style={{ width: windowWidth, height: 133, resizeMode: 'contain' }} />
+      <Image source={item.image} style={{ width: windowWidth, height: windowWidth / 16 * 9, resizeMode: 'contain' }} />
     );
   };
 
@@ -30,7 +30,7 @@ const HomeScreen = () => {
         {/* <Text className="font-medium text-2xl text-blue-500">HomeScreen</Text> */}
 
         {/* Carousel of images */}
-        <View style={{height:133, width:windowWidth}}>
+        <View style={{height:windowWidth / 16 * 9, width:windowWidth}}>
           <Carousel
             data={arpImages}
             renderItem={renderArpImage}
