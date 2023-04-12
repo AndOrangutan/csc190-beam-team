@@ -4,7 +4,7 @@ import YoutubePlayer from 'react-native-youtube-iframe';
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView className="h-full items-center justify-center bg-sky-900">
+    <SafeAreaView className="h-full items-center justify-center bg-sky-900" >
       <ScrollView className='w-full'>
         {/* <Text className="font-medium text-2xl text-blue-500">HomeScreen</Text> */}
 
