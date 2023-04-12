@@ -2,8 +2,14 @@ import React, { useEffect } from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 import { List } from 'react-native-paper';
 import Animated, {useAnimatedStyle, useSharedValue, withTiming, withSpring} from 'react-native-reanimated';
+import { NavigationContainer } from '@react-navigation/native';
+import MissionScreen from './MissionScreen';
+import ContactScreen from './ContactScreen';
+import BoardofDirectorsScreen from './BoardofDirectorsScreen';
 
-const MoreScreen = () => {
+
+
+const MoreScreen = ({navigation}: {navigation: any}) => {
 
   const x = useSharedValue(500);
 
@@ -19,21 +25,68 @@ const MoreScreen = () => {
   }, []);
 
 
+
+
   return (
-    <Animated.View className="h-screen w-screen" style={reanimatedStyle} >
+    <Animated.ScrollView className="h-screen w-screen" style={reanimatedStyle} >
+      
+      {/* Abous Us dropdown list */}
       <List.Accordion style={{padding: 30,}} title="About us">
-        <List.Item className='p-6 shadow-md bg-zinc-50' title="Mission, Vision, Values and Staff" onPress={() => {}} />
-        <List.Item className='p-6 shadow-md bg-zinc-50' title="Board of Directors" onPress={() => {}} />
-        <List.Item className='p-6 shadow-md bg-zinc-50' title="Join Email List" onPress={() => {}} />
-        <List.Item className='p-6 shadow-md bg-zinc-50' title="Contact Us" onPress={() => {}} />
+
+          <List.Item 
+            className='p-6 shadow-md bg-zinc-50' 
+            title="Mission, Vision, Values and Staff" 
+            left={props => <List.Icon {...props} icon="barley" />}
+            onPress={() => {navigation.navigate("Mission")}} />
+          <List.Item 
+            className='p-6 shadow-md bg-zinc-50' 
+            title="Board of Directors" 
+            left={props => <List.Icon {...props} icon="clipboard-account-outline" />}
+            onPress={() => {navigation.navigate("Board of Directors")}} />
+          <List.Item 
+            className='p-6 shadow-md bg-zinc-50' 
+            title="Join Email List" 
+            left={props => <List.Icon {...props} icon="email" />}
+            onPress={() => {navigation.navigate("Join Email List")}} 
+            />
+          <List.Item 
+            className='p-6 shadow-md bg-zinc-50' 
+            title="Contact Us" 
+            left={props => <List.Icon {...props} icon="phone" />}
+            onPress={() => { navigation.navigate("Contact")}} 
+            />
       </List.Accordion>
+
+      {/* Get Involved dropdown list */}
       <List.Accordion style={{padding: 30}} title="Give to ARPF">
-        <List.Item className='p-6 shadow-md bg-zinc-50' title="Donate Now" onPress={() => {}} />
-        <List.Item className='p-6 shadow-md bg-zinc-50' title="Membership" onPress={() => {}} />
-        <List.Item className='p-6 shadow-md bg-zinc-50' title="Tribute Tables" onPress={() => {}} />
-        <List.Item className='p-6 shadow-md bg-zinc-50' title="Mile Stewards" onPress={() => {}} />
+        <List.Item 
+          className='p-6 shadow-md bg-zinc-50' 
+          title="Donate Now" 
+          left={props => <List.Icon {...props} icon="cash" />}
+          onPress={() => {navigation.navigate("Donate Now")}} 
+        />
+        <List.Item 
+          className='p-6 shadow-md bg-zinc-50' 
+          title="Membership" 
+          left={props => <List.Icon {...props} icon="account" />}
+          onPress={() => {navigation.navigate("Membership")}} 
+        />
+        <List.Item 
+          className='p-6 shadow-md bg-zinc-50' 
+          title="Tribute Tables" 
+          left={props => <List.Icon {...props} icon="table" />}
+          onPress={() => {navigation.navigate("Tribute Tables")}} 
+        />
+        <List.Item 
+          className='p-6 shadow-md bg-zinc-50' 
+          title="Mile Stewards" 
+          left={props => <List.Icon {...props} icon="handshake-outline" />}
+          onPress={() => {navigation.navigate("Mile Stewards")}} 
+        />
       </List.Accordion>
-    </Animated.View>
+
+
+    </Animated.ScrollView>
   );
 };
 
