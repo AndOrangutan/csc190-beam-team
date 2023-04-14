@@ -13,6 +13,7 @@ import MoreScreen from '../screens/MoreScreen';
 import ContactScreen from '../screens/ContactScreen';
 import MissionScreen from '../screens/MissionScreen';
 import MoreScreenTabs from '../screens/MoreScreenTabs';
+import Header from '../screens/Header';
 
 // https://reactnavigation.org/docs/tab-based-navigation
 // https://oblador.github.io/react-native-vector-icons/
@@ -82,7 +83,11 @@ const TabNavigator = () => {
           }
         },
       })}>
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} 
+      options ={{
+        headerTitle: () => <Header />,
+      }}
+      />
       <Tab.Screen name="Events" component={EventsScreen} />
       <Tab.Screen name="Map" component={MapScreen} />
       <Tab.Screen name="Calendar" component={CalendarScreen} />
