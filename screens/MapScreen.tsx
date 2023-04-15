@@ -12,7 +12,7 @@ const MapScreen = () => {
     navigation.setOptions({
       headerShown: false, // disable "Main" header
     });
-  }, []);
+  }, );
 
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-teal-300">
