@@ -10,6 +10,7 @@ import DonateNowScreen from './DonateNowScreen';
 import MembershipScreen from './MembershipScreen';
 import TributeTablesScreen from './TributeTablesScreen';
 import MileStewardsScreen from './MileStewardsScreen';
+import StrategicPlan from './StrategicPlan';
 
 const MoreScreenTabs = () => {
 
@@ -23,6 +24,7 @@ const MoreScreenTabs = () => {
             <Stack.Screen name="Mission" component={MissionScreen} />
             <Stack.Screen name="Contact" component={ContactScreen} />
             <Stack.Screen name="Board of Directors" component={BoardofDirectorsScreen} />
+            <Stack.Screen name="ARPF Strategic Plan" component={StrategicPlan} />
             <Stack.Screen name="Join Email List" component={JoinEmailListScreen} />
             <Stack.Screen name="Donate Now" component={DonateNowScreen} />
             <Stack.Screen name="Membership" component={MembershipScreen} />

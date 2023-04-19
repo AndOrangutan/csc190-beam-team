@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
 import { List } from 'react-native-paper';
 import Animated, {useAnimatedStyle, useSharedValue, withTiming, withSpring} from 'react-native-reanimated';
-import { NavigationContainer } from '@react-navigation/native';
-import MissionScreen from './MissionScreen';
-import ContactScreen from './ContactScreen';
-import BoardofDirectorsScreen from './BoardofDirectorsScreen';
 
 
 
@@ -43,6 +38,11 @@ const MoreScreen = ({navigation}: {navigation: any}) => {
             title="Board of Directors" 
             left={props => <List.Icon {...props} icon="clipboard-account-outline" />}
             onPress={() => {navigation.navigate("Board of Directors")}} />
+          <List.Item 
+            className='p-6 shadow-md bg-zinc-50' 
+            title="ARPF Strategic Plan 2021-2024" 
+            left={props => <List.Icon {...props} icon="notebook-outline" />}
+            onPress={() => {navigation.navigate("ARPF Strategic Plan")}} />
           <List.Item 
             className='p-6 shadow-md bg-zinc-50' 
             title="Join Email List" 
