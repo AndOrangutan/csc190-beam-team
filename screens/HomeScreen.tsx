@@ -18,7 +18,7 @@ const HomeScreen = () => {
   ];
 
   // render images in the carousel
-  const renderArpImage = ({ item }) => {
+  const renderArpImage = ({ item }: { item: { id: number; image: any } }) => {
     return (
       <Image source={item.image} style={{ width: windowWidth, height: windowWidth / 16 * 9, resizeMode: 'contain' }} />
     );
