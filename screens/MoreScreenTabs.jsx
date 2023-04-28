@@ -10,6 +10,7 @@ import DonateNowScreen from './DonateNowScreen';
 import MembershipScreen from './MembershipScreen';
 import TributeTablesScreen from './TributeTablesScreen';
 import MileStewardsScreen from './MileStewardsScreen';
+import ReserveroomScreen from './ReserveroomScreen';
 
 const MoreScreenTabs = () => {
 
@@ -28,6 +29,7 @@ const MoreScreenTabs = () => {
             <Stack.Screen name="Membership" component={MembershipScreen} />
             <Stack.Screen name="Tribute Tables" component={TributeTablesScreen} />
             <Stack.Screen name="Mile Stewards" component={MileStewardsScreen} />
+            <Stack.Screen name="Reserve Conference Room" component={ReserveroomScreen} />
         </Stack.Navigator>
     </NavigationContainer>
   )

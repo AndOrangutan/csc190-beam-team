@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import MissionScreen from './MissionScreen';
 import ContactScreen from './ContactScreen';
 import BoardofDirectorsScreen from './BoardofDirectorsScreen';
+import ReserveroomScreen from './ReserveroomScreen';
 
 
 
@@ -54,6 +55,12 @@ const MoreScreen = ({navigation}: {navigation: any}) => {
             title="Contact Us" 
             left={props => <List.Icon {...props} icon="phone" />}
             onPress={() => { navigation.navigate("Contact")}} 
+            />
+            <List.Item 
+            className='p-6 shadow-md bg-zinc-50' 
+            title="Reserve Conference Room" 
+            left={props => <List.Icon {...props} icon="check-circle" />}
+            onPress={() => { navigation.navigate("Reserve Conference Room")}} 
             />
       </List.Accordion>
 
