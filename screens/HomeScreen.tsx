@@ -1,15 +1,46 @@
+/* eslint-disable prettier/prettier */
 import { color } from '@rneui/base';
-import { View, Text, SafeAreaView, Linking, ScrollView, Image } from 'react-native';
+import { View, Text, SafeAreaView, Linking, ScrollView, Image, Dimensions } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 const HomeScreen = () => {
+
+  // get dimensions of the display
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+
+  // array of arp images (placeholders for cards)
+  const arpImages = [
+    { id: 1, image: require('../assets/arp1-new.png') },
+    { id: 2, image: require('../assets/arp2-new.png') },
+    { id: 3, image: require('../assets/arp3-new.png') },
+  ];
+
+  // render images in the carousel
+  const renderArpImage = ({ item }: { item: { id: number; image: any } }) => {
+    return (
+      <Image source={item.image} style={{ width: windowWidth, height: windowWidth / 16 * 9, resizeMode: 'contain' }} />
+    );
+  };
+
   return (
     <SafeAreaView className="h-full items-center justify-center bg-sky-900">
       <ScrollView className="w-full">
         {/* <Text className="font-medium text-2xl text-blue-500">HomeScreen</Text> */}
 
+        {/* Carousel of images */}
+        <View style={{height:windowWidth / 16 * 9, width:windowWidth}}>
+          <Carousel
+            data={arpImages}
+            renderItem={renderArpImage}
+            sliderWidth={windowWidth}
+            itemWidth={windowWidth}
+          />
+        </View>
+
         {/* First Section/First Block */}
-        <View className="h-60"></View>
+        <View className='h-60'></View>
         <View className="items-center justify-evenly bg-yellow-500 w-full p-4">
           <Text className="font-bold text-white text-2xl mb-4">The American River Parkway</Text>
           <Text className="text-center  text-white text-lg mb-4">
