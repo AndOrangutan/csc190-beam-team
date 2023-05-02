@@ -40,7 +40,6 @@ const HomeScreen = () => {
         </View>
 
         {/* First Section/First Block */}
-        <View className='h-60'></View>
         <View className="items-center justify-evenly bg-yellow-500 w-full p-4">
           <Text className="font-bold text-white text-2xl mb-4">The American River Parkway</Text>
           <Text className="text-center  text-white text-lg mb-4">
