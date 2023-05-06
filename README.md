@@ -33,6 +33,12 @@ Project is currently under devlopment. Some front end framework is done. Current
 
 ### Testing
 
+We will begin testing next semester in CSC 191
+
+## Deploying to production
+
+we will be deploying to produciton next semester in CSC 191
+
 
 ### Environment Setup
 
@@ -71,3 +77,9 @@ Project is currently under devlopment. Some front end framework is done. Current
     - [TailwindCSS(Styling Library)](https://tailwindcss.com/docs/installation)
     - [Hex color to TailwindCSS color](https://tailwind-color-finder.vercel.app/)
     - [Icons](https://oblador.github.io/react-native-vector-icons/)
+
+
+## Roadmap
+
+- Sprint 3 (2023/03/26) - (2023/04/09)
+    - [  ]sadfa
