@@ -83,4 +83,28 @@ we will be deploying to produciton next semester in CSC 191
 
 - Sprint 3 (2023/03/26) - (2023/04/09)
     - [X] Create Navbar
-    - [X]
+    - [X] Create Homepage
+    
+- Sprint 4 (2023/04/10) - (2023/04/24)
+    - [X] Create more menu
+    - [ ] Populate the about us screens
+    - [X] Get the calendar page displaying a calendar
+
+
+- Sprint 5 (2023/08/28) - (2023/09/11)
+    - [ ] Populate More Menu
+    - [ ] add functionailty to calander page
+    - [ ] edit homepage to show new designed homepage
+
+- Sprint 6 (2023/09/11) - (2023/09/25)
+    - [ ] Add backend and for user authentifaction
+    - [ ] create mode for Volunteers
+
+- Sprint 7 (2023/09/16) - (2023/10/09)
+    - [ ] Get map working properly
+    - [ ] Populate Events Page
+    - [ ] incorperate backend to keep map data
+
+- Sprint 8 (2023/10/09) - (2023/10/23)
+    - [ ] create contact us page
+
