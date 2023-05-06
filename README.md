@@ -5,7 +5,12 @@
 ## The Goal
 Create a mobile application for the American River Parkway Foundation
 that provides users with a user-friendly and convenient way to access information about the
-Foundation and the American River Parkway.
+Foundation and the American River Parkway. The mobile app will include a map feature,
+allowing users to easily locate and explore different areas of the parkway. The app will provide
+users with a wealth of information about the parkway, including trails, natural features, historical
+landmarks, and events. By creating a mobile app, the American River Parkway Foundation
+hopes to increase awareness and engagement among users, leading to increased support and
+preservation of this important natural resource.
 
 ## Tech Stack
 - Frontend
@@ -25,13 +30,9 @@ Project is currently under devlopment. Some front end framework is done. Current
 <img width="406" alt="Screen Shot 2023-05-05 at 9 44 18 PM" src="https://user-images.githubusercontent.com/47950270/236600328-69fd23e5-2ff5-4e32-8a0f-ca45fac13840.png">
 
 
-## Development
 
 ### Testing
 
-### Development
-
-### Development Instrucitons
 
 ### Environment Setup
 
