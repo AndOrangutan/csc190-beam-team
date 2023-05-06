@@ -22,7 +22,8 @@ Project is currently under devlopment. Some front end framework is done. Current
 
 <img width="418" alt="Screen Shot 2023-05-05 at 9 34 16 PM" src="https://user-images.githubusercontent.com/47950270/236599976-316fc8c9-5890-41b5-9c22-1ad16c17a239.png">
 
-<img width="420" alt="Screen Shot 2023-05-05 at 9 35 13 PM" src="https://user-images.githubusercontent.com/47950270/236600005-e13e4a39-0cbc-49de-ae7c-78de710b8aea.png">
+<img width="406" alt="Screen Shot 2023-05-05 at 9 44 18 PM" src="https://user-images.githubusercontent.com/47950270/236600328-69fd23e5-2ff5-4e32-8a0f-ca45fac13840.png">
+
 
 ## Development
 
