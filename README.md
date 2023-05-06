@@ -4,10 +4,12 @@
 
 ## Table of Contents
 
-- [The Goal] (#The-Goal)
-- [Tech Stack] (#Tech-Stack)
-- [Enviorment setup] (#Environment Setup)
-- [RoadMap] (#Roadmap)
+- [The Goal](#the-goal)
+- [Tech Stack](#tech-stack)
+- [Environment Setup](#environment-setup)
+- [Roadmap](#roadmap)
+
+
 
 ## The Goal
 Create a mobile application for the American River Parkway Foundation
