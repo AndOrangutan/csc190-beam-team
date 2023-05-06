@@ -2,6 +2,13 @@
 
 <img width="97" alt="ARPF" src="https://user-images.githubusercontent.com/47950270/236599808-ab46ce50-ef80-4d7e-ba1e-a92d97f6ee00.png">
 
+## Table of Contents
+
+- [The Goal] (#The-Goal)
+- [Tech Stack] (#Tech-Stack)
+- [Enviorment setup] (#Environment Setup)
+- [RoadMap] (#Roadmap)
+
 ## The Goal
 Create a mobile application for the American River Parkway Foundation
 that provides users with a user-friendly and convenient way to access information about the
