@@ -17,6 +17,8 @@ Foundation and the American River Parkway.
 - API’s 
     - Google Dynamic Maps
 
+## Status
+Project is currently under devlopment. Some front end framework is done. Currently does not have any backend or the map functionality. 
 
 ## Development
 
