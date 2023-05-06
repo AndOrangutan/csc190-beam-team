@@ -1,8 +1,22 @@
 # ARPF Map Companion
 
-## The Goal
+<img width="97" alt="ARPF" src="https://user-images.githubusercontent.com/47950270/236599808-ab46ce50-ef80-4d7e-ba1e-a92d97f6ee00.png">
 
-## The Project
+## The Goal
+Create a mobile application for the American River Parkway Foundation
+that provides users with a user-friendly and convenient way to access information about the
+Foundation and the American River Parkway.
+
+## Tech Stack
+- Frontend
+    - Languages: TailwindCSS, Typescript, and React Native JSX
+    - SKDs: Expo, with Xcode or Android Studio for emulation 
+- Backend
+- Database 
+    -MySQL 
+- API’s 
+    - Google Dynamic Maps
+
 
 ## Development
 
@@ -12,7 +26,7 @@
 
 ### Development Instrucitons
 
-### Environment Stup
+### Environment Setup
 
 - Install Node.js
     - https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
