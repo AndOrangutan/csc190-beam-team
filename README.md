@@ -82,4 +82,4 @@ we will be deploying to produciton next semester in CSC 191
 ## Roadmap
 
 - Sprint 3 (2023/03/26) - (2023/04/09)
-    -[  ]sadfa
+    - { } asdf
