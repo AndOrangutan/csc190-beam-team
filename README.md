@@ -13,7 +13,7 @@ Foundation and the American River Parkway.
     - SKDs: Expo, with Xcode or Android Studio for emulation 
 - Backend
 - Database 
-    -MySQL 
+    - MySQL 
 - API’s 
     - Google Dynamic Maps
 
