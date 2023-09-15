@@ -4,6 +4,7 @@ import { View, Text, SafeAreaView, Linking, ScrollView, Image, Dimensions } from
 import Carousel from 'react-native-snap-carousel';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
+
 const HomeScreen = () => {
 
   // get dimensions of the display
@@ -17,10 +18,88 @@ const HomeScreen = () => {
     { id: 3, image: require('../assets/arp3-new.png') },
   ];
 
+  // Array of values
+  const values = [
+    { id: 1, image: 'https://arpf.org/wp-content/uploads/2023/05/icon-home1.jpg', 
+    text: "Volunteers are essential to the ARPFachieving its mission",
+    title: "Volunteerism",
+    link: "https://arpf.org/volunteer/"
+    },
+
+    { id: 2, image: 'https://arpf.org/wp-content/uploads/2023/05/icon-home2.jpg', 
+    text: "The ARPF is passionate about the environment and is committed to programs that enhance the American River Parkway's natural habitats as places for respite, recreation and rejuvenation.",
+    title: "CONSERVATION",
+    link: "https://arpf.org/what-we-do/programs/"
+    },
+
+    { id: 3, image: 'https://arpf.org/wp-content/uploads/2023/05/icon-home3.jpg', 
+    text: "The Foundation strives to be the Parkway's advocate. We collaborate, convene and build partnerships to protect and promote the Parkway.",
+    title: "Leadership",
+    link: "https://arpf.org/public-affairs/"
+    },
+
+    { id: 4, image: 'https://arpf.org/wp-content/uploads/2023/05/icon-home4.jpg', 
+    text: "The ARPF embraces environmental education in order to help us understand how to exist harmoniously with nature and conserve this environment for future generations.",
+    title: "Education",
+    link: "https://arpf.org/education/"
+    },
+
+    { id: 5, image: 'https://arpf.org/wp-content/uploads/2023/05/icon-home5.jpg', 
+    text: "The ARPF is committed to breaking down barriers that prevent people in our diverse communities from enjoying the Parkway.",
+    title: "Community Access",
+    link: "https://arpf.org/education/river-bend-outdoor-educational-site/"
+    },
+
+    { id: 6, image: 'https://arpf.org/wp-content/uploads/2023/05/icon-home6.jpg', 
+    text: "Fun is important. ARPF volunteers and staff work hard but they also play, socialize, laugh and share in nature.",
+    title: "Fun",
+    link: "https://arpf.org/give/"
+    },
+
+    { id: 7, image: 'https://arpf.org/wp-content/uploads/2023/05/icon-home7.jpg', 
+    text: "We promote health and wellness now and in the future.",
+    title: "HEALTH AND WELLNESS",
+    link: "https://arpf.org/visit/"
+    },
+
+    { id: 8, image: 'https://arpf.org/wp-content/uploads/2023/05/icon-home8.jpg', 
+    text: "We take the opportunity to learn from our mistakes and seek to improve.",
+    title: "INTEGRITY",
+    link: "https://arpf.org/volunteer/calendar/"
+    },
+
+  
+  ]
+
   // render images in the carousel
   const renderArpImage = ({ item }: { item: { id: number; image: any } }) => {
     return (
-      <Image source={item.image} style={{ width: windowWidth, height: windowWidth / 16 * 9, resizeMode: 'contain' }} />
+      // Changed the highest to divide by 16 * 12
+      <Image source={item.image} style={{ width: windowWidth, height: windowWidth / 16 * 9, resizeMode: 'stretch' }} />
+    );
+  };
+
+  const ValuesCard = ({
+    item,
+  }: {
+    item: { id: number; image: string; title: string; text: string; link: string };
+  }) => {
+    return (
+      <View className="flex-row items-center justify-evenly flex-1">
+        <Image
+          source={{ uri: item.image }}
+          style={{ height: 100, width: 100, resizeMode: 'contain' }}
+        />
+        <View className="flex-col gap-2 w-1/2">
+          <Text className="text-center font-bold ">{item.title}</Text>
+          <Text className="text-center">{item.text}</Text>
+          <Text 
+            onPress={() => Linking.openURL(item.link)}
+          className="text-center text-blue-800 shadow-sm">
+            Learn More
+          </Text>
+        </View>
+      </View>
     );
   };
 
@@ -30,168 +109,73 @@ const HomeScreen = () => {
         {/* <Text className="font-medium text-2xl text-blue-500">HomeScreen</Text> */}
 
         {/* Carousel of images */}
+        {/* Changed the highest to divide by 16 * 12 */}
         <View style={{height:windowWidth / 16 * 9, width:windowWidth}}>
           <Carousel
             data={arpImages}
             renderItem={renderArpImage}
             sliderWidth={windowWidth}
             itemWidth={windowWidth}
+            loop={true}
           />
         </View>
 
         {/* First Section/First Block */}
       
-        <View className="items-center justify-evenly bg-yellow-500 w-full p-4">
-          <Text className="font-bold text-white text-2xl mb-4">The American River Parkway</Text>
-          <Text className="text-center  text-white text-lg mb-4">
-            Sacramento's urban gem! Spanning 23 miles and covering 4,800 acres, the parkway has
-            become a mecca for outdoor enthusiasts and those looking to refresh or re-create
-            themselves
+        <View className="items-center justify-evenly bg-white w-full p-4">
+          <Text className="text-center  text-black text-lg mb-4">
+          The <Text className='font-bold'>American River Parkway Foundation (ARPF)</Text> is a Sacramento 501(c)(3) nonprofit charitable organization whose mission is to lead and 
+          inspire the community to conserve and nurture the American River Parkway as a unique, accessible resource for everyone to enjoy. 
+          Our headquarters is located in the William B. Pond Recreation Area on the American River Parkway. 
           </Text>
-          <Text
-            className="text-center text-blue-700 font-bold text-sm underline"
-            onPress={() => {
-              Linking.openURL('https://arpf.org/visit/');
-            }}>
-            Learn More About the Parkway
+          <Text className="text-center  text-black text-lg mb-4">
+          <Text className='font-bold'>The ARPF vision</Text> is for the American River 
+          Parkway, which spans 23 miles and 4,800 acres, to be one of the nation's premier urban natural parks.
+          </Text>
+          <Text className="text-center font-bold text-black text-lg mb-4">
+          We encourage you to contact the 
+          American River Parkway Foundation and take an active and personal role in contributing to the success of the Parkway.
+          </Text>
+          <Text className="text-center font-bold text-black text-lg mb-4">
+            The ARPF aims to accomplish 
+            its mission by exercising the following values.
+          </Text>
+
+          {/* Values */}
+          <View className="flex-row justify-center mt-10">
+            <Carousel
+              data={values}
+              renderItem={ValuesCard}
+              sliderWidth={10}
+              itemWidth={windowWidth}
+              autoplay={true}
+              loop={true}
+              autoplayInterval={3000}
+              autoplayDelay={1000}
+            />
+          </View>
+        </View>
+
+        {/* Last section. Contact and email info. */}
+        <View className='items-center justify-evenly bg-white w-full p-4'>
+          <Text className='text-center  text-black text-lg mb-4'>
+            Call the ARPF at (916) 486-2773. Our phones are answered Monday to Friday 8:30 AM to 4:30 PM (Pacific Time)
+            by friendly, local and knowledgeable people who are dedicated to the American River Parkway.
+          </Text>
+          <Text className='text-center  text-black text-lg mb-4'>
+            You may also <Text className='text-blue-800 font-bold' onPress={() => Linking.openURL("mailto:https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=info@arpf.org")}>send a 
+            email</Text> or <Text className='text-blue-800 font-bold' onPress={() => Linking.openURL("https://arpf.org/contact-us/")}>click here</Text> to 
+            complete the online information request. You may also visit us during our hours of operation at;
+          </Text>
+          <Text className='font-bold w-32 text-center'>
+            5700 Arden Way
+            Carmichael, CA 95608
           </Text>
         </View>
 
-        {/* Section with Youtube Video */}
-        <View className="bg-[#44984E] p-2 items-center">
-          <Text className="font-bold text-white text-2xl mb-4 text-center">
-            The American River Parkway is in Crisis!
-          </Text>
-          <YoutubePlayer height={250} width={400} videoId={'Rti2dcophlE'} />
-          <Text className="font-bold text-white text-1xl mb-4 text-center">
-            We need your help to hold our local leaders and municipal staff accountable!
-          </Text>
-          <Text
-            className="text-center font-bold text-blue-700 text-sm underline"
-            onPress={() => {
-              Linking.openURL('https://arpf.org/voiceoftheparkway/');
-            }}>
-            Learn More About the Voice of the Parkway Coalition
-          </Text>
-        </View>
-
-        {/* Gray background section with images and text */}
-        <View className="bg-[#CACBCE]">
-          {/* Public affairs */}
-          <View className="flex-row items-center p-2 gap-3">
-            <Image
-              source={{ uri: 'https://arpf.org/wp-content/uploads/DJI_0009-scaled.jpg' }}
-              style={{ height: 200, width: 200, resizeMode: 'contain' }}
-            />
-            <View className="flex-1 items-center">
-              <Text className="text-[#303031] font-bold text-lg">Public Affairs</Text>
-              <Text className="text-center">
-                Over the past few years, American River Parkway Foundation supporters increasingly
-                requested that we take a more proactive role in voicing Parkway concerns.{' '}
-                <Text className="font-bold">We listened!</Text>
-              </Text>
-              <Text
-                className="font-bold text-xs text-blue-700"
-                onPress={() => {
-                  Linking.openURL('https://arpf.org/public-affairs/');
-                }}>
-                See How We're Finding Solutions
-              </Text>
-            </View>
-          </View>
-          {/* Parkway in Peril */}
-          <View className="flex-row items-center p-2 gap-3">
-            <Image
-              source={{ uri: 'https://arpf.org/wp-content/uploads/Volunteer-Page-Graphics-6.png' }}
-              style={{ height: 200, width: 200, resizeMode: 'contain' }}
-            />
-            <View className="flex-1 items-center">
-              <Text className="text-[#303031] font-bold text-lg">Parkway in Peril</Text>
-              <Text className="text-center">
-                In 2021, more than 200 fires burned over 15% of the Parkway. The American River
-                Parkway Foundation developed Parkway in Peril to highlight the issue.
-              </Text>
-              <Text
-                className="font-bold text-xs text-blue-700"
-                onPress={() => {
-                  Linking.openURL('https://arpf.org/parkway-in-peril/');
-                }}>
-                View Parkway in Peril
-              </Text>
-            </View>
-          </View>
-        </View>
-        {/* End of Gray section */}
-
-        {/* Purple section */}
-        <View className="bg-[#730040]">
-          {/* Volunteer */}
-          <View className="flex-row items-center p-2 gap-3">
-            <Image
-              source={{ uri: 'https://arpf.org/wp-content/uploads/Group-Clean-Ups.png' }}
-              style={{ height: 200, width: 200, resizeMode: 'contain' }}
-            />
-            <View className="flex-1 items-center">
-              <Text className="text-white font-bold text-lg">Volunteer</Text>
-              <Text className="text-center text-white">
-                Volunteers play an essential role in conservation of the Parkway.
-              </Text>
-              <Text
-                className="font-bold text-xs text-white"
-                onPress={() => {
-                  Linking.openURL('https://arpf.org/volunteer/');
-                }}>
-                See How You Can Volunteer
-              </Text>
-            </View>
-          </View>
-          <View className="flex-row items-center p-2 gap-3">
-            <Image
-              source={{ uri: 'https://arpf.org/wp-content/uploads/Infranstructure.png' }}
-              style={{ height: 200, width: 200, resizeMode: 'contain' }}
-            />
-            <View className="flex-1 items-center">
-              <Text className="text-white font-bold text-lg text-center">
-                American River Parkway Foundation Programs
-              </Text>
-              <Text className="text-center text-white">
-                The American River Parkway Foundation operates programs that contribute to the
-                conservation of the Parkway.
-              </Text>
-              <Text
-                className="font-bold text-xs text-white"
-                onPress={() => {
-                  Linking.openURL('https://arpf.org/what-we-do/programs/');
-                }}>
-                See our Programs
-              </Text>
-            </View>
-          </View>
-        </View>
-        {/* Blue section */}
-        <View className="bg-[#1b40ba]">
-          {/* Volunteer */}
-          <View className="flex-row items-center p-2 gap-3">
-            <Image
-              source={{ uri: 'https://arpf.org/shop/wp-content/uploads/2023/02/2-324x324.png' }}
-              style={{ height: 200, width: 200, resizeMode: 'contain' }}
-            />
-            <View className="flex-1 items-center">
-              <Text className="text-white font-bold text-lg">Park Passes</Text>
-              <Text className="text-center text-white">
-                Access all parks in the Sacramento County Regional Parks system with an annual pass!
-              </Text>
-              <Text
-                className="font-bold text-xs text-white"
-                onPress={() => {
-                  Linking.openURL('https://arpf.org/shop/?product_cat=parks-passes');
-                }}>
-                Buy a Sacramento County park pass
-              </Text>
-            </View>
-          </View>
-          {/* American River Parkway Foundation Programs */}
-        </View>
+        
+          
+        
       </ScrollView>
     </SafeAreaView>
   );
