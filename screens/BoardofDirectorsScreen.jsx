@@ -15,10 +15,10 @@ const BoardofDirectorsScreen = () => {
         {/* EC Tiles */}
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Dustin Luton - President
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            Golden 1 Credit Union
           </Text>
         </View>
 
@@ -26,10 +26,10 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            John Costa - Vice President
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            PG&E
           </Text>
         </View>
 
@@ -37,10 +37,10 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Mike Rizzo - Past President
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            Five Star Bank
           </Text>
         </View>
 
@@ -48,10 +48,10 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Jonathan Deeringer - Treasurer
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            Deeringer Wealth Management
           </Text>
         </View>
 
@@ -59,10 +59,10 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Ryan Drury - Secretary
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            Pacific Neon
           </Text>
         </View>
 
@@ -76,10 +76,10 @@ const BoardofDirectorsScreen = () => {
         {/* BOD Tiles */}
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Christian Brown
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            Teichert Materials
           </Text>
         </View>
 
@@ -87,10 +87,10 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Keith Coolidge
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            Consultant
           </Text>
         </View>
 
@@ -98,10 +98,10 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Karen Doron
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            CalSTRS
           </Text>
         </View>
 
@@ -109,10 +109,10 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Steve Kustin
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            SMUD
           </Text>
         </View>
 
@@ -120,10 +120,10 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Dean O'Brien
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            Office of Statewide Health Planning & Development
           </Text>
         </View>
 
@@ -131,10 +131,10 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Matt Ocko
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            City of Roseville
           </Text>
         </View>
 
@@ -142,10 +142,10 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            David Pai
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            Capital Nephrology Medical Group
           </Text>
         </View>
 
@@ -153,10 +153,10 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Laurel Laird
           </Text>
           <Text className="text-center text-black text-lg mb-4">
-            Position
+            Summit Strategy Group
           </Text>
         </View>
 
@@ -164,25 +164,18 @@ const BoardofDirectorsScreen = () => {
 
         <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Jim Jargent
           </Text>
-          <Text className="text-center text-black text-lg mb-4">
-            Position
-          </Text>
-        </View>
-
-        <View className="items-center justify-evenly p-4"></View>
-
-        <View className="items-center justify-evenly bg-cyan-300 w-600 p-4">
           <Text className="font-bold text-white text-2xl mb-4">
-            Name
+            Don Wreden, MD
           </Text>
-          <Text className="text-center text-black text-lg mb-4">
-            Position
+          <Text className="font-bold text-white text-2xl mb-4">
+            Dianna Poggetto
           </Text>
         </View>
 
         <View className="items-center justify-evenly p-4"></View>
+
       </ScrollView>
     </SafeAreaView>
     
