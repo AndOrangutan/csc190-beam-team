@@ -8,7 +8,7 @@ const ContactScreen = () => {
       source={{
         uri: 'https://arpf.org/contact-us/',
       }}
-      style={{ marginTop: -650}}
+      //style={{ marginTop: -650}}
     />
   );
 };
