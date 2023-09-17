@@ -1,12 +1,16 @@
-import React from 'react'
-import { View, Text, SafeAreaView } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+import WebView from 'react-native-webview';
 
 const ContactScreen = () => {
   return (
-    <SafeAreaView className="flex-1 items-center justify-center bg-teal-300">
-      <Text>ContactScreen</Text>
-    </SafeAreaView>
-  )
-}
+    <WebView
+      source={{
+        uri: 'https://arpf.org/contact-us/',
+      }}
+      style={{ marginTop: -650}}
+    />
+  );
+};
 
-export default ContactScreen
+export default ContactScreen;
