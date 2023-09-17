@@ -8,7 +8,7 @@ const NewsScreen = () => {
       source={{
         uri: 'https://arpf.org/coverage/',
       }}
-      style={{ marginTop: -700 }}
+      //style={{ marginTop: -700 }}
     />
   );
 };
