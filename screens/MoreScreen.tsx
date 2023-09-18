@@ -55,6 +55,12 @@ const MoreScreen = ({navigation}: {navigation: any}) => {
             left={props => <List.Icon {...props} icon="phone" />}
             onPress={() => { navigation.navigate("Contact")}} 
             />
+          <List.Item 
+            className='p-6 shadow-md bg-zinc-50' 
+            title="News" 
+            left={props => <List.Icon {...props} icon="newspaper" />}
+            onPress={() => { navigation.navigate("News")}} 
+            />
       </List.Accordion>
 
       {/* Get Involved dropdown list */}
