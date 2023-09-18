@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MissionScreen from './MissionScreen';
 import ContactScreen from './ContactScreen';
+import NewsScreen from './NewsScreen';
 import MoreScreen from './MoreScreen';
 import BoardofDirectorsScreen from './BoardofDirectorsScreen';
 import JoinEmailListScreen from './JoinEmailListScreen';
@@ -23,6 +24,7 @@ const MoreScreenTabs = () => {
             <Stack.Screen name="More" component={MoreScreen} />
             <Stack.Screen name="Mission" component={MissionScreen} />
             <Stack.Screen name="Contact" component={ContactScreen} />
+            <Stack.Screen name="News" component={NewsScreen} />
             <Stack.Screen name="Board of Directors" component={BoardofDirectorsScreen} />
             <Stack.Screen name="ARPF Strategic Plan" component={StrategicPlan} />
             <Stack.Screen name="Join Email List" component={JoinEmailListScreen} />
