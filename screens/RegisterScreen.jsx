@@ -94,7 +94,8 @@ const RegisterScreen = () => {
         />
         <Pressable
           className="bg-green-600 text-white font-bold py- px-4 rounded-full w-22 mb-4 "
-          //onPress={handleRegister}>
+          //onPress={handleRegister}
+          >
           <Text className="text-white font-bold py-2 px-4 text-center">Register</Text>
         </Pressable>
 
