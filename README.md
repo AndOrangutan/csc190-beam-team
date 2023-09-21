@@ -73,6 +73,23 @@ we will be deploying to produciton next semester in CSC 191
     - `git worketree add ../<branch-name>`
     - `cd ../<branch-name>`
 
+###  Running the project
+
+Server
+
+```bash
+cd server
+yarn install
+yarn run dev # Hotreload 
+```
+
+test the server by visiting:
+
+```
+localhost:8000
+localhost:8000/users
+```
+
 ### Resources
 
 - Git
@@ -91,5 +108,6 @@ we will be deploying to produciton next semester in CSC 191
 - DB
     - [Building a CRUD App with Supabase and Express](https://medium.com/@heshramsis/building-a-crud-app-with-supabase-and-express-a-step-by-step-guide-for-junior-developers-81456b850910)
     - [Pino: used instead of morgan](https://github.com/pinojs/pino)
+    - [Build a User Management App with Expo](https://supabase.com/docs/guides/getting-started/tutorials/with-expo)
 
 
