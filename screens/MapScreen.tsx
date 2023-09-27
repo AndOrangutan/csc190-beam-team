@@ -200,7 +200,7 @@ const MapScreen = () => {
         }}
       />
 
-<MapView
+      <MapView
         provider={PROVIDER_GOOGLE}
         style={{ alignSelf: 'stretch', height: '100%' }}
         region={mapRegion}>
