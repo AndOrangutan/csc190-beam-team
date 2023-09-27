@@ -1,7 +1,7 @@
-// import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
+//import { GOOGLE_API_KEY } from 'react-native-dotenv'
 import { View, StyleSheet } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 // https://reactnavigation.org/docs/tab-based-navigation
 // https://oblador.github.io/react-native-vector-icons/
@@ -17,9 +17,9 @@ const MapScreen = () => {
   return (
     <View style={styles.container}>
       <MapView
+        provider={PROVIDER_GOOGLE}
         style={{ alignSelf: 'stretch', height: '100%' }}
-        region={mapRegion}
-      >
+        region={mapRegion}>
         <Marker coordinate={mapRegion} title='American River Parkway Foundation' />
       </MapView>
     </View>
