@@ -14,7 +14,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigator/RootNavigator';
 import RegisterScreen from '../screens/RegisterScreen';
 
-
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 
 interface LoginScreenProps {
@@ -35,9 +34,13 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
     navigation.navigate('Main');
   };
 
+  const handleRegister = () => {
+    navigation.navigate('RegisterScreen');
+  };
+
   const handleLogin = () => {
     if (!isEmailValid(email)) {
-      Alert.alert("Invalid email", "Please enter a valid email address.");
+      Alert.alert('Invalid email', 'Please enter a valid email address.');
       return;
     }
 
@@ -46,7 +49,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
       navigation.navigate('Main');
     } else {
       console.log('Invalid email or password');
-      Alert.alert("Login failed", "Invalid email or password.");
+      Alert.alert('Login failed', 'Invalid email or password.');
     }
   };
 
@@ -76,16 +79,15 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
           <View className="h-3" />
 
           <View className="flex-row align-center justify-evenly">
-
-            
             <Pressable
               className="bg-green-600 text-white font-bold py- px-4 rounded-full w-22  "
               onPress={handleLogin}>
               <Text className="text-white font-bold py-2 px-4 text-center">Login </Text>
             </Pressable>
-            
-            
-            <Pressable className="bg-green-600 text-white font-bold py- px-4 rounded-full w-22 " onPress={handleRegister}>
+
+            <Pressable
+              className="bg-green-600 text-white font-bold py- px-4 rounded-full w-22 "
+              onPress={handleRegister}>
               <Text className="text-white font-bold py-2 px-4 text-center">Register</Text>
             </Pressable>
           </View>
