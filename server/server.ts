@@ -3,16 +3,14 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express, { Express, Request, Response } from 'express';
+import path from 'path';
 
+dotenv.config({ path: path.join(__dirname, '../.env') });
 const supaurl = process.env.SUPA_URL;
 const supakey = process.env.SUPA_KEY;
 const port = process.env.PORT;
 
-dotenv.config();
-
 const app: Express = express();
-app.use(cors());
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

@@ -18,6 +18,7 @@
     "@rneui/themed": "^4.0.0-rc.7",
     "@types/react-native-snap-carousel": "^3.8.5",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "dotenv": "^16.3.1",
     "email-validator": "^2.0.4",
     "expo": "~48.0.5",
     "expo-checkbox": "~2.3.1",
