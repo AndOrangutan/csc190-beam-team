@@ -261,9 +261,12 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   menuContent: {
-    // Style for the menu content
-    // Add menu content styling here
+    marginTop: 10,
   },
+  menuText: {
+    fontSize: 18,
+    marginBottom: 5,
+  }
 });
 
 export default MapScreen;
