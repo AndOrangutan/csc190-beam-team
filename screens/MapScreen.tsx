@@ -200,11 +200,11 @@ const FilterMenu = () => {
       {/* Menu content */}
       {menuVisible && (
         <View style={styles.menuContent}>
-          <Text>Picnic Areas</Text>
-          <Text>Bike Trail Access</Text>
-          <Text>Boat Ramp</Text>
-          <Text>Equestrian Staging Area</Text>
-          <Text>Restroom</Text>
+          <Text style={styles.menuText}>Picnic Areas</Text>
+          <Text style={styles.menuText}>Bike Trail Access</Text>
+          <Text style={styles.menuText}>Boat Ramp</Text>
+          <Text style={styles.menuText}>Equestrian Staging Area</Text>
+          <Text style={styles.menuText}>Restroom</Text>
         </View>
       )}
     </View>
