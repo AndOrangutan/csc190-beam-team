@@ -19,8 +19,9 @@ const RegisterScreen = () => {
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
+  const [email, setEmail] = useState('');
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     // Check if passwords match
     if (password !== retypePassword) {
       Alert.alert('Password mismatch', 'Passwords do not match.');
@@ -42,7 +43,38 @@ const RegisterScreen = () => {
       }
       return;
     }
+
+    // Prepare the registration data to send to the server
+    const registrationData = {
+      firstName,
+      lastName,
+      email,
+      password,
+    };
+
+    try {
+      const response = await fetch('http://localhost:8000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(registrationData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        Alert.alert('Registration Error', errorData.error);
+        return;
+      }
+
+      // Registration successful, navigate to the login screen or show a success message
+      navigation.navigate('Login');
+    } catch (error) {
+      console.error('Network error:', error.message);
+      Alert.alert('Network Error', 'An error occurred. Please try again later.');
+    }
   };
+
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -51,16 +83,16 @@ const RegisterScreen = () => {
 
         <View className={`w-4/5 flex flex-row mb-2 mt-4`}>
           <TextInput
-            //value={firstName}
-            // onChangeText={setFirstName}
+            value={firstName}
+            onChangeText={setFirstName}
             className={`flex-1 h-12 px-3 bg-gray-100 rounded-md border border-gray-300`}
             placeholder="First Name"
             numberOfLines={1}
             returnKeyType="done"
           />
           <TextInput
-            //value={lastName}
-            // onChangeText={setLastName}
+            value={lastName}
+            onChangeText={setLastName}
             className={`flex-1 h-12 px-3 bg-gray-100 rounded-md border border-gray-300 ml-2`}
             placeholder="Last Name"
             numberOfLines={1}
@@ -68,8 +100,8 @@ const RegisterScreen = () => {
           />
         </View>
         <TextInput
-          //value={email}
-          //onChangeText={setEmail}
+          value={email}
+          onChangeText={setEmail}
           className={`w-4/5 h-12 px-3 bg-gray-100 rounded-md border border-gray-300 mb-2`}
           placeholder="Email"
           numberOfLines={1}
@@ -93,9 +125,7 @@ const RegisterScreen = () => {
           secureTextEntry={true}
         />
         <Pressable
-          className="bg-green-600 text-white font-bold py- px-4 rounded-full w-22 mb-4 "
-          >
-          
+          className="bg-green-600 text-white font-bold py- px-4 rounded-full w-22 mb-4 "onPress={handleRegister}>
           <Text className="text-white font-bold py-2 px-4 text-center">Register</Text>
         </Pressable>
 
