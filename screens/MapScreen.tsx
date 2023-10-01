@@ -1,9 +1,10 @@
 //import React, { useState } from 'react';
 //import { GOOGLE_API_KEY } from 'react-native-dotenv'
 import { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const locations = [
   {
@@ -178,6 +179,38 @@ const locations = [
   // Add more locations here
 ];
 
+const FilterMenu = () => {
+  const [menuVisible, setMenuVisible] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
+
+  return (
+    <View style={styles.filterMenu}>
+      {/* Hamburger icon */}
+      <TouchableOpacity onPress={toggleMenu}>
+        <Icon
+          name={menuVisible ? 'times' : 'bars'}
+          size={30}
+          color="black"
+        />
+      </TouchableOpacity>
+
+      {/* Menu content */}
+      {menuVisible && (
+        <View style={styles.menuContent}>
+          <Text>Picnic Areas</Text>
+          <Text>Bike Trail Access</Text>
+          <Text>Boat Ramp</Text>
+          <Text>Equestrian Staging Area</Text>
+          <Text>Restroom</Text>
+        </View>
+      )}
+    </View>
+  );
+};
+
 const MapScreen = () => {
   const [mapRegion, setMapRegion] = useState({
     latitude: 38.59184,
@@ -208,6 +241,8 @@ const MapScreen = () => {
           <Marker key={index} coordinate={location.coordinate} title={location.name} />
         ))}
       </MapView>
+
+      <FilterMenu />
     </View>
   );
 };
@@ -215,6 +250,19 @@ const MapScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  filterMenu: {
+    position: 'absolute',
+    top: 20, 
+    left: 20,
+    backgroundColor: 'white',
+    borderRadius: 8,
+    padding: 10,
+    zIndex: 1,
+  },
+  menuContent: {
+    // Style for the menu content
+    // Add menu content styling here
   },
 });
 
