@@ -12,6 +12,11 @@ import MembershipScreen from './MembershipScreen';
 import TributeTablesScreen from './TributeTablesScreen';
 import MileStewardsScreen from './MileStewardsScreen';
 import StrategicPlan from './StrategicPlan';
+import parkScreen from './VisitTheParkway/park';
+import ParkPass from './VisitTheParkway/ParkPass';
+import InteractiveMap from './VisitTheParkway/InteractiveMap';
+import WeLoveTheParkWay from './VisitTheParkway/WeLoveTheParkWay';
+import FaceOfTheParkWay from './VisitTheParkway/FaceOfTheParkWay';
 
 const MoreScreenTabs = () => {
 
@@ -32,6 +37,11 @@ const MoreScreenTabs = () => {
             <Stack.Screen name="Membership" component={MembershipScreen} />
             <Stack.Screen name="Tribute Tables" component={TributeTablesScreen} />
             <Stack.Screen name="Mile Stewards" component={MileStewardsScreen} />
+            <Stack.Screen name="parks" component={parkScreen} />
+            <Stack.Screen name="ParkPass" component={ParkPass} />
+            <Stack.Screen name="Interactive Map" component={InteractiveMap} />
+            <Stack.Screen name="We Love The ParkWay" component={WeLoveTheParkWay} />
+            <Stack.Screen name="Face Of The ParkWay" component={FaceOfTheParkWay} />
         </Stack.Navigator>
     </NavigationContainer>
   )

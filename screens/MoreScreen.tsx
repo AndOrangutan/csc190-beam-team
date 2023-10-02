@@ -91,6 +91,40 @@ const MoreScreen = ({navigation}: {navigation: any}) => {
         />
       </List.Accordion>
 
+       {/* Viste the Parkway dropdown list */}
+       <List.Accordion style={{padding: 30}} title="Visit the parkway">
+        <List.Item 
+          className='p-6 shadow-md bg-zinc-50' 
+          title="Parks" 
+          left={props => <List.Icon {...props} icon="flower" />}
+          onPress={() => {navigation.navigate("parks")}} 
+        />
+        <List.Item 
+          className='p-6 shadow-md bg-zinc-50' 
+          title="Park Passes" 
+          left={props => <List.Icon {...props} icon="parking" />}
+          onPress={() => {navigation.navigate("ParkPass")}} 
+        />
+        <List.Item 
+          className='p-6 shadow-md bg-zinc-50' 
+          title="Interactive Map" 
+          left={props => <List.Icon {...props} icon="map-marker" />}
+          onPress={() => {navigation.navigate("Interactive Map")}} 
+        />
+        <List.Item 
+          className='p-6 shadow-md bg-zinc-50' 
+          title="We Love the Parkway" 
+          left={props => <List.Icon {...props} icon="heart" />}
+          onPress={() => {navigation.navigate("We Love The ParkWay")}} 
+        />
+         <List.Item 
+          className='p-6 shadow-md bg-zinc-50' 
+          title="Face of the  Parkway" 
+          left={props => <List.Icon {...props} icon="tag-faces" />}
+          onPress={() => {navigation.navigate("Face Of The ParkWay")}} 
+        />  
+      </List.Accordion>
+
 
     </Animated.ScrollView>
   );
