@@ -1,6 +1,6 @@
 
 import  { useState } from 'react';
-import { View, Text, TouchableOpacity,TextInput } from 'react-native';
+import { View, Text, TouchableOpacity,TextInput, SafeAreaView } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
 interface Event {
@@ -58,7 +58,7 @@ const CalendarScreen: React.FC = () => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <Calendar onDayPress={onDayPress} />
 
       {selectedDate && (
@@ -94,7 +94,7 @@ const CalendarScreen: React.FC = () => {
           )}
         </View>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 

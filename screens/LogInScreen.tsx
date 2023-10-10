@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { StackNavigationProp } from '@react-navigation/stack';
+import * as SecureStore from 'expo-secure-store';
+import React, { useEffect, useState } from 'react';
 import {
   TextInput,
   KeyboardAvoidingView,
@@ -10,9 +12,9 @@ import {
   Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StackNavigationProp } from '@react-navigation/stack';
+
 import { RootStackParamList } from '../navigator/RootNavigator';
-import RegisterScreen from '../screens/RegisterScreen';
+import { supabase } from '../server/dist/server';
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -38,17 +40,24 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
     navigation.navigate('RegisterScreen');
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!isEmailValid(email)) {
       Alert.alert('Invalid email', 'Please enter a valid email address.');
-      return;
     }
+    const response = await fetch('http://localhost:8000/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
-    if (email === 'example@email.com' && password === 'password') {
-      console.log('Logged in successfully');
+    const json = await response.json();
+
+    if (response.ok) {
+      await SecureStore.setItemAsync('user', JSON.stringify(json.data));
       navigation.navigate('Main');
     } else {
-      console.log('Invalid email or password');
       Alert.alert('Login failed', 'Invalid email or password.');
     }
   };
@@ -66,15 +75,17 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
             placeholder="Email"
             keyboardType="email-address"
             numberOfLines={1}
+            autoCapitalize='none'
           />
           <View className="h-5" />
           <TextInput
             value={password}
-            secureTextEntry={true}
+            // secureTextEntry={true}
             onChangeText={setPassword}
             className={`w-full h-12 px-3 bg-gray-100 rounded-md border border-gray-300`}
             placeholder="Password"
             numberOfLines={1}
+            autoCapitalize='none'
           />
           <View className="h-3" />
 

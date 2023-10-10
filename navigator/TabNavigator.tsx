@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { View, Text } from 'react-native';
 import { Icon } from '@rneui/themed';
 import { color } from '@rneui/base';
@@ -13,6 +13,7 @@ import MoreScreen from '../screens/MoreScreen';
 import ContactScreen from '../screens/ContactScreen';
 import MissionScreen from '../screens/MissionScreen';
 import MoreScreenTabs from '../screens/MoreScreenTabs';
+import * as SecureStore from 'expo-secure-store';
 
 // https://reactnavigation.org/docs/tab-based-navigation
 // https://oblador.github.io/react-native-vector-icons/
@@ -82,11 +83,11 @@ const TabNavigator = () => {
           }
         },
       })}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Events" component={EventsScreen} />
-      <Tab.Screen name="Map" component={MapScreen} />
-      <Tab.Screen name="Calendar" component={CalendarScreen} />
-      <Tab.Screen name="More" component={MoreScreenTabs} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
+      <Tab.Screen name="Events" component={EventsScreen} options={{headerShown: false}} />
+      <Tab.Screen name="Map" component={MapScreen} options={{headerShown: false}} />
+      <Tab.Screen name="Calendar" component={CalendarScreen} options={{headerShown: false}} />
+      <Tab.Screen name="More" component={MoreScreenTabs} options={{headerShown: false}} />
     </Tab.Navigator>
   );
 };
