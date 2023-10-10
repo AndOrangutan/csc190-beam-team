@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MapViewDirections from 'react-native-maps-directions';
@@ -260,12 +260,13 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
   };
 
   return (
-    <View style={styles.filterMenu}>
+    <SafeAreaView style={styles.filterMenu}>
       <TouchableOpacity onPress={toggleMenu}>
         <Icon
           name={menuVisible ? 'times' : 'bars'}
           size={30}
           color="black"
+          style={{ padding: 10 }}
         />
       </TouchableOpacity>
 
@@ -279,7 +280,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
           ))}
         </View>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -489,7 +490,7 @@ const styles = StyleSheet.create({
   },
   filterMenu: {
     position: 'absolute',
-    top: 20,
+    top: 60,
     left: 20,
     backgroundColor: 'white',
     borderRadius: 8,
@@ -498,6 +499,7 @@ const styles = StyleSheet.create({
   },
   menuContent: {
     marginTop: 10,
+    padding: 10,
   },
   menuText: {
     fontSize: 18,
