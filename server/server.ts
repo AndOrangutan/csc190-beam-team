@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import express, { Express, Request, Response } from 'express';
 import path from 'path';
 
-dotenv.config();
+dotenv.config({ path: path.join(__dirname, '../.env') });
 const supaurl = process.env.SUPA_URL;
 const supakey = process.env.SUPA_KEY;
 const port = process.env.PORT;

@@ -86,6 +86,7 @@ const loginUser = asyncHandler(async (req, res) => {
       id: data.user.id,
       email: data.user.email,
       token: data.session.access_token,
+      name: data.user.user_metadata.firstname + ' ' + data.user.user_metadata.lastname,
     },
   });
 });

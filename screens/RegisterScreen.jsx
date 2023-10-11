@@ -46,8 +46,8 @@ const RegisterScreen = () => {
 
     // Prepare the registration data to send to the server
     const registrationData = {
-      firstName,
-      lastName,
+      firstname: firstName,
+      lastname: lastName,
       email,
       password,
     };
