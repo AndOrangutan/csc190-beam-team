@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express, { Express, Request, Response } from 'express';
 import path from 'path';
+import fetch from 'node-fetch';
 
 dotenv.config({ path: path.join(__dirname, '../.env') });
 const supaurl = process.env.SUPA_URL;
@@ -24,6 +25,21 @@ declare const process: {
 };
 
 export const supabase = createClient(supaurl, supakey);
+
+app.get('/fetchMapData', async (req, res) => {
+  try {
+    const externalApiUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCISRwlj-aGFTavGORK9keVX_NDSQnddgg&libraries=library1,library2';
+
+    const response = await fetch(externalApiUrl);
+    const data = await response.json();
+
+    res.json(data);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 app.use('/users', require('./routes/userRoutes'));
 
