@@ -1,12 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SecureStore from 'expo-secure-store';
 import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
 
 import TabNavigator from './TabNavigator';
+import InformationScreen from '../screens/InformationScreen';
 import LoginScreen from '../screens/LogInScreen';
 import RegisterScreen from '../screens/RegisterScreen';
-import { useNavigation } from '@react-navigation/native';
 
 export type RootStackParamList = {
   LoginScreen: undefined;
@@ -36,6 +37,7 @@ const RootNavigator = () => {
       <RootStack.Screen name="Login" component={LoginScreen} />
       <RootStack.Screen name="RegisterScreen" component={RegisterScreen} />
       <RootStack.Screen name="Main" component={TabNavigator} />
+      <RootStack.Screen name="Information" component={InformationScreen} options={{presentation: 'modal'}} />
     </RootStack.Navigator>
   );
 };

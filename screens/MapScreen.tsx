@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, SafeAreaView } from 'react-native';
@@ -562,6 +563,7 @@ interface FilterMenuProps {
 
 // Implement the FilterMenu component using the type for props
 const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
+  const navigation = useNavigation();
   const [menuVisible, setMenuVisible] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState('All');
 
@@ -592,6 +594,16 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
               <Text style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
                 {filter}
               </Text>
+              {filter.includes('Trail') ? (
+                <View>
+                  <TouchableOpacity onPress={() => navigation.navigate('Information', {
+                    title: filter,
+                    body: 'This is a trail',
+                  })}>
+                    <Text>Information</Text>
+                  </TouchableOpacity>
+                </View>
+              ) : null}
             </TouchableOpacity>
           ))}
         </View>
@@ -678,7 +690,7 @@ const MapScreen: React.FC = () => {
   const [isModifyingRoute2, setIsModifyingRoute2] = useState(false);
   const [isModifyingRoute3, setIsModifyingRoute3] = useState(false);
 
-  const GOOGLE_MAPS_APIKEY = 'REDACTED'; // API KEY GOES HERE
+  const GOOGLE_MAPS_APIKEY = 'candy'; // API KEY GOES HERE
 
   // Function to finalize route modification
   const finalizeRouteModification1 = () => {
