@@ -20,6 +20,8 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
   const [email, setEmail] = useState('');
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
 
   const handleRegister = async () => {
     // Check if passwords match
@@ -43,6 +45,12 @@ const RegisterScreen = () => {
       }
       return;
     }
+
+    // Check if the email is in a valid format
+  if (!emailRegex.test(email)) {
+    Alert.alert('Email Validation Failed', 'Please enter a valid email address.');
+    return;
+  }
 
     // Prepare the registration data to send to the server
     const registrationData = {
@@ -114,6 +122,7 @@ const RegisterScreen = () => {
           placeholder="Password"
           numberOfLines={1}
           secureTextEntry={true}
+          
         />
         <TextInput
           value={retypePassword}
