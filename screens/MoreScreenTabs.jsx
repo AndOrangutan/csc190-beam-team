@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SecureStore from 'expo-secure-store';
 import React, { useEffect, useState } from 'react';
@@ -22,16 +22,27 @@ import parkScreen from './VisitTheParkway/park';
 
 const MoreScreenTabs = () => {
   const [user, setUser] = useState(null);
+  const navigation = useNavigation();
 
   const getUser = async () => {
     try {
       const userInfo = await SecureStore.getItemAsync('user');
       // console.log('user', JSON.parse(user || '{}'));
-      setUser(JSON.parse(userInfo || '{}'));
+      setUser(JSON.parse(userInfo || null));
     } catch (error) {
       console.error('Error getting user:', error);
     }
   };
+
+  const logout = async () => {
+    try {
+      await SecureStore.deleteItemAsync('user');
+      setUser(null);
+      navigation.navigate('Login');
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  }
 
   useEffect(() => {
     getUser();
@@ -44,7 +55,7 @@ const MoreScreenTabs = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="More"
-          component={MoreScreen}
+          component={() => <MoreScreen logout={logout} />}
           options={{ title: user ? 'Hello ' + user.name : 'More' }}
         />
         <Stack.Screen name="Mission" component={MissionScreen} />
