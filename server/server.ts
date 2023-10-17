@@ -42,6 +42,8 @@ app.get('/fetchMapData', async (req, res) => {
 
 
 app.use('/users', require('./routes/userRoutes'));
+app.use('/routes', require('./routes/routesRoutes'));
+app.use('/locations', require('./routes/locationsRoutes'));
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

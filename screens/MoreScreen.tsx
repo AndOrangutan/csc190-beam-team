@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import * as SecureStore from 'expo-secure-store';
+import React, { useEffect } from 'react';
 import { List } from 'react-native-paper';
 import Animated, {
   useAnimatedStyle,
@@ -8,7 +9,17 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 
-const MoreScreen = ({ navigation }: { navigation: any }) => {
+const MoreScreen = ({ logout }: any) => {
+  const [user, setUser] = React.useState<any>(null);
+  const navigation = useNavigation();
+
+  const getUser = async () => {
+    const user = await SecureStore.getItemAsync('user');
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  };
+
   const x = useSharedValue(500);
 
   const reanimatedStyle = useAnimatedStyle(() => {
@@ -20,6 +31,7 @@ const MoreScreen = ({ navigation }: { navigation: any }) => {
   useEffect(() => {
     x.value = withTiming(0, { duration: 500 });
     x.value = withSpring(0, { damping: 10, stiffness: 100 });
+    getUser();
   }, []);
 
   return (
@@ -155,6 +167,23 @@ const MoreScreen = ({ navigation }: { navigation: any }) => {
           }}
         />
       </List.Accordion>
+
+      {/* Logout button if user is signed in and Login button if not*/}
+      {user ? (
+        <List.Item
+          className="p-6 shadow-md bg-zinc-50"
+          title="Logout"
+          left={(props) => <List.Icon {...props} icon="logout" />}
+          onPress={() => logout()}
+        />
+      ) : (
+        <List.Item
+          className="p-6 shadow-md bg-zinc-50"
+          title="Login"
+          left={(props) => <List.Icon {...props} icon="login" />}
+          onPress={() => logout()}
+        />
+      )}
     </Animated.ScrollView>
   );
 };
