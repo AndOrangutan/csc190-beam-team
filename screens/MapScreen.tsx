@@ -1,12 +1,12 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import * as Location from 'expo-location';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
+import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { NavigationProp } from '@react-navigation/native';
-
 
 // Array containing routes
 const routes = [
@@ -558,14 +558,10 @@ const filters = [
   'Boat Ramp',
   'Equestrian Staging Area',
   'Detours',
-  'Trails'
+  'Trails',
 ];
 
-const trailFilters = [
-  'Main Trail',
-  'Two Rivers Trail'
-];
-
+const trailFilters = ['Main Trail', 'Two Rivers Trail'];
 
 interface FilterMenuProps {
   onFilterChange: (filter: string) => void;
@@ -578,8 +574,6 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
   const [showTrailsSubMenu, setShowTrailsSubMenu] = useState(false);
   const [showInfoSubMenu, setShowInfoSubMenu] = useState<string | null>(null);
   const [showInfoButtonForTrail, setShowInfoButtonForTrail] = useState<string | null>(null);
-
-
 
   const handleFilterChange = (filter: string) => {
     setSelectedFilter(filter);
@@ -595,61 +589,130 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
     setMenuVisible(!menuVisible);
   };
 
- // ... rest of the imports and code ...
+  // ... rest of the imports and code ...
 
-return (
-  <SafeAreaView style={styles.filterMenu}>
-    <TouchableOpacity onPress={toggleMenu}>
-      <Icon
-        name={menuVisible ? 'times' : 'bars'}
-        size={30}
-        color="black"
-        style={{ padding: 10 }}
-      />
-    </TouchableOpacity>
+  return (
+    <SafeAreaView style={styles.filterMenu}>
+      <TouchableOpacity onPress={toggleMenu}>
+        <Icon
+          name={menuVisible ? 'times' : 'bars'}
+          size={30}
+          color="black"
+          style={{ padding: 10 }}
+        />
+      </TouchableOpacity>
 
-    {menuVisible && (
-      <View style={styles.menuContent}>
-        {filters.map((filter) => (
-          filter === 'Trails' ? (
-            <TouchableOpacity key={filter} onPress={() => setShowTrailsSubMenu(!showTrailsSubMenu)}>
-              <Text style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
-                {filter}
-              </Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity key={filter} onPress={() => handleFilterChange(filter)}>
-              <Text style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
-                {filter}
-              </Text>
-            </TouchableOpacity>
-          )
-        ))}
+      {menuVisible && (
+        <View style={styles.menuContent}>
+          {filters.map((filter) =>
+            filter === 'Trails' ? (
+              <TouchableOpacity
+                key={filter}
+                onPress={() => setShowTrailsSubMenu(!showTrailsSubMenu)}>
+                <Text
+                  style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
+                  {filter}
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity key={filter} onPress={() => handleFilterChange(filter)}>
+                <Text
+                  style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
+                  {filter}
+                </Text>
+              </TouchableOpacity>
+            )
+          )}
 
-        {showTrailsSubMenu && trailFilters.map((trail) => (
-          <View key={trail} style={{ marginLeft: 20 }}>
-            <TouchableOpacity onPress={() => {
-                handleFilterChange(trail);
-                setShowInfoButtonForTrail(trail);
-              }}>
-              <Text style={selectedFilter === trail ? styles.selectedFilterText : styles.menuText}>
-                {trail}
-              </Text>
-              {showInfoButtonForTrail === trail && (
-                <TouchableOpacity onPress={() => navigation.navigate('Information', { title: trail })}>
-                  <Text style={{ ...styles.menuText, fontWeight: 'bold', fontSize: 12 }}>Information</Text>
+          {showTrailsSubMenu &&
+            trailFilters.map((trail) => (
+              <View key={trail} style={{ marginLeft: 20 }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleFilterChange(trail);
+                    setShowInfoButtonForTrail(trail);
+                  }}>
+                  <Text
+                    style={selectedFilter === trail ? styles.selectedFilterText : styles.menuText}>
+                    {trail}
+                  </Text>
+                  {showInfoButtonForTrail === trail && (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Information', { title: trail })}>
+                      <Text style={{ ...styles.menuText, fontWeight: 'bold', fontSize: 12 }}>
+                        Information
+                      </Text>
+                    </TouchableOpacity>
+                  )}
                 </TouchableOpacity>
-              )}
-            </TouchableOpacity>
-          </View>
-        ))}
-      </View>
-    )}
-  </SafeAreaView>
-);
-
+              </View>
+            ))}
+        </View>
+      )}
+    </SafeAreaView>
+  );
 };
 
+// const SaveLocationButton = () => {
+//   // const [myLocation, setMyLocation] = useState({});
+
+//   // const handlePress = async () => {
+//   //   const { status } = await Location.requestForegroundPermissionsAsync();
+//   //   if (status !== 'granted') {
+//   //     Alert.alert('Permission to access location was denied');
+//   //     return;
+//   //   }
+
+//   //   const location = await Location.getCurrentPositionAsync({});
+//   //   setMyLocation({ latitude: location.coords.latitude, longitude: location.coords.longitude });
+//   //   console.log(myLocation);
+//   // };
+
+//   return (
+//     <TouchableOpacity
+//       className="absolute bottom-2.5 right-20 bg-white h-14 w-14 shadow-sm shadow-black rounded-full items-center justify-center"
+//       onPress={handlePress}>
+//       <Icon name="plus" size={25} color="gray" />
+//     </TouchableOpacity>
+//   );
+// };
+
+const SaveLocationForm = () => {
+  const [myLocation, setMyLocation] = useState({});
+  const [locName, setLocName] = useState('');
+
+  const handlePress = async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Permission to access location was denied');
+      return;
+    }
+    if (locName.length == 0) {
+      Alert.alert('Please Enter a title for your location');
+      return;
+    }
+
+    const location = await Location.getCurrentPositionAsync({});
+    setMyLocation({ latitude: location.coords.latitude, longitude: location.coords.longitude });
+    console.log(myLocation);
+  };
+
+  return (
+    <View className="absolute left-0 bottom-20 bg-slate-100 shadow-lg rounded-lg h-40 w-full items-center justify-center">
+      <Text className="font-bold mb-3">Save your current Location</Text>
+      {/* <Text className='font-bold'>Name your Current Location</Text> */}
+      <TextInput
+        className="w-1/2 h-10 bg-white"
+        outlineColor="black"
+        style={{ textAlign: 'center' }}
+        onChangeText={setLocName}
+      />
+      <TouchableOpacity className="bg-blue-500 p-3 mt-3 rounded-lg" onPress={handlePress}>
+        <Text className="font-bold text-white">Save</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const MapScreen: React.FC = () => {
   const [mapRegion, setMapRegion] = useState({
@@ -729,7 +792,7 @@ const MapScreen: React.FC = () => {
   const [isModifyingRoute2, setIsModifyingRoute2] = useState(false);
   const [isModifyingRoute3, setIsModifyingRoute3] = useState(false);
 
-  const GOOGLE_MAPS_APIKEY = 'SHHH'; // API KEY GOES HERE
+  const GOOGLE_MAPS_APIKEY = 'AIzaSyCISRwlj-aGFTavGORK9keVX_NDSQnddgg'; // API KEY GOES HERE
 
   // Function to finalize route modification
   const finalizeRouteModification1 = () => {
@@ -742,13 +805,22 @@ const MapScreen: React.FC = () => {
     setIsModifyingRoute3(false);
   };
 
+  const [isFormShowing, setIsFormShowing] = useState(false);
+
+  const showForm = () => {
+    setIsFormShowing(!isFormShowing);
+  };
+
   return (
     <View style={styles.container}>
       <MapView
         provider={PROVIDER_GOOGLE}
+        showsUserLocation={true}
+        showsMyLocationButton={true}
+        followsUserLocation={true}
         style={{ alignSelf: 'stretch', height: '100%' }}
         region={mapRegion}>
-        {/* Render Locations} Render locations*/}
+        {/* Render Locations */}
         {filteredLocations.map((location, index) => (
           <Marker key={index} coordinate={location.coordinate} title={location.name} />
         ))}
@@ -768,6 +840,13 @@ const MapScreen: React.FC = () => {
         ))}
       </MapView>
 
+      {/* <SaveLocationButton /> */}
+      {isFormShowing ? <SaveLocationForm /> : null}
+      <TouchableOpacity
+        className="absolute bottom-2.5 right-20 bg-white h-14 w-14 shadow-sm shadow-black rounded-full items-center justify-center"
+        onPress={showForm}>
+        <Icon name="plus" size={25} color="gray" />
+      </TouchableOpacity>
       <FilterMenu onFilterChange={handleFilterChange} />
     </View>
   );
