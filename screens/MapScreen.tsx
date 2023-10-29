@@ -765,15 +765,23 @@ const MapScreen: React.FC = ({ user }) => {
   };
 
   const getLocations = async () => {
-    const res = await fetch(`http://localhost:8000/locations?id=${JSON.parse(user).id}`, {});
-    const data = await res.json();
-    setLocations(data);
+    try {
+
+      const res = await fetch(`http://localhost:8000/locations?id=${JSON.parse(user).id}`);
+      const data = await res.json();
+      setLocations(data);
+    } catch (err) {
+      console.log("Error fetching locations", err);
+    }
   };
 
   useEffect(() => {
     getLocations();
+  }, [user]);
+
+  useEffect(() => {
     setFilteredLocations(locations);
-  }, []);
+  }, [locations]);
 
   const origin1 = { latitude: 38.60254, longitude: -121.506629 };
   const initialDestination1 = { latitude: 38.63325, longitude: -121.22397 };
