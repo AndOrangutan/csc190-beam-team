@@ -30,8 +30,9 @@ export type TabStackParamList = {
 
 const Tab = createBottomTabNavigator<TabStackParamList>();
 
-const TabNavigator = () => {
+const TabNavigator = ({route}) => {
   const navigation = useNavigation();
+  const { user } = route.params;
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -85,7 +86,7 @@ const TabNavigator = () => {
       })}>
       <Tab.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
       <Tab.Screen name="Events" component={EventsScreen} options={{headerShown: false}} />
-      <Tab.Screen name="Map" component={MapScreen} options={{headerShown: false}} />
+      <Tab.Screen name="Map" component={() => <MapScreen user={user} />} options={{headerShown: false}} />
       <Tab.Screen name="Calendar" component={CalendarScreen} options={{headerShown: false}} />
       <Tab.Screen name="More" component={MoreScreenTabs} options={{headerShown: false}} />
     </Tab.Navigator>

@@ -8,6 +8,8 @@ import MapViewDirections from 'react-native-maps-directions';
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { supabase } from '../server/server';
+
 // Array containing routes
 const routes = [
   {
@@ -677,9 +679,9 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
 //   );
 // };
 
-const SaveLocationForm = () => {
-  const [myLocation, setMyLocation] = useState({});
+const SaveLocationForm = ({ user, toggleMenu }) => {
   const [locName, setLocName] = useState('');
+
 
   const handlePress = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
@@ -693,8 +695,32 @@ const SaveLocationForm = () => {
     }
 
     const location = await Location.getCurrentPositionAsync({});
-    setMyLocation({ latitude: location.coords.latitude, longitude: location.coords.longitude });
-    console.log(myLocation);
+    const res = await fetch('http://localhost:8000/locations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: locName,
+        data: {
+          name: locName,
+          coordinates: {
+            latitude: location.coords.latitude,
+            longtitude: location.coords.longitude,
+          },
+        },
+        id: JSON.parse(user).id,
+      }),
+    });
+
+    if (res.ok){
+      Alert.alert("Location Successfully Created!");
+      setLocName("");
+      toggleMenu()
+    } else {
+      Alert.alert("There was a problem saving your location")
+    }
+
   };
 
   return (
@@ -714,7 +740,7 @@ const SaveLocationForm = () => {
   );
 };
 
-const MapScreen: React.FC = () => {
+const MapScreen: React.FC = ({ user }) => {
   const [mapRegion, setMapRegion] = useState({
     latitude: 38.59184,
     longitude: -121.33438,
@@ -841,7 +867,7 @@ const MapScreen: React.FC = () => {
       </MapView>
 
       {/* <SaveLocationButton /> */}
-      {isFormShowing ? <SaveLocationForm /> : null}
+      {isFormShowing ? <SaveLocationForm user={user} toggleMenu={showForm} /> : null}
       <TouchableOpacity
         className="absolute bottom-2.5 right-20 bg-white h-14 w-14 shadow-sm shadow-black rounded-full items-center justify-center"
         onPress={showForm}>
