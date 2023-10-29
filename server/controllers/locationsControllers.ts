@@ -15,22 +15,25 @@ const createLocation = asyncHandler(async (req, res) => {
   //   return;
   // }
   try {
-
     const locationInfo = await supabase.from('locations').insert({
       name,
       data,
       user_id: id,
     });
     res.status(200).json({ message: 'Location created successfully', locationInfo, user_id: id });
-  } catch(e){
-    res.status(401).send("Could not create location")
+  } catch (e) {
+    res.status(401).send('Could not create location');
   }
 
   // res.status(200).json({ message: 'Location created successfully', locationInfo, user_id: id });
 });
 
 const getLocations = asyncHandler(async (req, res) => {
-  const { data, error } = await supabase.from('locations').select();
+  const  id  = req.query.id;
+  const { data, error } = await supabase
+    .from('locations')
+    .select()
+    .or(`user_id.eq.${id},user_id.is.null`);
   res.send(data);
 });
 
