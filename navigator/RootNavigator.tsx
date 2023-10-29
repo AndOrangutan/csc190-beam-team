@@ -25,7 +25,7 @@ const RootNavigator = () => {
     const user = await SecureStore.getItemAsync('user');
     if (user) {
       setUser(user);
-      navigator.navigate('Main');
+      navigator.navigate('Main', { user });
     }
   };
 
@@ -37,7 +37,11 @@ const RootNavigator = () => {
       <RootStack.Screen name="Login" component={LoginScreen} />
       <RootStack.Screen name="RegisterScreen" component={RegisterScreen} />
       <RootStack.Screen name="Main" component={TabNavigator} />
-      <RootStack.Screen name="Information" component={InformationScreen} options={{presentation: 'modal'}} />
+      <RootStack.Screen
+        name="Information"
+        component={InformationScreen}
+        options={{ presentation: 'modal' }}
+      />
     </RootStack.Navigator>
   );
 };
