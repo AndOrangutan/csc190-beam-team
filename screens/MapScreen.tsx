@@ -708,6 +708,7 @@ const SaveLocationForm = ({ user, toggleMenu }) => {
             latitude: location.coords.latitude,
             longtitude: location.coords.longitude,
           },
+          category: 'User Created',
         },
         id: JSON.parse(user).id,
       }),
