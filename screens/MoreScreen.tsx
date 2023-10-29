@@ -46,7 +46,7 @@ const MoreScreen = ({ navigation }: { navigation: any }) => {
       />
       {/* Image component */}
       <Image
-        source={require('../assets/Sunset.jpg')} // Replace with the path to your image
+        source={require('../assets/Sunset.jpg')}
         style={{ width: '100%', height: 300, resizeMode: 'cover' }}
       />
 
