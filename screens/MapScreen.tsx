@@ -1,9 +1,12 @@
+import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { NavigationProp } from '@react-navigation/native';
+
 
 // Array containing routes
 const routes = [
@@ -540,6 +543,10 @@ const locations = [
   // Add more locations here
 ];
 
+type RootStackParamList = {
+  Information: { title: string };
+};
+
 // Filters array
 const filters = [
   'All',
@@ -550,55 +557,99 @@ const filters = [
   'Bike Trail Access',
   'Boat Ramp',
   'Equestrian Staging Area',
-  'Main Trail',
   'Detours',
-  'Two Rivers Trail',
+  'Trails'
 ];
 
-// Create a type for the props expected by FilterMenu
+const trailFilters = [
+  'Main Trail',
+  'Two Rivers Trail'
+];
+
+
 interface FilterMenuProps {
   onFilterChange: (filter: string) => void;
 }
 
-// Implement the FilterMenu component using the type for props
 const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList, 'Information'>>();
   const [menuVisible, setMenuVisible] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState('All');
+  const [showTrailsSubMenu, setShowTrailsSubMenu] = useState(false);
+  const [showInfoSubMenu, setShowInfoSubMenu] = useState<string | null>(null);
+  const [showInfoButtonForTrail, setShowInfoButtonForTrail] = useState<string | null>(null);
+
+
 
   const handleFilterChange = (filter: string) => {
     setSelectedFilter(filter);
     onFilterChange(filter);
+    if (trailFilters.includes(filter)) {
+      setShowInfoSubMenu(filter);
+    } else {
+      setShowInfoSubMenu(null);
+    }
   };
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   };
 
-  return (
-    <SafeAreaView style={styles.filterMenu}>
-      <TouchableOpacity onPress={toggleMenu}>
-        <Icon
-          name={menuVisible ? 'times' : 'bars'}
-          size={30}
-          color="black"
-          style={{ padding: 10 }}
-        />
-      </TouchableOpacity>
+ // ... rest of the imports and code ...
 
-      {menuVisible && (
-        <View style={styles.menuContent}>
-          {filters.map((filter) => (
+return (
+  <SafeAreaView style={styles.filterMenu}>
+    <TouchableOpacity onPress={toggleMenu}>
+      <Icon
+        name={menuVisible ? 'times' : 'bars'}
+        size={30}
+        color="black"
+        style={{ padding: 10 }}
+      />
+    </TouchableOpacity>
+
+    {menuVisible && (
+      <View style={styles.menuContent}>
+        {filters.map((filter) => (
+          filter === 'Trails' ? (
+            <TouchableOpacity key={filter} onPress={() => setShowTrailsSubMenu(!showTrailsSubMenu)}>
+              <Text style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
+                {filter}
+              </Text>
+            </TouchableOpacity>
+          ) : (
             <TouchableOpacity key={filter} onPress={() => handleFilterChange(filter)}>
               <Text style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
                 {filter}
               </Text>
             </TouchableOpacity>
-          ))}
-        </View>
-      )}
-    </SafeAreaView>
-  );
+          )
+        ))}
+
+        {showTrailsSubMenu && trailFilters.map((trail) => (
+          <View key={trail} style={{ marginLeft: 20 }}>
+            <TouchableOpacity onPress={() => {
+                handleFilterChange(trail);
+                setShowInfoButtonForTrail(trail);
+              }}>
+              <Text style={selectedFilter === trail ? styles.selectedFilterText : styles.menuText}>
+                {trail}
+              </Text>
+              {showInfoButtonForTrail === trail && (
+                <TouchableOpacity onPress={() => navigation.navigate('Information', { title: trail })}>
+                  <Text style={{ ...styles.menuText, fontWeight: 'bold', fontSize: 12 }}>Information</Text>
+                </TouchableOpacity>
+              )}
+            </TouchableOpacity>
+          </View>
+        ))}
+      </View>
+    )}
+  </SafeAreaView>
+);
+
 };
+
 
 const MapScreen: React.FC = () => {
   const [mapRegion, setMapRegion] = useState({
@@ -678,7 +729,7 @@ const MapScreen: React.FC = () => {
   const [isModifyingRoute2, setIsModifyingRoute2] = useState(false);
   const [isModifyingRoute3, setIsModifyingRoute3] = useState(false);
 
-  const GOOGLE_MAPS_APIKEY = 'REDACTED'; // API KEY GOES HERE
+  const GOOGLE_MAPS_APIKEY = 'SHHH'; // API KEY GOES HERE
 
   // Function to finalize route modification
   const finalizeRouteModification1 = () => {
