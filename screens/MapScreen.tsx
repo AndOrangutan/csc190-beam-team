@@ -826,7 +826,7 @@ const MapScreen: React.FC = ({ user }) => {
   const [isModifyingRoute2, setIsModifyingRoute2] = useState(false);
   const [isModifyingRoute3, setIsModifyingRoute3] = useState(false);
 
-  const GOOGLE_MAPS_APIKEY = 'AIzaSyCISRwlj-aGFTavGORK9keVX_NDSQnddgg'; // API KEY GOES HERE
+  const GOOGLE_MAPS_APIKEY = 'shhh'; // API KEY GOES HERE
 
   // Function to finalize route modification
   const finalizeRouteModification1 = () => {
