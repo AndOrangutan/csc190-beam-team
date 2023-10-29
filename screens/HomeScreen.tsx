@@ -13,9 +13,9 @@ const HomeScreen = () => {
 
   // array of arp images (placeholders for cards)
   const arpImages = [
-    { id: 1, image: require('../assets/arp1-new.png') },
-    { id: 2, image: require('../assets/arp2-new.png') },
-    { id: 3, image: require('../assets/arp3-new.png') },
+    { id: 1, image: require('../assets/Jenn_Fuss_Lost_Trail') },
+    { id: 2, image: require('../assets/William_B_Pond_McCall') },
+    { id: 3, image: require('../assets/Nuria_Duran_Harrington_Sunrise') },
   ];
 
   // Array of values
