@@ -32,7 +32,8 @@ const Tab = createBottomTabNavigator<TabStackParamList>();
 
 const TabNavigator = ({route}) => {
   const navigation = useNavigation();
-  const { user } = route.params;
+  const { user } = route.params ? route.params : {};
+
 
   useLayoutEffect(() => {
     navigation.setOptions({
