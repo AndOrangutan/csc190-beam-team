@@ -56,7 +56,8 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
     if (response.ok) {
       await SecureStore.setItemAsync('user', JSON.stringify(json.data));
-      navigation.navigate('Main');
+      const user = await SecureStore.getItemAsync('user');
+      navigation.navigate('Main', { user });
     } else {
       Alert.alert('Login failed', 'Invalid email or password.');
     }
