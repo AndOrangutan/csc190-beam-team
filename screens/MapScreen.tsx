@@ -7,10 +7,10 @@ import MapViewDirections from 'react-native-maps-directions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { NavigationProp } from '@react-navigation/native';
 
-
-// Array containing routes
-const routes = [
-  // {
+// Archived Routes
+const archived_routes = [
+  {
+     // {
   //   name: 'Main Trail',
   //   origin: { latitude: 38.600965462971374, longitude: -121.50765757838927 },
   //   destination: { latitude: 38.72037950565309, longitude: -121.17076352917755 },
@@ -287,6 +287,47 @@ const routes = [
   //   color: 'cyan',
   //   category: 'Detours',
   // },
+  }
+]
+// Array containing routes
+const routes = [
+  // Multi Use Trails
+  {
+    name: 'Multi Use Equestrian Trail',
+    origin: { latitude: 38.607799, longitude: -121.491604 },
+    destination: { latitude: 38.60765, longitude: -121.488129 },
+    color: 'orange',
+    category: 'Multi Use Trail',
+  },
+  {
+    name: 'Ancil Hoffman Multi Use Equestrian Trail',
+    origin: { latitude: 38.611423, longitude: -121.31783 },
+    destination: { latitude: 38.611366, longitude: -121.317861 },
+    color: 'orange',
+    category: 'Ancil Hoffman Multi Use Equestrian Trail',
+  },
+  {
+    name: 'Multi Use Equestrian Trail',
+    origin: { latitude: 38.566892, longitude: -121.376275 },
+    destination: { latitude: 38.576641, longitude: -121.345231 },
+    color: 'orange',
+    category: 'Multi Use Equestrian Trail',
+  },
+  {
+    name: 'Sailor Bar Multi Use Equestrian Trail',
+    origin: { latitude: 38.637708, longitude: -121.236822 },
+    destination: { latitude: 38.638321, longitude: -121.230316 },
+    color: 'orange',
+    category: 'Sailor Bar Multi Use Equestrian Trail',
+  },
+  {
+    name: 'Howe Multi Use Equestrian Trail',
+    origin: { latitude: 38.559689, longitude: -121.405101 },
+    destination: { latitude: 38.564969, longitude: -121.385597 },
+    color: 'orange',
+    category: 'Howe Multi Use Equestrian Trail',
+  },
+  // Bike Trails
   {
     name: 'Two Rivers Bike Trail 1',
     origin: { latitude: 38.59963966203273, longitude: -121.50401303624145 },
@@ -335,6 +376,42 @@ const routes = [
     destination: { latitude: 38.568447, longitude: -121.424266  },
     color: 'blue',
     category: 'Mountain Biking Pilot Trail',
+  },
+  // Pedestrian Trails
+  {
+    name: 'Cal Expo Pedestrian Trail',
+    origin: { latitude: 38.565018, longitude: -121.382954 },
+    destination: { latitude: 38.568447, longitude: -121.424266  },
+    color: 'green',
+    category: 'Cal Expo Pedestrian Trail',
+  },
+  {
+    name: 'Rossmoor Pedestrian Trail',
+    origin: { latitude: 38.620735, longitude: -121.291295 },
+    destination: { latitude: 38.619572, longitude: -121.292849 },
+    color: 'green',
+    category: 'Rossmoor Pedestrian Trail',
+  },
+  {
+    name: 'Ancil Hoffman Pedestrian Trail',
+    origin: { latitude: 38.611294, longitude: -121.305889 },
+    destination: { latitude: 38.612588 , longitude: -121.307385 },
+    color: 'green',
+    category: 'Ancil Hoffman Pedestrian Trail',
+  },
+  {
+    name: 'Effie Yeaw Nature Trails',
+    origin: { latitude: 38.611294, longitude: -121.305889 },
+    destination: { latitude: 38.612588 , longitude: -121.307385 },
+    color: 'green',
+    category: 'Effie Yeaw Nature Trails',
+  },
+  {
+    name: 'William B Pond Pedestrian Trail',
+    origin: { latitude: 38.584038, longitude: -121.332465 },
+    destination: { latitude: 38.587791 , longitude: -121.334666 },
+    color: 'green',
+    category: 'William B Pond Pedestrian Trail',
   },
   /*
   {
