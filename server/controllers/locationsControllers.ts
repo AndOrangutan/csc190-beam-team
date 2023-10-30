@@ -29,11 +29,16 @@ const createLocation = asyncHandler(async (req, res) => {
 });
 
 const getLocations = asyncHandler(async (req, res) => {
-  const  id  = req.query.id;
-  const { data, error } = await supabase
-    .from('locations')
-    .select()
-    .or(`user_id.eq.${id},user_id.is.null`);
+  const id = req.query.id;
+  let query = supabase.from('locations').select();
+
+  if (id) {
+    query = query.or(`user_id.eq.${id},user_id.is.null`);
+  } else {
+    query = query.or(`user_id.is.null`);
+  }
+
+  const { data, error } = await query;
   res.send(data);
 });
 

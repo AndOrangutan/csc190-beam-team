@@ -766,8 +766,12 @@ const MapScreen: React.FC = ({ user }) => {
 
   const getLocations = async () => {
     try {
-
-      const res = await fetch(`http://localhost:8000/locations?id=${JSON.parse(user).id}`);
+      let url = 'http://localhost:8000/locations';
+      if (user) {
+        const userId = JSON.parse(user).id;
+        url = `${url}?id=${userId}`;
+      }
+      const res = await fetch(url);
       const data = await res.json();
       setLocations(data);
     } catch (err) {
@@ -893,11 +897,14 @@ const MapScreen: React.FC = ({ user }) => {
 
       {/* <SaveLocationButton /> */}
       {isFormShowing ? <SaveLocationForm user={user} toggleMenu={showForm} /> : null}
+
+      {user ? (
       <TouchableOpacity
         className="absolute bottom-2.5 right-20 bg-white h-14 w-14 shadow-sm shadow-black rounded-full items-center justify-center"
         onPress={showForm}>
         <Icon name="plus" size={25} color="gray" />
       </TouchableOpacity>
+      ) : null}
       <FilterMenu onFilterChange={handleFilterChange} />
     </View>
   );
