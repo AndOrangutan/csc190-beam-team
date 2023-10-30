@@ -8,6 +8,7 @@ import Animated, {
   withTiming,
   withSpring,
 } from 'react-native-reanimated';
+import { View, Text, Image, Linking } from 'react-native';
 
 const MoreScreen = ({ logout }: any) => {
   const [user, setUser] = React.useState<any>(null);
@@ -35,94 +36,53 @@ const MoreScreen = ({ logout }: any) => {
   }, []);
 
   return (
-    <Animated.ScrollView className="h-screen w-screen" style={reanimatedStyle}>
-      {/* Abous Us dropdown list */}
-      <List.Accordion style={{ padding: 30 }} title="About us">
-        <List.Item
-          className="p-6 shadow-md bg-zinc-50"
-          title="Mission, Vision, Values and Staff"
-          left={(props) => <List.Icon {...props} icon="barley" />}
-          onPress={() => {
-            navigation.navigate('Mission');
-          }}
-        />
-        <List.Item
-          className="p-6 shadow-md bg-zinc-50"
-          title="Board of Directors"
-          left={(props) => <List.Icon {...props} icon="clipboard-account-outline" />}
-          onPress={() => {
-            navigation.navigate('Board of Directors');
-          }}
-        />
-        <List.Item
-          className="p-6 shadow-md bg-zinc-50"
-          title="ARPF Strategic Plan 2021-2024"
-          left={(props) => <List.Icon {...props} icon="notebook-outline" />}
-          onPress={() => {
-            navigation.navigate('ARPF Strategic Plan');
-          }}
-        />
-        <List.Item
-          className="p-6 shadow-md bg-zinc-50"
-          title="Join Email List"
-          left={(props) => <List.Icon {...props} icon="email" />}
-          onPress={() => {
-            navigation.navigate('Join Email List');
-          }}
-        />
-        <List.Item
-          className="p-6 shadow-md bg-zinc-50"
-          title="Contact Us"
-          left={(props) => <List.Icon {...props} icon="phone" />}
-          onPress={() => {
-            navigation.navigate('Contact');
-          }}
-        />
-        <List.Item
-          className="p-6 shadow-md bg-zinc-50"
-          title="News"
-          left={(props) => <List.Icon {...props} icon="newspaper" />}
-          onPress={() => {
-            navigation.navigate('News');
-          }}
-        />
-      </List.Accordion>
+    <View style={{ flex: 1 }}>
+      <List.Item
+        className="p-6 shadow-md bg-zinc-50"
+        title="Donate Now"
+        left={(props) => <List.Icon {...props} icon="cash" />}
+        onPress={() => Linking.openURL("https://arpf.org/donation/")}
+      />
+      <List.Item
+        className="p-6 shadow-md bg-zinc-50"
+        title="Park Passes"
+        left={(props) => <List.Icon {...props} icon="parking" />}
+        onPress={() => Linking.openURL("https://shop.arpf.org/?product_cat=parks-passes")}
+      />
+      <List.Item
+        className="p-6 shadow-md bg-zinc-50"
+        title="Contact Us"
+        left={(props) => <List.Icon {...props} icon="phone" />}
+        onPress={() => Linking.openURL("https://arpf.org/contact-us/")}
+        
+      />
+      {/* Image component */}
+      <Image
+        source={require('../assets/Sunset.jpg')}
+        style={{ width: '100%', height: 300, resizeMode: 'cover' }}
+      />
 
-      {/* Get Involved dropdown list */}
-      <List.Accordion style={{ padding: 30 }} title="Give to ARPF">
-        <List.Item
-          className="p-6 shadow-md bg-zinc-50"
-          title="Donate Now"
-          left={(props) => <List.Icon {...props} icon="cash" />}
-          onPress={() => {
-            navigation.navigate('Donate Now');
-          }}
-        />
-        <List.Item
-          className="p-6 shadow-md bg-zinc-50"
-          title="Membership"
-          left={(props) => <List.Icon {...props} icon="account" />}
-          onPress={() => {
-            navigation.navigate('Membership');
-          }}
-        />
-        <List.Item
-          className="p-6 shadow-md bg-zinc-50"
-          title="Tribute Tables"
-          left={(props) => <List.Icon {...props} icon="table" />}
-          onPress={() => {
-            navigation.navigate('Tribute Tables');
-          }}
-        />
-        <List.Item
-          className="p-6 shadow-md bg-zinc-50"
-          title="Mile Stewards"
-          left={(props) => <List.Icon {...props} icon="handshake-outline" />}
-          onPress={() => {
-            navigation.navigate('Mile Stewards');
-          }}
-        />
-      </List.Accordion>
+<View style={{position: 'absolute',
+    top: 270,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    opacity:.6 ,
+    height:250,
+    backgroundColor:'white'}}/>
+
+
+      <Text style={{ position: 'absolute',
+    top: 280,
+    left: 140,
+    fontSize: 24,
+    fontWeight: 'bold',}}>
+        MISSION
+      </Text>
+      <Text style={{ textAlign: 'center', paddingBottom: 220, fontSize: 20, position:'absolute', bottom: 0 }}>
+        The American River Parkway Foundation (APRF) leads and inspires the community to conserve and nurture the American River Parkway as a unique, accessible resource for everyone to enjoy.
+      </Text>
+    </View>
 
       {/* Viste the Parkway dropdown list */}
       <List.Accordion style={{ padding: 30 }} title="Visit the parkway">
@@ -185,6 +145,7 @@ const MoreScreen = ({ logout }: any) => {
         />
       )}
     </Animated.ScrollView>
+
   );
 };
 

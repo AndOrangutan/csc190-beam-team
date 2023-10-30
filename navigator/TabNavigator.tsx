@@ -55,17 +55,11 @@ const TabNavigator = ({route}) => {
                 <Text style={{ color: focused ? 'red' : '#748c97', fontSize: 12 }}>Home</Text>
               </View>
             );
-          } else if (route.name === 'Events') {
-            return (
-              <View>
-                <Icon name="clipboard" type="entypo" color={focused ? '#e32f45' : 'gray'} />
-                <Text style={{ color: focused ? 'red' : '#748c97', fontSize: 12 }}>Events</Text>
-              </View>
-            );
           } else if (route.name === 'Map') {
             return (
               <View>
-                <Icon reverse name="map" type="entypo" color={focused ? 'red' : '#e32f45'} />
+                <Icon name="map" type="entypo" color={focused ? '#e32f45' : 'gray'} />
+                <Text style={{ color: focused ? 'red' : '#748c97', fontSize: 12 }}>Map</Text>
               </View>
             );
           } else if (route.name === 'Calendar') {
@@ -86,7 +80,6 @@ const TabNavigator = ({route}) => {
         },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
-      <Tab.Screen name="Events" component={EventsScreen} options={{headerShown: false}} />
       <Tab.Screen name="Map" component={() => <MapScreen user={user} />} options={{headerShown: false}} />
       <Tab.Screen name="Calendar" component={CalendarScreen} options={{headerShown: false}} />
       <Tab.Screen name="More" component={MoreScreenTabs} options={{headerShown: false}} />
