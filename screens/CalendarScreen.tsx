@@ -1,19 +1,46 @@
-
-import  { useState } from 'react';
-import { View, Text, TouchableOpacity,TextInput, SafeAreaView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, TextInput, SafeAreaView } from 'react-native';
 import { Calendar } from 'react-native-calendars';
-
-interface Event {
-  id: string;
-  title: string;
-  date: string;
-}
+import * as AuthSession from 'expo-auth-session';
 
 const CalendarScreen: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [events, setEvents] = useState<Event[]>([]);
   const [showNewEventForm, setShowNewEventForm] = useState(false);
   const [newEventTitle, setNewEventTitle] = useState('');
+
+  useEffect(() => {
+    const fetchGoogleCalendarEvents = async () => {
+      try {
+        const redirectUrl = AuthSession.makeRedirectUri();
+        const { type, params } = await AuthSession.startAsync({
+          authUrl:
+            `https://accounts.google.com/o/oauth2/auth` +
+            `?client_id=567112323265-hgnv18thbvc9mdsn6ochp1t9e328nirm.apps.googleusercontent.com` +
+            `&redirect_uri=${encodeURIComponent(redirectUrl)}` +
+            `&response_type=token` +
+            `&scope=${encodeURIComponent('https://www.googleapis.com/auth/calendar.readonly')}`,
+        });
+
+        if (type === 'success' && params.access_token) {
+          const response = await fetch(
+            `https://www.googleapis.com/calendar/v3/calendars/primary/events`,
+            {
+              headers: {
+                Authorization: `Bearer ${params.access_token}`,
+              },
+            }
+          );
+          const data = await response.json();
+          setEvents(data.items);
+        }
+      } catch (error) {
+        console.error('Error fetching Google Calendar events:', error);
+      }
+    };
+
+    fetchGoogleCalendarEvents();
+  }, []);
 
   const onDayPress = (day: any) => {
     setSelectedDate(day.dateString);
@@ -99,6 +126,3 @@ const CalendarScreen: React.FC = () => {
 };
 
 export default CalendarScreen; 
-
-
-
