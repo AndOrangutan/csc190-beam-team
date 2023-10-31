@@ -18,6 +18,20 @@ const HomeScreen = () => {
     { id: 3, image: require('../assets/arp3-new.png') },
   ];
 
+  const aprfImages = [
+    { id: 1, image: require('../assets/Jenn_Fuss_Lost_Trail.png') },
+    { id: 2, image: require('../assets/William_B_Pond_McCall.png') },
+    { id: 3, image: require('../assets/Nuria_Duran_Harrington_Sunrise.png') },
+    { id: 4, image: require('../assets/David_Dawson_Sunset.jpg')}
+  ];
+
+  const wbpImages = [
+    { id: 1, image: require('../assets/William_B_Pond.jpg')},
+    { id: 2, image: require('../assets/WBP2.jpg')},
+    { id: 3, image: require('../assets/WBP3.jpg')},
+    { id: 4, image: require('../assets/WBP4.jpg')},
+  ];
+
   // Array of values
   const values = [
     { id: 1, image: 'https://arpf.org/wp-content/uploads/2023/05/icon-home1.jpg', 
@@ -79,6 +93,20 @@ const HomeScreen = () => {
     );
   };
 
+  const renderArpfImage = ({ item }: { item: { id: number; image: any } }) => {
+    return (
+      // Changed the highest to divide by 16 * 12
+      <Image source={item.image} style={{ width: windowWidth, height: windowWidth / 16 * 10, resizeMode: 'stretch' }} />
+    );
+  };
+
+  const renderwbpImages = ({ item }: { item: { id: number; image: any } }) => {
+    return (
+      // Changed the highest to divide by 16 * 12
+      <Image source={item.image} style={{ width: windowWidth, height: windowWidth / 16 * 10, resizeMode: 'stretch' }} />
+    );
+  };
+
   const ValuesCard = ({
     item,
   }: {
@@ -136,6 +164,35 @@ const HomeScreen = () => {
           We encourage you to contact the 
           American River Parkway Foundation and take an active and personal role in contributing to the success of the Parkway.
           </Text>
+          <Text className=" text-black text-lg mb-1">
+          Here is some photo shows how beautiful ARPF:
+          </Text>
+          <View style={{height:windowWidth / 16 * 10, width:windowWidth}}>
+          <Carousel
+            data={aprfImages}
+            renderItem={renderArpfImage}
+            sliderWidth={windowWidth}
+            itemWidth={windowWidth}
+            loop={true}
+          />
+        </View>
+
+          <Text className=" text-black text-lg mb-1">
+          William B. Pond
+          </Text>
+        <View style={{height:windowWidth / 16 * 10, width:windowWidth}}>
+          <Carousel
+            data={wbpImages}
+            renderItem={renderwbpImages}
+            sliderWidth={windowWidth}
+            itemWidth={windowWidth}
+            autoplay={true}
+            loop={true}
+            autoplayInterval={3000}
+            autoplayDelay={1000}
+          />
+        </View>
+
           <Text className="text-center font-bold text-black text-lg mb-4">
             The ARPF aims to accomplish 
             its mission by exercising the following values.
