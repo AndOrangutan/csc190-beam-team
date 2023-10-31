@@ -7,7 +7,7 @@ import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
+import { RootStackParamList } from '../navigator/RootNavigator';
 
 interface FilterMenuProps {
   onFilterChange: (filter: string) => void;
@@ -35,8 +35,6 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   };
-
-  // ... rest of the imports and code ...
 
   return (
     <SafeAreaView style={styles.filterMenu}>
@@ -99,30 +97,6 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
     </SafeAreaView>
   );
 };
-
-// const SaveLocationButton = () => {
-//   // const [myLocation, setMyLocation] = useState({});
-
-//   // const handlePress = async () => {
-//   //   const { status } = await Location.requestForegroundPermissionsAsync();
-//   //   if (status !== 'granted') {
-//   //     Alert.alert('Permission to access location was denied');
-//   //     return;
-//   //   }
-
-//   //   const location = await Location.getCurrentPositionAsync({});
-//   //   setMyLocation({ latitude: location.coords.latitude, longitude: location.coords.longitude });
-//   //   console.log(myLocation);
-//   // };
-
-//   return (
-//     <TouchableOpacity
-//       className="absolute bottom-2.5 right-20 bg-white h-14 w-14 shadow-sm shadow-black rounded-full items-center justify-center"
-//       onPress={handlePress}>
-//       <Icon name="plus" size={25} color="gray" />
-//     </TouchableOpacity>
-//   );
-// };
 
 const SaveLocationForm = ({ user, toggleMenu }) => {
   const [locName, setLocName] = useState('');
@@ -194,18 +168,14 @@ const MapScreen: React.FC = ({ user }) => {
   const [locations, setLocations] = useState([]);
   const [filters, setFilter] = useState([]);
   const [filteredLocations, setFilteredLocations] = useState(locations);
-  // const [filteredRoutes, setFilteredRoutes] = useState(routes);
 
   const handleFilterChange = (filter: string) => {
     if (filter === 'All') {
       setFilteredLocations(locations);
-      // setFilteredRoutes(routes);
     } else {
       const filteredLocations = locations.filter((location) => location.data.category === filter);
-      // const filteredRoutes = routes.filter((route) => route.category === filter);
 
       setFilteredLocations(filteredLocations);
-      // setFilteredRoutes(filteredRoutes);
     }
   };
   
@@ -220,7 +190,7 @@ const MapScreen: React.FC = ({ user }) => {
       const data = await res.json();
       setLocations(data);
     } catch (err) {
-      console.log("Error fetching locations", err);
+      console.log('Error fetching locations', err);
     }
   };
 
@@ -244,69 +214,7 @@ const MapScreen: React.FC = ({ user }) => {
     setFilteredLocations(locations);
   }, [locations]);
 
-  const origin1 = { latitude: 38.60254, longitude: -121.506629 };
-  const initialDestination1 = { latitude: 38.63325, longitude: -121.22397 };
-  const waypoints1 = [
-    { latitude: 38.60573, longitude: -121.5021 },
-    { latitude: 38.60348, longitude: -121.49614 },
-    { latitude: 38.60423, longitude: -121.47576 },
-    { latitude: 38.60419, longitude: -121.47321 },
-    { latitude: 38.59717, longitude: -121.46862 },
-    { latitude: 38.59244, longitude: -121.4477 },
-    { latitude: 38.57778, longitude: -121.41876 },
-    { latitude: 38.56131, longitude: -121.41796 },
-    { latitude: 38.56153, longitude: -121.40549 },
-    { latitude: 38.56808, longitude: -121.38084 },
-    { latitude: 38.57168, longitude: -121.36452 },
-    { latitude: 38.57464, longitude: -121.35753 },
-    { latitude: 38.57813, longitude: -121.34783 },
-    { latitude: 38.58148, longitude: -121.33852 },
-    { latitude: 38.59367, longitude: -121.32252 },
-    { latitude: 38.60964, longitude: -121.30519 },
-    { latitude: 38.62387, longitude: -121.27806 },
-    { latitude: 38.63157, longitude: -121.26852 },
-    { latitude: 38.63711, longitude: -121.25464 },
-    { latitude: 38.63282, longitude: -121.22377 },
-  ];
-
-  const origin2 = { latitude: 38.63294, longitude: -121.22371 };
-  const initialDestination2 = { latitude: 38.70502, longitude: -121.16678 };
-  const waypoints2 = [
-    { latitude: 38.63509, longitude: -121.2248 },
-    { latitude: 38.63493, longitude: -121.22235 },
-    { latitude: 38.63674, longitude: -121.22487 },
-    { latitude: 38.63755, longitude: -121.22075 },
-    { latitude: 38.64319, longitude: -121.21009 },
-    { latitude: 38.66127, longitude: -121.19308 },
-    { latitude: 38.67966, longitude: -121.18929 },
-  ];
-
-  const origin3 = { latitude: 38.70502, longitude: -121.1668 };
-  const destination3 = { latitude: 38.70537, longitude: -121.16935 };
-
-  const origin4 = { latitude: 38.70576, longitude: -121.16967 };
-  const initialDestination4 = { latitude: 38.7204, longitude: -121.17075 };
-  const waypoints3 = [{ latitude: 38.7062, longitude: -121.1696 }];
-
-  const origin5 = { latitude: 38.70537, longitude: -121.16935 };
-  const destination5 = { latitude: 38.70576, longitude: -121.16967 };
-
-  const [isModifyingRoute1, setIsModifyingRoute1] = useState(false);
-  const [isModifyingRoute2, setIsModifyingRoute2] = useState(false);
-  const [isModifyingRoute3, setIsModifyingRoute3] = useState(false);
-
   const GOOGLE_MAPS_APIKEY = 'SHHH'; // API KEY GOES HERE
-
-  // Function to finalize route modification
-  const finalizeRouteModification1 = () => {
-    setIsModifyingRoute1(false);
-  };
-  const finalizeRouteModification2 = () => {
-    setIsModifyingRoute2(false);
-  };
-  const finalizeRouteModification3 = () => {
-    setIsModifyingRoute3(false);
-  };
 
   const [isFormShowing, setIsFormShowing] = useState(false);
 
@@ -356,11 +264,11 @@ const MapScreen: React.FC = ({ user }) => {
       {isFormShowing ? <SaveLocationForm user={user} toggleMenu={showForm} /> : null}
 
       {user ? (
-      <TouchableOpacity
-        className="absolute bottom-2.5 right-20 bg-white h-14 w-14 shadow-sm shadow-black rounded-full items-center justify-center"
-        onPress={showForm}>
-        <Icon name="plus" size={25} color="gray" />
-      </TouchableOpacity>
+        <TouchableOpacity
+          className="absolute bottom-2.5 right-20 bg-white h-14 w-14 shadow-sm shadow-black rounded-full items-center justify-center"
+          onPress={showForm}>
+          <Icon name="plus" size={25} color="gray" />
+        </TouchableOpacity>
       ) : null}
       <FilterMenu onFilterChange={handleFilterChange} />
     </View>

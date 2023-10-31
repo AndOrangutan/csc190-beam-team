@@ -3,12 +3,6 @@ import * as SecureStore from 'expo-secure-store';
 import React, { useEffect } from 'react';
 import { View, Text, Image, Linking, ImageBackground } from 'react-native';
 import { List } from 'react-native-paper';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-  withSpring,
-} from 'react-native-reanimated';
 
 const MoreScreen = ({ logout }: any) => {
   const [user, setUser] = React.useState<any>(null);
@@ -21,17 +15,8 @@ const MoreScreen = ({ logout }: any) => {
     }
   };
 
-  const x = useSharedValue(500);
-
-  const reanimatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateX: x.value }],
-    };
-  });
 
   useEffect(() => {
-    x.value = withTiming(0, { duration: 500 });
-    x.value = withSpring(0, { damping: 10, stiffness: 100 });
     getUser();
   }, []);
 
