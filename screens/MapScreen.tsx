@@ -20,6 +20,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
   const [showTrailsSubMenu, setShowTrailsSubMenu] = useState(false);
   const [showInfoSubMenu, setShowInfoSubMenu] = useState<string | null>(null);
   const [showInfoButtonForTrail, setShowInfoButtonForTrail] = useState<string | null>(null);
+  
 
   const handleFilterChange = (filter: string) => {
     setSelectedFilter(filter);
@@ -177,7 +178,7 @@ const MapScreen: React.FC = ({ user }) => {
       setFilteredLocations(filteredLocations);
     }
   };
-
+  
   const getLocations = async () => {
     try {
       let url = 'http://localhost:8000/locations';
@@ -193,6 +194,18 @@ const MapScreen: React.FC = ({ user }) => {
     }
   };
 
+  /* Function to filter locations by category
+  const filterByCategory = (locations, category) => {
+    return locations.filter(location => location.category === category);
+  }
+
+  (async () => {
+    await getLocations();  // This populates the `locations` state
+    const filters = filterByCategory(locations, 'Restroom');
+
+  })();
+  */
+
   useEffect(() => {
     getLocations();
   }, [user]);
@@ -201,6 +214,7 @@ const MapScreen: React.FC = ({ user }) => {
     setFilteredLocations(locations);
   }, [locations]);
 
+  const GOOGLE_MAPS_APIKEY = 'SHHH'; // API KEY GOES HERE
 
   const [isFormShowing, setIsFormShowing] = useState(false);
 
