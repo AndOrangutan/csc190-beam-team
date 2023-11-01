@@ -78,19 +78,34 @@ we will be deploying to produciton next semester in CSC 191
 
 ###  Running the project
 
-Server
+Install yarn dependencies
+
+### Install Yarn dependencies on Linux or MacOS and Run
 
 ```bash
-cd server
-yarn install
-yarn run dev # Hotreload 
+# Copy in .env
+./init.sh
 ```
 
-test the server by visiting:
+or just run the run script (which also installs):
 
+```bash
+# Copy in .env
+./run.sh
 ```
-localhost:8000
-localhost:8000/users
+
+### Install Yarn dependencies on Windows and Run
+
+```bash
+# Copy in .env
+./init.bat
+```
+
+or just run the run script (which also installs):
+
+```bash
+# Copy in .env
+./run.bat
 ```
 
 ### Resources

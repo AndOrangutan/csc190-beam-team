@@ -1,9 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import * as Location from 'expo-location';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
-import MapViewDirections from 'react-native-maps-directions';
+import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { NavigationProp } from '@react-navigation/native';
 
@@ -578,8 +579,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
   const [showTrailsSubMenu, setShowTrailsSubMenu] = useState(false);
   const [showInfoSubMenu, setShowInfoSubMenu] = useState<string | null>(null);
   const [showInfoButtonForTrail, setShowInfoButtonForTrail] = useState<string | null>(null);
-
-
+  
 
   const handleFilterChange = (filter: string) => {
     setSelectedFilter(filter);
@@ -595,36 +595,38 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
     setMenuVisible(!menuVisible);
   };
 
- // ... rest of the imports and code ...
+  return (
+    <SafeAreaView style={styles.filterMenu}>
+      <TouchableOpacity onPress={toggleMenu}>
+        <Icon
+          name={menuVisible ? 'times' : 'bars'}
+          size={30}
+          color="black"
+          style={{ padding: 10 }}
+        />
+      </TouchableOpacity>
 
-return (
-  <SafeAreaView style={styles.filterMenu}>
-    <TouchableOpacity onPress={toggleMenu}>
-      <Icon
-        name={menuVisible ? 'times' : 'bars'}
-        size={30}
-        color="black"
-        style={{ padding: 10 }}
-      />
-    </TouchableOpacity>
-
-    {menuVisible && (
-      <View style={styles.menuContent}>
-        {filters.map((filter) => (
-          filter === 'Trails' ? (
-            <TouchableOpacity key={filter} onPress={() => setShowTrailsSubMenu(!showTrailsSubMenu)}>
-              <Text style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
-                {filter}
-              </Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity key={filter} onPress={() => handleFilterChange(filter)}>
-              <Text style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
-                {filter}
-              </Text>
-            </TouchableOpacity>
-          )
-        ))}
+      {menuVisible && (
+        <View style={styles.menuContent}>
+          {filters.map((filter) =>
+            filter === 'Trails' ? (
+              <TouchableOpacity
+                key={filter}
+                onPress={() => setShowTrailsSubMenu(!showTrailsSubMenu)}>
+                <Text
+                  style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
+                  {filter}
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity key={filter} onPress={() => handleFilterChange(filter)}>
+                <Text
+                  style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
+                  {filter}
+                </Text>
+              </TouchableOpacity>
+            )
+          )}
 
         {showTrailsSubMenu && trailFilters.map((trail) => (
           <View key={trail} style={{ marginLeft: 20 }}>
@@ -658,21 +660,50 @@ const MapScreen: React.FC = () => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
+  const [locations, setLocations] = useState([]);
+  const [filters, setFilter] = useState([]);
   const [filteredLocations, setFilteredLocations] = useState(locations);
-  const [filteredRoutes, setFilteredRoutes] = useState(routes);
 
   const handleFilterChange = (filter: string) => {
     if (filter === 'All') {
       setFilteredLocations(locations);
-      setFilteredRoutes(routes);
     } else {
-      const filteredLocations = locations.filter((location) => location.category === filter);
-      const filteredRoutes = routes.filter((route) => route.category === filter);
+      const filteredLocations = locations.filter((location) => location.data.category === filter);
 
       setFilteredLocations(filteredLocations);
-      setFilteredRoutes(filteredRoutes);
     }
   };
+  
+  const getLocations = async () => {
+    try {
+      let url = 'http://localhost:8000/locations';
+      if (user) {
+        const userId = JSON.parse(user).id;
+        url = `${url}?id=${userId}`;
+      }
+      const res = await fetch(url);
+      const data = await res.json();
+      setLocations(data);
+    } catch (err) {
+      console.log('Error fetching locations', err);
+    }
+  };
+
+  /* Function to filter locations by category
+  const filterByCategory = (locations, category) => {
+    return locations.filter(location => location.category === category);
+  }
+
+  (async () => {
+    await getLocations();  // This populates the `locations` state
+    const filters = filterByCategory(locations, 'Restroom');
+
+  })();
+  */
+
+  useEffect(() => {
+    getLocations();
+  }, [user]);
 
   useEffect(() => {
     setFilteredLocations(locations);
@@ -746,15 +777,27 @@ const MapScreen: React.FC = () => {
     <View style={styles.container}>
       <MapView
         provider={PROVIDER_GOOGLE}
+        showsUserLocation={true}
+        showsMyLocationButton={true}
+        followsUserLocation={true}
         style={{ alignSelf: 'stretch', height: '100%' }}
         region={mapRegion}>
-        {/* Render Locations} Render locations*/}
-        {filteredLocations.map((location, index) => (
-          <Marker key={index} coordinate={location.coordinate} title={location.name} />
-        ))}
+        {/* Render Locations */}
+        {filteredLocations.map((location, index) =>
+          location.data.category == 'User Created' ? (
+            <Marker
+              pinColor="blue"
+              key={index}
+              coordinate={location.data.coordinate}
+              title={location.name}
+            />
+          ) : (
+            <Marker key={index} coordinate={location.data.coordinate} title={location.name} />
+          )
+        )}
 
         {/* Render routes */}
-        {filteredRoutes.map((route, index) => (
+        {/* {filteredRoutes.map((route, index) => (
           <MapViewDirections
             key={index}
             origin={route.origin}
@@ -765,9 +808,19 @@ const MapScreen: React.FC = () => {
             strokeColor={route.color}
             mode="BICYCLING"
           />
-        ))}
+        ))} */}
       </MapView>
 
+      {/* <SaveLocationButton /> */}
+      {isFormShowing ? <SaveLocationForm user={user} toggleMenu={showForm} /> : null}
+
+      {user ? (
+        <TouchableOpacity
+          className="absolute bottom-2.5 right-20 bg-white h-14 w-14 shadow-sm shadow-black rounded-full items-center justify-center"
+          onPress={showForm}>
+          <Icon name="plus" size={25} color="gray" />
+        </TouchableOpacity>
+      ) : null}
       <FilterMenu onFilterChange={handleFilterChange} />
     </View>
   );
