@@ -15,7 +15,6 @@ const MoreScreen = ({ logout }: any) => {
     }
   };
 
-
   useEffect(() => {
     getUser();
   }, []);

@@ -5,7 +5,6 @@ import RootNavigator from './navigator/RootNavigator';
 import 'react-native-gesture-handler';
 import HomeScreen from './screens/HomeScreen';
 
-
 export default function App() {
   return (
     <SafeAreaProvider>
