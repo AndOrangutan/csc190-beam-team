@@ -14,7 +14,6 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { RootStackParamList } from '../navigator/RootNavigator';
-import { supabase } from '../server/dist/server';
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 

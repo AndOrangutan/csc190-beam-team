@@ -6,8 +6,6 @@ import { View, StyleSheet, Text, TouchableOpacity, SafeAreaView, Alert } from 'r
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { NavigationProp } from '@react-navigation/native';
-
 
 // Array containing routes
 const routes = [
@@ -559,14 +557,10 @@ const filters = [
   'Boat Ramp',
   'Equestrian Staging Area',
   'Detours',
-  'Trails'
+  'Trails',
 ];
 
-const trailFilters = [
-  'Main Trail',
-  'Two Rivers Trail'
-];
-
+const trailFilters = ['Main Trail', 'Two Rivers Trail'];
 
 interface FilterMenuProps {
   onFilterChange: (filter: string) => void;
@@ -579,7 +573,6 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
   const [showTrailsSubMenu, setShowTrailsSubMenu] = useState(false);
   const [showInfoSubMenu, setShowInfoSubMenu] = useState<string | null>(null);
   const [showInfoButtonForTrail, setShowInfoButtonForTrail] = useState<string | null>(null);
-  
 
   const handleFilterChange = (filter: string) => {
     setSelectedFilter(filter);
@@ -628,30 +621,34 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
             )
           )}
 
-        {showTrailsSubMenu && trailFilters.map((trail) => (
-          <View key={trail} style={{ marginLeft: 20 }}>
-            <TouchableOpacity onPress={() => {
-                handleFilterChange(trail);
-                setShowInfoButtonForTrail(trail);
-              }}>
-              <Text style={selectedFilter === trail ? styles.selectedFilterText : styles.menuText}>
-                {trail}
-              </Text>
-              {showInfoButtonForTrail === trail && (
-                <TouchableOpacity onPress={() => navigation.navigate('Information', { title: trail })}>
-                  <Text style={{ ...styles.menuText, fontWeight: 'bold', fontSize: 12 }}>Information</Text>
+          {showTrailsSubMenu &&
+            trailFilters.map((trail) => (
+              <View key={trail} style={{ marginLeft: 20 }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleFilterChange(trail);
+                    setShowInfoButtonForTrail(trail);
+                  }}>
+                  <Text
+                    style={selectedFilter === trail ? styles.selectedFilterText : styles.menuText}>
+                    {trail}
+                  </Text>
+                  {showInfoButtonForTrail === trail && (
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Information', { title: trail })}>
+                      <Text style={{ ...styles.menuText, fontWeight: 'bold', fontSize: 12 }}>
+                        Information
+                      </Text>
+                    </TouchableOpacity>
+                  )}
                 </TouchableOpacity>
-              )}
-            </TouchableOpacity>
-          </View>
-        ))}
-      </View>
-    )}
-  </SafeAreaView>
-);
-
+              </View>
+            ))}
+        </View>
+      )}
+    </SafeAreaView>
+  );
 };
-
 
 const MapScreen: React.FC = () => {
   const [mapRegion, setMapRegion] = useState({
@@ -673,7 +670,7 @@ const MapScreen: React.FC = () => {
       setFilteredLocations(filteredLocations);
     }
   };
-  
+
   const getLocations = async () => {
     try {
       let url = 'http://localhost:8000/locations';
