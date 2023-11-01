@@ -75,7 +75,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
             placeholder="Email"
             keyboardType="email-address"
             numberOfLines={1}
-            autoCapitalize='none'
+            autoCapitalize="none"
           />
           <View className="h-5" />
           <TextInput
@@ -85,7 +85,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
             className={`w-full h-12 px-3 bg-gray-100 rounded-md border border-gray-300`}
             placeholder="Password"
             numberOfLines={1}
-            autoCapitalize='none'
+            autoCapitalize="none"
           />
           <View className="h-3" />
 

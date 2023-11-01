@@ -125,4 +125,4 @@ const CalendarScreen: React.FC = () => {
   );
 };
 
-export default CalendarScreen; 
+export default CalendarScreen;

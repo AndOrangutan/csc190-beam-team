@@ -28,7 +28,8 @@ export const supabase = createClient(supaurl, supakey);
 
 app.get('/fetchMapData', async (req, res) => {
   try {
-    const externalApiUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCISRwlj-aGFTavGORK9keVX_NDSQnddgg&libraries=library1,library2';
+    const externalApiUrl =
+      'https://maps.googleapis.com/maps/api/js?key=AIzaSyCISRwlj-aGFTavGORK9keVX_NDSQnddgg&libraries=library1,library2';
 
     const response = await fetch(externalApiUrl);
     const data = await response.json();
@@ -39,7 +40,6 @@ app.get('/fetchMapData', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
-
 
 app.use('/users', require('./routes/userRoutes'));
 app.use('/routes', require('./routes/routesRoutes'));
