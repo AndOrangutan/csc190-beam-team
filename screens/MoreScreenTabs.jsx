@@ -42,7 +42,7 @@ const MoreScreenTabs = () => {
     } catch (error) {
       console.error('Error logging out:', error);
     }
-  }
+  };
 
   useEffect(() => {
     getUser();

@@ -73,10 +73,7 @@ const TabNavigator = ({ route }) => {
         },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-      <Tab.Screen
-        name="Map"
-        options={{ headerShown: false }}
-      >
+      <Tab.Screen name="Map" options={{ headerShown: false }}>
         {() => <MapScreen user={user} />}
       </Tab.Screen>
       <Tab.Screen name="Calendar" component={CalendarScreen} options={{ headerShown: false }} />

@@ -15,9 +15,9 @@ const ValuesCard = ({
       <View className="flex-col gap-2 w-1/2">
         <Text className="text-center font-bold text-red-300">{item.title}</Text>
         <Text className="text-center">{item.text}</Text>
-        <Text 
+        <Text
           onPress={() => Linking.openURL(item.link)}
-        className="text-center text-blue-800 shadow-sm">
+          className="text-center text-blue-800 shadow-sm">
           Learn More
         </Text>
       </View>
