@@ -6,7 +6,6 @@ import { View, StyleSheet, Text, TouchableOpacity, SafeAreaView, Alert } from 'r
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { NavigationProp } from '@react-navigation/native';
 
 // Array containing routes
 const routes = [
