@@ -65,6 +65,9 @@ we will be deploying to produciton next semester in CSC 191
     - https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
     - https://marketplace.visualstudio.com/items?itemName=byCedric.vscode-expo
 
+- Useful tools:
+    - [act](https://github.com/nektos/act) - Run your GitHub Actions locally
+
 - You can clone it just as you would any project, I like bare repos with worktrees, but a standard repo will work.
     - `git clone --bare https://github.com/AndOrangutan/csc190-beam-team csc190-beam-team`
     - `git worktree add main`

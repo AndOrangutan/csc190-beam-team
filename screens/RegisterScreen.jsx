@@ -22,7 +22,6 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
-
   const handleRegister = async () => {
     // Check if passwords match
     if (password !== retypePassword) {
@@ -47,10 +46,10 @@ const RegisterScreen = () => {
     }
 
     // Check if the email is in a valid format
-  if (!emailRegex.test(email)) {
-    Alert.alert('Email Validation Failed', 'Please enter a valid email address.');
-    return;
-  }
+    if (!emailRegex.test(email)) {
+      Alert.alert('Email Validation Failed', 'Please enter a valid email address.');
+      return;
+    }
 
     // Prepare the registration data to send to the server
     const registrationData = {
@@ -82,7 +81,6 @@ const RegisterScreen = () => {
       Alert.alert('Network Error', 'An error occurred. Please try again later.');
     }
   };
-
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -122,7 +120,6 @@ const RegisterScreen = () => {
           placeholder="Password"
           numberOfLines={1}
           secureTextEntry={true}
-          
         />
         <TextInput
           value={retypePassword}
@@ -134,7 +131,8 @@ const RegisterScreen = () => {
           secureTextEntry={true}
         />
         <Pressable
-          className="bg-green-600 text-white font-bold py- px-4 rounded-full w-22 mb-4 "onPress={handleRegister}>
+          className="bg-green-600 text-white font-bold py- px-4 rounded-full w-22 mb-4 "
+          onPress={handleRegister}>
           <Text className="text-white font-bold py-2 px-4 text-center">Register</Text>
         </Pressable>
 

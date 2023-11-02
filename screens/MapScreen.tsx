@@ -7,7 +7,9 @@ import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { RootStackParamList } from '../navigator/RootNavigator';
+type RootStackParamList = {
+  Information: { title: string };
+};
 
 interface FilterMenuProps {
   onFilterChange: (filter: string) => void;
@@ -20,7 +22,6 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
   const [showTrailsSubMenu, setShowTrailsSubMenu] = useState(false);
   const [showInfoSubMenu, setShowInfoSubMenu] = useState<string | null>(null);
   const [showInfoButtonForTrail, setShowInfoButtonForTrail] = useState<string | null>(null);
-  
 
   const handleFilterChange = (filter: string) => {
     setSelectedFilter(filter);
@@ -191,7 +192,7 @@ const MapScreen: React.FC = ({ user }) => {
       setFilteredLocations(filteredLocations);
     }
   };
-  
+
   const getLocations = async () => {
     try {
       let url = 'http://localhost:8000/locations';
@@ -240,15 +241,7 @@ const MapScreen: React.FC = ({ user }) => {
 
   useEffect(() => {
     setFilteredLocations(locations);
-  }, [locations]);
-
-  const GOOGLE_MAPS_APIKEY = 'SHHH'; // API KEY GOES HERE
-
-  const [isFormShowing, setIsFormShowing] = useState(false);
-
-  const showForm = () => {
-    setIsFormShowing(!isFormShowing);
-  };
+  }, []);
 
   return (
     <View style={styles.container}>

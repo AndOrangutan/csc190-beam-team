@@ -26,7 +26,7 @@ A 15 mph speed limit is enforced.
 Passing on the paved path should only be done on the left, with a verbal warning, like “on your left”.
 Horses are not allowed on the paved trail surface except at trail crossings and bridges. Please yield to horses whenever they are encountered
 `,
-'Two Rivers Trail': `
+  'Two Rivers Trail': `
 States: California
 Counties: Sacramento
 Length: 1.7 miles
