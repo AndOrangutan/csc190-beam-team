@@ -128,6 +128,7 @@ const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
           },
           category: 'User Created',
         },
+        category: "User Created",
         id: JSON.parse(user).id,
       }),
     });
@@ -145,6 +146,7 @@ const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
           },
           category: 'User Created',
         },
+        category: "User Created"
       });
       toggleMenu();
     } else {
