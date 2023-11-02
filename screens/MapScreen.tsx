@@ -98,7 +98,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
   );
 };
 
-const SaveLocationForm = ({ user, toggleMenu }) => {
+const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
   const [locName, setLocName] = useState('');
 
   const handlePress = async () => {
@@ -135,6 +135,17 @@ const SaveLocationForm = ({ user, toggleMenu }) => {
     if (res.ok) {
       Alert.alert('Location Successfully Created!');
       setLocName('');
+      updateLocs({
+        name: locName,
+        data: {
+          name: locName,
+          coordinate: {
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+          },
+          category: 'User Created',
+        },
+      });
       toggleMenu();
     } else {
       Alert.alert('There was a problem saving your location');
@@ -165,7 +176,7 @@ const MapScreen: React.FC = ({ user }) => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
-  const [locations, setLocations] = useState([]);
+  const [locations, setLocations] = useState<LocationData[]>([]);
   const [filters, setFilter] = useState([]);
   const [filteredLocations, setFilteredLocations] = useState(locations);
 
@@ -190,8 +201,23 @@ const MapScreen: React.FC = ({ user }) => {
       const data = await res.json();
       setLocations(data);
     } catch (err) {
-      console.log('Error fetching locations', err);
+      Alert.alert('Error fetching locations' + err);
     }
+  };
+
+  interface LocationData {
+    name: string;
+    coordinate: {
+      latitude: number;
+      longitude: number;
+    };
+    category: string;
+  }
+
+
+
+  const updateLocations = (data: LocationData) => {
+    setLocations([...locations, data]);
   };
 
   /* Function to filter locations by category
@@ -261,7 +287,7 @@ const MapScreen: React.FC = ({ user }) => {
       </MapView>
 
       {/* <SaveLocationButton /> */}
-      {isFormShowing ? <SaveLocationForm user={user} toggleMenu={showForm} /> : null}
+      {isFormShowing ? <SaveLocationForm user={user} toggleMenu={showForm} updateLocs={updateLocations} /> : null}
 
       {user ? (
         <TouchableOpacity
