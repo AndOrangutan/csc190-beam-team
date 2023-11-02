@@ -129,7 +129,7 @@ const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
           },
           category: 'User Created',
         },
-        category: "User Created",
+        category: 'User Created',
         id: JSON.parse(user).id,
       }),
     });
@@ -147,7 +147,7 @@ const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
           },
           category: 'User Created',
         },
-        category: "User Created"
+        category: 'User Created',
       });
       toggleMenu();
     } else {
@@ -217,8 +217,6 @@ const MapScreen: React.FC = ({ user }) => {
     category: string;
   }
 
-
-
   const updateLocations = (data: LocationData) => {
     setLocations([...locations, data]);
   };
@@ -282,7 +280,9 @@ const MapScreen: React.FC = ({ user }) => {
       </MapView>
 
       {/* <SaveLocationButton /> */}
-      {isFormShowing ? <SaveLocationForm user={user} toggleMenu={showForm} updateLocs={updateLocations} /> : null}
+      {isFormShowing ? (
+        <SaveLocationForm user={user} toggleMenu={showForm} updateLocs={updateLocations} />
+      ) : null}
 
       {user ? (
         <TouchableOpacity
