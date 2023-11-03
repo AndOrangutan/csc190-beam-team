@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler';
 import { supabase } from '../server';
 
 const createLocation = asyncHandler(async (req, res) => {
-  const { name, data, id } = req.body;
+  const { name, data, id, category } = req.body;
   if (!name || !data) {
     res.status(400).json({ error: 'Please fill all fields' });
     return;
@@ -19,6 +19,7 @@ const createLocation = asyncHandler(async (req, res) => {
       name,
       data,
       user_id: id,
+      category,
     });
     res.status(200).json({ message: 'Location created successfully', locationInfo, user_id: id });
   } catch (e) {
