@@ -55,9 +55,10 @@ const MoreScreenTabs = () => {
       <Stack.Navigator>
         <Stack.Screen
           name="More"
-          component={() => <MoreScreen logout={logout} />}
           options={{ title: user ? 'Hello ' + user.name : 'More' }}
-        />
+        >
+          {() => <MoreScreen logout={logout} />}
+        </Stack.Screen>
         <Stack.Screen name="Mission" component={MissionScreen} />
         <Stack.Screen name="Contact" component={ContactScreen} />
         <Stack.Screen name="News" component={NewsScreen} />
