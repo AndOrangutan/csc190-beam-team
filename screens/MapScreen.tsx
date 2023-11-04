@@ -239,7 +239,15 @@ const MapScreen: React.FC = ({ user }) => {
 
   useEffect(() => {
     setFilteredLocations(locations);
-  }, []);
+  }, [locations]);
+
+  const GOOGLE_MAPS_APIKEY = 'SHHH'; // API KEY GOES HERE
+
+  const [isFormShowing, setIsFormShowing] = useState(false);
+
+  const showForm = () => {
+    setIsFormShowing(!isFormShowing);
+  };
 
   return (
     <View style={styles.container}>
