@@ -302,7 +302,8 @@ const MapScreen: React.FC = ({ user }) => {
                 key={index}
                 coordinate={location.data.coordinate}
                 title={location.name}
-                description="Your Saved location" />
+                description="Your Saved location"
+              />
             );
           } else if (location.category === 'User Created' && location.shared === true) {
             return (
