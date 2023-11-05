@@ -2,8 +2,23 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  Alert,
+  Switch,
+  Button,
+} from 'react-native';
+import MapView, {
+  Callout,
+  CalloutSubview,
+  Marker,
+  PROVIDER_GOOGLE,
+  Polyline,
+} from 'react-native-maps';
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -101,6 +116,9 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange }) => {
 
 const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
   const [locName, setLocName] = useState('');
+  const [isShared, setIsShared] = useState(false);
+
+  const toggleSwitch = () => setIsShared(!isShared);
 
   const handlePress = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
@@ -130,6 +148,7 @@ const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
           category: 'User Created',
         },
         category: 'User Created',
+        shared: isShared,
         id: JSON.parse(user).id,
       }),
     });
@@ -147,6 +166,7 @@ const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
           },
           category: 'User Created',
         },
+
         category: 'User Created',
       });
       toggleMenu();
@@ -165,9 +185,21 @@ const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
         style={{ textAlign: 'center' }}
         onChangeText={setLocName}
       />
-      <TouchableOpacity className="bg-blue-500 p-3 mt-3 rounded-lg" onPress={handlePress}>
-        <Text className="font-bold text-white">Save</Text>
-      </TouchableOpacity>
+      <View className="flex-row items-center">
+        <TouchableOpacity className="bg-blue-500 p-3 mt-3 rounded-lg" onPress={handlePress}>
+          <Text className="font-bold text-white">Save</Text>
+        </TouchableOpacity>
+        <View className="mt-3 ml-3 items-center">
+          <Switch
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={isShared ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isShared}
+          />
+          <Text className="font-thin text-xs">Share to others?</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -214,7 +246,10 @@ const MapScreen: React.FC = ({ user }) => {
       latitude: number;
       longitude: number;
     };
+    data: object;
     category: string;
+    shared: boolean;
+    user_id: number;
   }
 
   const updateLocations = (data: LocationData) => {
@@ -259,18 +294,32 @@ const MapScreen: React.FC = ({ user }) => {
         style={{ alignSelf: 'stretch', height: '100%' }}
         region={mapRegion}>
         {/* Render Locations */}
-        {filteredLocations.map((location, index) =>
-          location.data.category == 'User Created' ? (
-            <Marker
-              pinColor="blue"
-              key={index}
-              coordinate={location.data.coordinate}
-              title={location.name}
-            />
-          ) : (
-            <Marker key={index} coordinate={location.data.coordinate} title={location.name} />
-          )
-        )}
+        {filteredLocations.map((location, index) => {
+          if (user && JSON.parse(user).id === location.user_id) {
+            return (
+              <Marker
+                pinColor="blue"
+                key={index}
+                coordinate={location.data.coordinate}
+                title={location.name}
+                description="Your Saved location" />
+            );
+          } else if (location.category === 'User Created' && location.shared === true) {
+            return (
+              <Marker
+                pinColor="violet"
+                key={index}
+                coordinate={location.data.coordinate}
+                title={location.name}
+                description="User Shared Location"
+              />
+            );
+          } else {
+            return (
+              <Marker key={index} coordinate={location.data.coordinate} title={location.name} />
+            );
+          }
+        })}
 
         {/* Render routes */}
         {/* {filteredRoutes.map((route, index) => (
