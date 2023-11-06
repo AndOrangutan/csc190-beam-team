@@ -1,6 +1,8 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    // "target": "es2015",
+    // "module": "es2015",
     "strict": true,
     "jsx": "react-native",
     "noUnusedLocals": false,
