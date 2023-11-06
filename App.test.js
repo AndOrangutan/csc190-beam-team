@@ -2,11 +2,10 @@ import renderer from "react-test-renderer";
 
 // import App from './App'
 
-describe("<App />", () => {
- it("1+1 = 2", () => {
-  expect(1 + 1 === 2).toBe(true);
- });
-
+describe("Client can do math", () => {
+    it("1+1 = 2", () => {
+        expect(1 + 1 === 2).toBe(true);
+    });
 });
 // describe("<App />", () => {
 //  it("has 1 child", () => {
