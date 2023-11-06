@@ -1,0 +1,38 @@
+name: Test
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-server:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+    - name: Checkout Branch
+      uses: actions/checkout@v3
+    - name: Install node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - name: Install Packages
+      run: yarn install --frozen-lockfile
+    - name: Run Test
+      run: yarn test
+
+  test-client:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Branch
+      uses: actions/checkout@v3
+    - name: Install node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+    - name: Install Packages
+      run: yarn install --frozen-lockfile
+    - name: Run Test
+      run: yarn test

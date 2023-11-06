@@ -1,4 +1,4 @@
-name: CI
+name: Clean
 
 on:
   push:
@@ -9,14 +9,12 @@ on:
 jobs:
   format:
     runs-on: ubuntu-latest
-    
     steps:
     - name: Checkout Branch
       uses: actions/checkout@v3
       with:
         # Make sure the actual branch is checked out when running on pull requests
         ref: ${{ github.head_ref }}
-
     - name: Prettify code
       uses: creyD/prettier_action@v4.3
       with:
@@ -36,7 +34,7 @@ jobs:
           node-version: 16
 
       - name: Install Packages
-        run: yarn  install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: Run ESLint
         uses: sibiraj-s/action-eslint@v3
