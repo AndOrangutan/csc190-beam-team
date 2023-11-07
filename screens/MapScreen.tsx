@@ -21,6 +21,7 @@ import MapView, {
 } from 'react-native-maps';
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { IP, PORT } from '@env';
 
 type RootStackParamList = {
   Information: { title: string };
@@ -132,7 +133,7 @@ const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
     }
 
     const location = await Location.getCurrentPositionAsync({});
-    const res = await fetch('http://localhost:8000/locations', {
+    const res = await fetch(`http://${IP}:${PORT}/locations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -225,18 +226,24 @@ const MapScreen: React.FC = ({ user }) => {
     }
   };
 
+  let url = `http://${IP}:${PORT}/locations`;
+
   const getLocations = async () => {
     try {
-      let url = 'http://localhost:8000/locations';
+      let url = `http://${IP}:${PORT}/locations`;
       if (user) {
         const userId = JSON.parse(user).id;
         url = `${url}?id=${userId}`;
       }
       const res = await fetch(url);
       const data = await res.json();
+<<<<<<< HEAD
+=======
+      console.log(data);
+>>>>>>> a35479cd651c37a866eddfe0a3eadad384bcb749
       setLocations(data);
     } catch (err) {
-      Alert.alert('Error fetching locations' + err);
+      Alert.alert('Failed retreiving locations from ' + url + ':\n' + err);
     }
   };
 
