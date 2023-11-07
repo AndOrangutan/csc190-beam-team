@@ -237,10 +237,10 @@ const MapScreen: React.FC = ({ user }) => {
       }
       const res = await fetch(url);
       const data = await res.json();
-<<<<<<< HEAD
-=======
-      console.log(data);
->>>>>>> a35479cd651c37a866eddfe0a3eadad384bcb749
+// <<<<<<< HEAD
+// =======
+//       console.log(data);
+// >>>>>>> a35479cd651c37a866eddfe0a3eadad384bcb749
       setLocations(data);
     } catch (err) {
       Alert.alert('Failed retreiving locations from ' + url + ':\n' + err);
