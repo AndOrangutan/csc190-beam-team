@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { IP, PORT } from '@env'
+import { IP, PORT } from '@env';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();

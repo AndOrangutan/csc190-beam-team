@@ -21,7 +21,7 @@ import MapView, {
 } from 'react-native-maps';
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { IP, PORT } from '@env'
+import { IP, PORT } from '@env';
 
 type RootStackParamList = {
   Information: { title: string };
@@ -237,10 +237,10 @@ const MapScreen: React.FC = ({ user }) => {
       }
       const res = await fetch(url);
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       setLocations(data);
     } catch (err) {
-      Alert.alert("Failed retreiving locations from " + url + ":\n" + err);
+      Alert.alert('Failed retreiving locations from ' + url + ':\n' + err);
     }
   };
 

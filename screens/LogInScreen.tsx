@@ -14,14 +14,13 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { RootStackParamList } from '../navigator/RootNavigator';
-import { IP, PORT } from '@env'
+import { IP, PORT } from '@env';
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 
 interface LoginScreenProps {
   navigation: LoginScreenNavigationProp;
 }
-
 
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const [email, setEmail] = useState<string>('');
