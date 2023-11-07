@@ -14,12 +14,14 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { RootStackParamList } from '../navigator/RootNavigator';
+import { IP, PORT } from '@env'
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 
 interface LoginScreenProps {
   navigation: LoginScreenNavigationProp;
 }
+
 
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const [email, setEmail] = useState<string>('');
@@ -43,7 +45,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
     if (!isEmailValid(email)) {
       Alert.alert('Invalid email', 'Please enter a valid email address.');
     }
-    const response = await fetch('http://localhost:8000/users/login', {
+    const response = await fetch(`http://${IP}:${PORT}/users/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
