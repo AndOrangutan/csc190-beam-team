@@ -134,16 +134,18 @@ const CalendarScreen = () => {
   return (
     <View style={styles.container}>
       <WebView
-        source={{ uri: 'https://calendar.google.com/calendar/u/0/embed?src=aidiswin@gmail.com&ctz=America/Los_Angeles' }}
+        source={{
+          uri: 'https://calendar.google.com/calendar/u/0/embed?src=aidiswin@gmail.com&ctz=America/Los_Angeles',
+        }}
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20
+    marginTop: 20,
   },
 });
 
