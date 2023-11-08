@@ -37,7 +37,7 @@ const RootNavigator = () => {
       <RootStack.Screen name="Main" component={TabNavigator} />
       <RootStack.Screen name="Login" component={LoginScreen} />
       <RootStack.Screen name="RegisterScreen" component={RegisterScreen} />
-      
+
       <RootStack.Screen
         name="Information"
         component={InformationScreen}
