@@ -20,7 +20,6 @@ const MoreScreen = ({ user, handleAuth }: any) => {
   //   getUser();
   // }, []);
 
-
   return (
     <View style={{ flex: 1 }}>
       <List.Item

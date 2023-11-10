@@ -100,7 +100,7 @@ const RegisterScreen = () => {
             placeholder="First Name"
             numberOfLines={1}
             returnKeyType="done"
-            autoCapitalize='none'
+            autoCapitalize="none"
           />
           <TextInput
             value={lastName}

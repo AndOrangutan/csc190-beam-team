@@ -20,16 +20,17 @@ import ParkPass from './VisitTheParkway/ParkPass';
 import WeLoveTheParkWay from './VisitTheParkway/WeLoveTheParkWay';
 import parkScreen from './VisitTheParkway/park';
 
-const MoreScreenTabs = ({user, handleAuth}) => {
+const MoreScreenTabs = ({ user, handleAuth }) => {
   const navigation = useNavigation();
-
 
   const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator>
-        <Stack.Screen name="More" options={{ title: user ? 'Hello ' + JSON.parse(user).name : 'More' }}>
+        <Stack.Screen
+          name="More"
+          options={{ title: user ? 'Hello ' + JSON.parse(user).name : 'More' }}>
           {() => <MoreScreen handleAuth={handleAuth} user={user} />}
         </Stack.Screen>
         <Stack.Screen name="Mission" component={MissionScreen} />

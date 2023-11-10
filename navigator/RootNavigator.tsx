@@ -52,8 +52,8 @@ const RootNavigator = () => {
 
     if (response.ok) {
       await SecureStore.setItemAsync('user', JSON.stringify(json.data));
-      setUser(JSON.stringify(json.data))
-      navigator.navigate('Main')
+      setUser(JSON.stringify(json.data));
+      navigator.navigate('Main');
     } else {
       Alert.alert('Login failed', 'Invalid email or password.');
     }
@@ -81,7 +81,7 @@ const RootNavigator = () => {
       <RootStack.Screen name="Main">
         {() => <TabNavigator user={user} handleAuth={handleAuth} />}
       </RootStack.Screen>
-      <RootStack.Screen name="Login" >
+      <RootStack.Screen name="Login">
         {() => <LoginScreen handleLogin={handleLogin} />}
       </RootStack.Screen>
       <RootStack.Screen name="RegisterScreen" component={RegisterScreen} />
