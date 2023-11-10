@@ -1,23 +1,25 @@
 import { useNavigation } from '@react-navigation/native';
 import * as SecureStore from 'expo-secure-store';
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { View, Text, Image, Linking, ImageBackground } from 'react-native';
 import { List } from 'react-native-paper';
 
-const MoreScreen = ({ logout }: any) => {
-  const [user, setUser] = React.useState<any>(null);
+const MoreScreen = ({ user, handleAuth }: any) => {
   const navigation = useNavigation();
+  // const [user, setUser] = React.useState<any>(null);
+  // const navigation = useNavigation();
 
-  const getUser = async () => {
-    const user = await SecureStore.getItemAsync('user');
-    if (user) {
-      setUser(JSON.parse(user));
-    }
-  };
+  // const getUser = async () => {
+  //   const user = await SecureStore.getItemAsync('user');
+  //   if (user) {
+  //     setUser(JSON.parse(user));
+  //   }
+  // };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
+
 
   return (
     <View style={{ flex: 1 }}>
@@ -44,14 +46,14 @@ const MoreScreen = ({ logout }: any) => {
           className="p-6 shadow-md bg-zinc-50"
           title="Logout"
           left={(props) => <List.Icon {...props} icon="logout" />}
-          onPress={() => logout()}
+          onPress={() => handleAuth()}
         />
       ) : (
         <List.Item
           className="p-6 shadow-md bg-zinc-50"
           title="Login"
           left={(props) => <List.Icon {...props} icon="login" />}
-          onPress={() => logout()}
+          onPress={() => handleAuth()}
         />
       )}
 
