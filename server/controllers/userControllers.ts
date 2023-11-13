@@ -92,12 +92,12 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const forgotPassword = asyncHandler (async (req, res) => {
-  const { email } = req.body;
+  const { email, link } = req.body;
   if (!email) {
     res.status(400).json({ error: 'Please provide an email address' });
     return;
   }
-  const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {redirectTo: link});
   if (error) {
     console.error('Error initiating password reset:', error);
     res.status(500).json({ error: 'Failed to initiate password reset' });

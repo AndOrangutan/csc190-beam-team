@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -12,25 +12,42 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { IP, PORT } from '@env'
+import * as Linking from 'expo-linking';
 
 const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
+  const [link, setLink] = useState('');
+
+  useEffect(() => {
+    const handleDeepLink = (event) => {
+      const { url } = event;
+  
+      if (url) {
+        const link = url.split('?link=')[1];
+        setLink(link);
+      }
+    };
+  
+    Linking.addEventListener('url', handleDeepLink);
+  
+    // Remove the listener when the component unmounts
+  }, []);
 
   const handleResetPassword = async () => {
     try {
-      const response = await fetch(`http://${IP}:${PORT}/users/reset-password/forgot-password`, {
+      const response = await fetch(`http://${IP}:${PORT}/users/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email , link }),
       });
 
       // const json = await response.json();
 
-      if (!response.ok) {
+      if (response.ok) {
         Alert.alert('Password Reset', 'Password reset instructions sent to your email.');
         navigation.goBack();
       } else {
