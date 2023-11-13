@@ -251,12 +251,15 @@ const MapScreen: React.FC = ({ user }) => {
       const res = await fetch(url);
       const data = await res.json();
 
+
       const locs = data.filter((loc) => loc.category !== 'Trail' && loc.category !== 'Detours');
       const routes = data.filter(
         (route) => route.category == 'Trail' || route.category == 'Detours'
       );
       setLocations(locs);
       setRoutes(routes);
+      setLocations(data);
+
     } catch (err) {
       Alert.alert('Failed retreiving locations from ' + url + ':\n' + err);
     }

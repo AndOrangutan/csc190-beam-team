@@ -24,9 +24,9 @@ export type TabStackParamList = {
 
 const Tab = createBottomTabNavigator<TabStackParamList>();
 
-const TabNavigator = ({ route }) => {
+const TabNavigator = ({ user, handleAuth }) => {
   const navigation = useNavigation();
-  const { user } = route.params ? route.params : {};
+  // const { user } = route.params ? route.params : {};
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -77,7 +77,9 @@ const TabNavigator = ({ route }) => {
         {() => <MapScreen user={user} />}
       </Tab.Screen>
       <Tab.Screen name="Calendar" component={CalendarScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="More" component={MoreScreenTabs} options={{ headerShown: false }} />
+      <Tab.Screen name="More" options={{ headerShown: false }}>
+        {() => <MoreScreenTabs user={user} handleAuth={handleAuth} />}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 };
