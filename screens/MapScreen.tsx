@@ -342,6 +342,26 @@ const MapScreen: React.FC = ({ user }) => {
                 description="Your Saved location"
               />
             );
+          } else if (location.category === 'Parking') {
+            // Parking Markers
+            return (
+              <Marker
+                key={index}
+                coordinate={location.data.coordinate}
+                title={location.name}
+                icon={require('../assets/parking-icon.png')}
+              />
+            );
+          } else if (location.category === 'Restroom') {
+            // Restroom Markers
+            return (
+              <Marker
+                key={index}
+                coordinate={location.data.coordinate}
+                title={location.name}
+                icon={require('../assets/bathroom-icon.png')}
+              />
+            );
           } else if (location.category === 'User Created' && location.shared === true) {
             return (
               <Marker
