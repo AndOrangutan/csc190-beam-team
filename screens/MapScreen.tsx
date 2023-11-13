@@ -251,7 +251,6 @@ const MapScreen: React.FC = ({ user }) => {
       const res = await fetch(url);
       const data = await res.json();
 
-
       const locs = data.filter((loc) => loc.category !== 'Trail' && loc.category !== 'Detours');
       const routes = data.filter(
         (route) => route.category == 'Trail' || route.category == 'Detours'
@@ -259,7 +258,6 @@ const MapScreen: React.FC = ({ user }) => {
       setLocations(locs);
       setRoutes(routes);
       setLocations(data);
-
     } catch (err) {
       Alert.alert('Failed retreiving locations from ' + url + ':\n' + err);
     }
@@ -290,8 +288,7 @@ const MapScreen: React.FC = ({ user }) => {
   const getTrailsFilters = async () => {
     const trailNames = routes.map((route) => route.name.replace(/_/g, ' '));
     setTrailsFilters(trailNames);
-};
-
+  };
 
   /* Function to filter locations by category
   const filterByCategory = (locations, category) => {
