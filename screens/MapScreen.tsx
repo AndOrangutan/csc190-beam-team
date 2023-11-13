@@ -59,7 +59,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange, filters, trailF
   };
 
   const toggleTrailMenu = () => {
-    setShowTrailsSubMenu(!showTrailsSubMenu);
+    //setShowTrailsSubMenu(!showTrailsSubMenu);
   };
 
   return (
@@ -293,7 +293,7 @@ const MapScreen: React.FC = ({ user }) => {
 
   const getFilters = async () => {
     let categories = locations.map((location) => location.category);
-    categories = ['All', 'Trails', 'Detours', ...new Set(categories),];
+    categories = ['All', ...new Set(categories),];
     setFilters(categories);
   };
 
@@ -399,7 +399,7 @@ const MapScreen: React.FC = ({ user }) => {
             destination={route.data.destination}
             waypoints={route.data.waypoints}
             apikey={GOOGLE_MAPS_APIKEY}
-            strokeWidth={6}
+            strokeWidth={3}
             strokeColor={route.data.color}
             mode="BICYCLING"
           />
