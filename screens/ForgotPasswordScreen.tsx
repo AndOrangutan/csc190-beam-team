@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { IP, PORT } from '@env'
+import { IP, PORT } from '@env';
 import * as Linking from 'expo-linking';
 
 const ForgotPasswordScreen = () => {
@@ -23,15 +23,15 @@ const ForgotPasswordScreen = () => {
   useEffect(() => {
     const handleDeepLink = (event) => {
       const { url } = event;
-  
+
       if (url) {
         const link = url.split('?link=')[1];
         setLink(link);
       }
     };
-  
+
     Linking.addEventListener('url', handleDeepLink);
-  
+
     // Remove the listener when the component unmounts
   }, []);
 
@@ -42,7 +42,7 @@ const ForgotPasswordScreen = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email , link }),
+        body: JSON.stringify({ email, link }),
       });
 
       // const json = await response.json();

@@ -11,7 +11,6 @@ import RegisterScreen from '../screens/RegisterScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import { IP, PORT } from '@env';
 
-
 export type RootStackParamList = {
   LoginScreen: undefined;
   Main: undefined;
@@ -88,7 +87,7 @@ const RootNavigator = () => {
         {() => <LoginScreen handleLogin={handleLogin} />}
       </RootStack.Screen>
       <RootStack.Screen name="RegisterScreen" component={RegisterScreen} />
-      <RootStack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen}  />
+      <RootStack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
 
       <RootStack.Screen
         name="Information"

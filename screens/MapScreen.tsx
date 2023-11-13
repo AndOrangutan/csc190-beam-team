@@ -256,7 +256,6 @@ const MapScreen: React.FC = ({ user }) => {
       );
       setLocations(locs);
       setRoutes(routes);
-
     } catch (err) {
       Alert.alert('Failed retreiving locations from ' + url + ':\n' + err);
     }
