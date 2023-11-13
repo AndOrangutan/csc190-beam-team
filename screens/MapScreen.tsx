@@ -258,7 +258,6 @@ const MapScreen: React.FC = ({ user }) => {
       );
       setLocations(locs);
       setRoutes(routes);
-
     } catch (err) {
       Alert.alert('Failed retreiving locations from ' + url + ':\n' + err);
     }
@@ -281,11 +280,11 @@ const MapScreen: React.FC = ({ user }) => {
     color: string;
     category: string;
     data: {
-      origin: { latitude: number, longitude: number };
-      destination: { latitude: number, longitude: number };
-      waypoints: { latitude: number, longitude: number }[];
+      origin: { latitude: number; longitude: number };
+      destination: { latitude: number; longitude: number };
+      waypoints: { latitude: number; longitude: number }[];
     };
-  }  
+  }
 
   const updateLocations = (data: LocationData) => {
     setLocations([...locations, data]);
@@ -293,7 +292,7 @@ const MapScreen: React.FC = ({ user }) => {
 
   const getFilters = async () => {
     let categories = locations.map((location) => location.category);
-    categories = ['All', ...new Set(categories),];
+    categories = ['All', ...new Set(categories)];
     setFilters(categories);
   };
 
