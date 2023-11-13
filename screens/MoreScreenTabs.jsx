@@ -20,41 +20,18 @@ import ParkPass from './VisitTheParkway/ParkPass';
 import WeLoveTheParkWay from './VisitTheParkway/WeLoveTheParkWay';
 import parkScreen from './VisitTheParkway/park';
 
-const MoreScreenTabs = () => {
-  const [user, setUser] = useState(null);
+const MoreScreenTabs = ({ user, handleAuth }) => {
   const navigation = useNavigation();
-
-  const getUser = async () => {
-    try {
-      const userInfo = await SecureStore.getItemAsync('user');
-      // console.log('user', JSON.parse(user || '{}'));
-      setUser(JSON.parse(userInfo || null));
-    } catch (error) {
-      console.error('Error getting user:', error);
-    }
-  };
-
-  const logout = async () => {
-    try {
-      await SecureStore.deleteItemAsync('user');
-      setUser(null);
-      navigation.navigate('Login');
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []);
 
   const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator>
-        <Stack.Screen name="More" options={{ title: user ? 'Hello ' + user.name : 'More' }}>
-          {() => <MoreScreen logout={logout} />}
+        <Stack.Screen
+          name="More"
+          options={{ title: user ? 'Hello ' + JSON.parse(user).name : 'More' }}>
+          {() => <MoreScreen handleAuth={handleAuth} user={user} />}
         </Stack.Screen>
         <Stack.Screen name="Mission" component={MissionScreen} />
         <Stack.Screen name="Contact" component={ContactScreen} />

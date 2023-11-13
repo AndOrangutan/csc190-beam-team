@@ -75,6 +75,10 @@ const RegisterScreen = () => {
         return;
       }
 
+      if (response.ok) {
+        Alert.alert('Registration Successful', 'Please login to continue.');
+      }
+
       // Registration successful, navigate to the login screen or show a success message
       navigation.navigate('Login');
     } catch (error) {
@@ -96,6 +100,7 @@ const RegisterScreen = () => {
             placeholder="First Name"
             numberOfLines={1}
             returnKeyType="done"
+            autoCapitalize="none"
           />
           <TextInput
             value={lastName}

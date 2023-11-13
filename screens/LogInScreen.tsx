@@ -15,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { RootStackParamList } from '../navigator/RootNavigator';
 import { IP, PORT } from '@env';
+import { useNavigation } from '@react-navigation/native';
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -22,15 +23,10 @@ interface LoginScreenProps {
   navigation: LoginScreenNavigationProp;
 }
 
-const LoginScreen = ({ navigation }: LoginScreenProps) => {
+const LoginScreen = ({ handleLogin }: LoginScreenProps) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-
-  const isEmailValid = (email: string): boolean => {
-    // Simple email validation regex pattern
-    const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    return pattern.test(email);
-  };
+  const navigation = useNavigation();
 
   const handleBrowseAsGuest = () => {
     navigation.navigate('Main');
@@ -43,29 +39,6 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const handleForgotPassword = () => {
     navigation.navigate('ForgotPasswordScreen');
   }
-
-  const handleLogin = async () => {
-    if (!isEmailValid(email)) {
-      Alert.alert('Invalid email', 'Please enter a valid email address.');
-    }
-    const response = await fetch(`http://${IP}:${PORT}/users/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const json = await response.json();
-
-    if (response.ok) {
-      await SecureStore.setItemAsync('user', JSON.stringify(json.data));
-      const user = await SecureStore.getItemAsync('user');
-      navigation.navigate('Main', { user });
-    } else {
-      Alert.alert('Login failed', 'Invalid email or password.');
-    }
-  };
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -104,7 +77,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
           <View className="flex-row align-center justify-evenly">
             <Pressable
               className="bg-green-600 text-white font-bold py- px-4 rounded-full w-22  "
-              onPress={handleLogin}>
+              onPress={() => handleLogin(email, password)}>
               <Text className="text-white font-bold py-2 px-4 text-center">Login </Text>
             </Pressable>
 
