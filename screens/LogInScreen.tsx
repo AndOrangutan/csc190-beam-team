@@ -40,6 +40,10 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
     navigation.navigate('RegisterScreen');
   };
 
+  const handleForgotPassword = () => {
+    navigation.navigate('ForgotPasswordScreen');
+  }
+
   const handleLogin = async () => {
     if (!isEmailValid(email)) {
       Alert.alert('Invalid email', 'Please enter a valid email address.');
@@ -89,6 +93,13 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
             autoCapitalize="none"
           />
           <View className="h-3" />
+
+          <Pressable
+              className="text-white font-bold py- px-4 rounded-full w-22 "
+              onPress={handleForgotPassword}>
+              <Text style = {{textDecorationLine: 'underline' }}
+              className="text-white font-bold py-2 px-4 ">Forgot Password</Text>
+            </Pressable>
 
           <View className="flex-row align-center justify-evenly">
             <Pressable

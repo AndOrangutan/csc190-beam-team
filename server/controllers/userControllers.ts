@@ -91,4 +91,19 @@ const loginUser = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = { getUsers, registerUser, deleteUser, updateUser, loginUser };
+const forgotPassword = asyncHandler (async (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    res.status(400).json({ error: 'Please provide an email address' });
+    return;
+  }
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email);
+  if (error) {
+    console.error('Error initiating password reset:', error);
+    res.status(500).json({ error: 'Failed to initiate password reset' });
+    return;
+  }
+  res.status(200).json({ message: 'Password reset initiated successfully' });
+})
+
+module.exports = { getUsers, registerUser, deleteUser, updateUser, loginUser, forgotPassword };
