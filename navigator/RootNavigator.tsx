@@ -8,12 +8,14 @@ import TabNavigator from './TabNavigator';
 import InformationScreen from '../screens/InformationScreen';
 import LoginScreen from '../screens/LogInScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import { IP, PORT } from '@env';
 
 export type RootStackParamList = {
   LoginScreen: undefined;
   Main: undefined;
   RegisterScreen: undefined;
+  ForgotPasswordScreen: undefined;
 };
 
 const RootStack = createNativeStackNavigator();
@@ -85,6 +87,7 @@ const RootNavigator = () => {
         {() => <LoginScreen handleLogin={handleLogin} />}
       </RootStack.Screen>
       <RootStack.Screen name="RegisterScreen" component={RegisterScreen} />
+      <RootStack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
 
       <RootStack.Screen
         name="Information"

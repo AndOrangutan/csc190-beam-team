@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "ARPF-app",
     "name": "BT-56-skeleton-project",
     "slug": "BT-56-skeleton-project",
     "version": "1.0.0",

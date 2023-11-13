@@ -36,6 +36,10 @@ const LoginScreen = ({ handleLogin }: LoginScreenProps) => {
     navigation.navigate('RegisterScreen');
   };
 
+  const handleForgotPassword = () => {
+    navigation.navigate('ForgotPasswordScreen');
+  };
+
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <SafeAreaView className="h-full items-center justify-evenly bg-sky-900">
@@ -62,6 +66,16 @@ const LoginScreen = ({ handleLogin }: LoginScreenProps) => {
             autoCapitalize="none"
           />
           <View className="h-3" />
+
+          <Pressable
+            className="text-white font-bold py- px-4 rounded-full w-22 "
+            onPress={handleForgotPassword}>
+            <Text
+              style={{ textDecorationLine: 'underline' }}
+              className="text-white font-bold py-2 px-4 ">
+              Forgot Password
+            </Text>
+          </Pressable>
 
           <View className="flex-row align-center justify-evenly">
             <Pressable
