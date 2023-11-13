@@ -309,6 +309,26 @@ const MapScreen: React.FC = ({ user }) => {
                 description="Your Saved location"
               />
             );
+          } else if (location.category === 'Parking') {
+            // Parking Markers
+            return (
+              <Marker
+                key={index}
+                coordinate={location.data.coordinate}
+                title={location.name}
+                icon={require('../assets/parking-icon.png')}
+              />
+            );
+          } else if (location.category === 'Restroom') {
+            // Restroom Markers
+            return (
+              <Marker
+                key={index}
+                coordinate={location.data.coordinate}
+                title={location.name}
+                icon={require('../assets/bathroom-icon.png')}
+              />
+            );
           } else if (location.category === 'User Created' && location.shared === true) {
             return (
               <Marker
@@ -328,17 +348,17 @@ const MapScreen: React.FC = ({ user }) => {
 
         {/* Render routes */}
         {/* {filteredRoutes.map((route, index) => (
-          <MapViewDirections
-            key={index}
-            origin={route.origin}
-            destination={route.destination}
-            waypoints={route.waypoints}
-            apikey={GOOGLE_MAPS_APIKEY}
-            strokeWidth={4}
-            strokeColor={route.color}
-            mode="BICYCLING"
-          />
-        ))} */}
+<MapViewDirections
+  key={index}
+  origin={route.origin}
+  destination={route.destination}
+  waypoints={route.waypoints}
+  apikey={GOOGLE_MAPS_APIKEY}
+  strokeWidth={4}
+  strokeColor={route.color}
+  mode="BICYCLING"
+/>
+))} */}
       </MapView>
 
       {/* <SaveLocationButton /> */}
