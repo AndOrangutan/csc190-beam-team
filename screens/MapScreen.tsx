@@ -59,7 +59,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange, filters, trailF
   };
 
   const toggleTrailMenu = () => {
-    setShowTrailsSubMenu(!showTrailsSubMenu);
+    //setShowTrailsSubMenu(!showTrailsSubMenu);
   };
 
   return (
@@ -225,8 +225,10 @@ const MapScreen: React.FC = ({ user }) => {
   const [locations, setLocations] = useState<LocationData[]>([]);
   const [filters, setFilters] = useState(['All']);
   const [filteredLocations, setFilteredLocations] = useState(locations);
-  const [routes, setRoutes] = useState([]);
-  const [filteredRoutes, setFilteredRoutes] = useState([]);
+  // const [routes, setRoutes] = useState([]);
+  // const [filteredRoutes, setFilteredRoutes] = useState([]);
+  const [routes, setRoutes] = useState<RouteData[]>([]);
+  const [filteredRoutes, setFilteredRoutes] = useState<RouteData[]>([]);
   const [trailFilters, setTrailsFilters] = useState<string[]>([]);
 
   const handleFilterChange = (filter: string) => {
@@ -256,7 +258,6 @@ const MapScreen: React.FC = ({ user }) => {
       );
       setLocations(locs);
       setRoutes(routes);
-
     } catch (err) {
       Alert.alert('Failed retreiving locations from ' + url + ':\n' + err);
     }
@@ -274,13 +275,24 @@ const MapScreen: React.FC = ({ user }) => {
     user_id: number;
   }
 
+  interface RouteData {
+    name: string;
+    color: string;
+    category: string;
+    data: {
+      origin: { latitude: number; longitude: number };
+      destination: { latitude: number; longitude: number };
+      waypoints: { latitude: number; longitude: number }[];
+    };
+  }
+
   const updateLocations = (data: LocationData) => {
     setLocations([...locations, data]);
   };
 
   const getFilters = async () => {
     let categories = locations.map((location) => location.category);
-    categories = ['All', ...new Set(categories), 'Detours', 'Trails'];
+    categories = ['All', ...new Set(categories)];
     setFilters(categories);
   };
 
@@ -386,7 +398,7 @@ const MapScreen: React.FC = ({ user }) => {
             destination={route.data.destination}
             waypoints={route.data.waypoints}
             apikey={GOOGLE_MAPS_APIKEY}
-            strokeWidth={4}
+            strokeWidth={3}
             strokeColor={route.data.color}
             mode="BICYCLING"
           />

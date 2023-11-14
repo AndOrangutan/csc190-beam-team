@@ -127,25 +127,37 @@
 
 // export default CalendarScreen;
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 const CalendarScreen = () => {
+  // JavaScript to adjust zoom level
+  const INJECTED_JAVASCRIPT = `document.body.style.zoom = '0.8';`; // Adjust '0.8' to the desired zoom level
+
   return (
     <View style={styles.container}>
       <WebView
+        style={styles.webview}
         source={{
-          uri: 'https://calendar.google.com/calendar/u/0/embed?src=aidiswin@gmail.com&ctz=America/Los_Angeles',
+          uri: 'https://calendar.google.com/calendar/embed?src=aidiswin@gmail.com&ctz=America/Los_Angeles',
         }}
+        injectedJavaScript={INJECTED_JAVASCRIPT}
+        scalesPageToFit={true}
       />
     </View>
   );
 };
 
+const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    marginTop: 60,
+    height: windowHeight - 20,
+  },
+  webview: {
+    flex: 1,
   },
 });
 
