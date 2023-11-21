@@ -99,7 +99,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
   }
   const userNotExist = await supabase.from('profiles').select().eq('email', email);
   if (userNotExist.data && userNotExist.data.length === 0) {
-    res.status(400).json({ error: 'User does not exist'});
+    res.status(400).json({ error: 'User does not exist' });
     return;
   }
   const { data, error } = await supabase.auth.resetPasswordForEmail(email);
@@ -108,7 +108,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
     res.status(500).json({ error: 'Failed to initiate password reset' });
     return;
   }
-  res.status(200).json({ data: data,  message: 'Password reset initiated successfully' });
+  res.status(200).json({ data: data, message: 'Password reset initiated successfully' });
 });
 
 module.exports = { getUsers, registerUser, deleteUser, updateUser, loginUser, forgotPassword };
