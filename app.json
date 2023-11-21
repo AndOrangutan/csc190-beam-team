@@ -2,6 +2,7 @@
   "expo": {
     "name": "BT-56-skeleton-project",
     "slug": "BT-56-skeleton-project",
+    "scheme": "arpf-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

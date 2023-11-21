@@ -1,14 +1,17 @@
+import { IP, PORT } from '@env';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as Linking from 'expo-linking';
 import * as SecureStore from 'expo-secure-store';
 import React, { useEffect } from 'react';
 import { View, Text, Alert } from 'react-native';
 
 import TabNavigator from './TabNavigator';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import InformationScreen from '../screens/InformationScreen';
 import LoginScreen from '../screens/LogInScreen';
 import RegisterScreen from '../screens/RegisterScreen';
-import { IP, PORT } from '@env';
+import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 
 export type RootStackParamList = {
   LoginScreen: undefined;
@@ -76,6 +79,23 @@ const RootNavigator = () => {
   useEffect(() => {
     getUser();
   }, []);
+
+  useEffect(() => {
+    const handleOpenUrl = (url: any) => {
+      const token = url.match(/access_token=([^&]+)/);
+      if (token && token[1]) {
+        console.log(`Extracted token: ${token[1]}`);
+        // Assuming 'Reset Password' is the correct screen name
+        navigator.navigate('Reset Password', { token: token[1] });
+      }
+    };
+    Linking.addEventListener('url', (event) => handleOpenUrl(event.url));
+
+    Linking.getInitialURL().then((url) => {
+      if (url) handleOpenUrl(url);
+    });
+  }, []);
+
   return (
     <RootStack.Navigator>
       <RootStack.Screen name="Main">
@@ -85,6 +105,8 @@ const RootNavigator = () => {
         {() => <LoginScreen handleLogin={handleLogin} />}
       </RootStack.Screen>
       <RootStack.Screen name="RegisterScreen" component={RegisterScreen} />
+      <RootStack.Screen name="Forgot Password" component={ForgotPasswordScreen} />
+      <RootStack.Screen name="Reset Password" component={ResetPasswordScreen} />
 
       <RootStack.Screen
         name="Information"
