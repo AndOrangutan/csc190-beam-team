@@ -44,7 +44,7 @@ const ResetPasswordScreen = ({ token }) => {
     }
 
     // Further logic for password reset...
-    
+
     // Corrected line: use navigation, not Navigation
     navigation.navigate('LoginScreen');
   };
@@ -52,16 +52,15 @@ const ResetPasswordScreen = ({ token }) => {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <SafeAreaView className="h-full items-center justify-evenly bg-sky-900">
-      <Image source={require('../assets/ARPF.png')} />
+        <Image source={require('../assets/ARPF.png')} />
 
         <View className={`w-4/5 mx-auto`}>
           <TextInput
             value={newPassword}
-            onChangeText={setNewPassword}  // Added onChangeText to update state
+            onChangeText={setNewPassword} // Added onChangeText to update state
             //secureTextEntry={true}
             className={`w-full h-12 px-3 bg-gray-100 rounded-md border border-gray-300`}
             placeholder="New Password"
-            
             numberOfLines={1}
             autoCapitalize="none"
           />
@@ -84,8 +83,7 @@ const ResetPasswordScreen = ({ token }) => {
               onPress={() => handleResetPassword(newPassword)}>
               <Text className="text-white font-bold py-2 px-4 text-center">Continue </Text>
             </Pressable>
-
-        </View>
+          </View>
         </View>
       </SafeAreaView>
     </KeyboardAvoidingView>
