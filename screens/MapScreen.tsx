@@ -1,4 +1,4 @@
-import { IP, PORT } from '@env';
+import { IP, PORT, GOOGLE_MAPS_KEY } from '@env';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import * as React from 'react';
@@ -30,7 +30,7 @@ type RootStackParamList = {
 };
 
 interface FilterMenuProps {
-  onFilterChange: (filter: string) => void;
+  onFilterChange: (filter: string, isTrail: boolean) => void;
   filters: string[];
   trailFilters: string[];
 }
@@ -44,14 +44,15 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange, filters, trailF
   const [showInfoButtonForTrail, setShowInfoButtonForTrail] = useState<string | null>(null);
   // const [trailFilters, setTrailsFilters] = useState<string[]>([]);
 
-  const handleFilterChange = (filter: string) => {
+  const handleFilterChange = (filter: string, isTrail: boolean) => {
     setSelectedFilter(filter);
-    onFilterChange(filter);
+    onFilterChange(filter, isTrail);
     if (trailFilters.includes(filter)) {
       setShowInfoSubMenu(filter);
     } else {
       setShowInfoSubMenu(null);
     }
+    toggleMenu();
   };
 
   const toggleMenu = () => {
@@ -59,7 +60,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange, filters, trailF
   };
 
   const toggleTrailMenu = () => {
-    //setShowTrailsSubMenu(!showTrailsSubMenu);
+    setShowTrailsSubMenu(!showTrailsSubMenu);
   };
 
   return (
@@ -76,8 +77,8 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange, filters, trailF
       {menuVisible && (
         <View style={styles.menuContent}>
           {filters.map((filter) =>
-            filter !== 'Trails' ? (
-              <TouchableOpacity key={filter} onPress={() => handleFilterChange(filter)}>
+            filter !== 'Trail' ? (
+              <TouchableOpacity key={filter} onPress={() => handleFilterChange(filter, false)}>
                 <Text
                   style={selectedFilter === filter ? styles.selectedFilterText : styles.menuText}>
                   {filter}
@@ -98,7 +99,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange, filters, trailF
                 <View key={trail} style={{ marginLeft: 20 }}>
                   <TouchableOpacity
                     onPress={() => {
-                      handleFilterChange(trail);
+                      handleFilterChange(trail, true);
                       setShowInfoButtonForTrail(trail);
                     }}>
                     <Text
@@ -127,9 +128,6 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ onFilterChange, filters, trailF
 
 const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
   const [locName, setLocName] = useState('');
-  const [isShared, setIsShared] = useState(false);
-
-  const toggleSwitch = () => setIsShared(!isShared);
 
   const handlePress = async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
@@ -137,7 +135,7 @@ const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
       Alert.alert('Permission to access location was denied');
       return;
     }
-    if (locName.length == 0) {
+    if (locName.length === 0) {
       Alert.alert('Please Enter a title for your location');
       return;
     }
@@ -159,7 +157,6 @@ const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
           category: 'User Created',
         },
         category: 'User Created',
-        shared: isShared,
         id: JSON.parse(user).id,
       }),
     });
@@ -200,22 +197,12 @@ const SaveLocationForm = ({ user, toggleMenu, updateLocs }) => {
         <TouchableOpacity className="bg-blue-500 p-3 mt-3 rounded-lg" onPress={handlePress}>
           <Text className="font-bold text-white">Save</Text>
         </TouchableOpacity>
-        <View className="mt-3 ml-3 items-center">
-          <Switch
-            trackColor={{ false: '#767577', true: '#81b0ff' }}
-            thumbColor={isShared ? '#f5dd4b' : '#f4f3f4'}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isShared}
-          />
-          <Text className="font-thin text-xs">Share to others?</Text>
-        </View>
       </View>
     </View>
   );
 };
 
-const MapScreen: React.FC = ({ user }) => {
+const MapScreen = ({ user }: any) => {
   const [mapRegion, setMapRegion] = useState({
     latitude: 38.59184,
     longitude: -121.33438,
@@ -225,20 +212,24 @@ const MapScreen: React.FC = ({ user }) => {
   const [locations, setLocations] = useState<LocationData[]>([]);
   const [filters, setFilters] = useState(['All']);
   const [filteredLocations, setFilteredLocations] = useState(locations);
-  // const [routes, setRoutes] = useState([]);
-  // const [filteredRoutes, setFilteredRoutes] = useState([]);
   const [routes, setRoutes] = useState<RouteData[]>([]);
   const [filteredRoutes, setFilteredRoutes] = useState<RouteData[]>([]);
   const [trailFilters, setTrailsFilters] = useState<string[]>([]);
 
-  const handleFilterChange = (filter: string) => {
-    if (filter === 'All') {
-      setFilteredLocations(locations);
-    } else {
-      const filteredLocations = locations.filter((location) => location.category === filter);
+  const handleFilterChange = (filter: string, isTrail: boolean) => {
+    let filteredLocations = []; // Declare filteredLocations here
 
-      setFilteredLocations(filteredLocations);
+    if (filter === 'All') {
+      filteredLocations = locations;
+    } else {
+      if (!isTrail) {
+        filteredLocations = locations.filter((location) => location.category === filter);
+      } else {
+        filteredLocations = locations.filter((location) => location.name === filter);
+      }
     }
+
+    setFilteredLocations(filteredLocations); // Now this has access to the updated variable
   };
 
   const url = `http://${IP}:${PORT}/locations`;
@@ -252,12 +243,12 @@ const MapScreen: React.FC = ({ user }) => {
       }
       const res = await fetch(url);
       const data = await res.json();
-      const locs = data.filter((loc) => loc.category !== 'Trail' && loc.category !== 'Detours');
-      const routes = data.filter(
-        (route) => route.category == 'Trail' || route.category == 'Detours'
-      );
-      setLocations(locs);
-      setRoutes(routes);
+      // const locs = data.filter((loc) => loc.category !== 'Trail' && loc.category !== 'Detours');
+      // const routes = data.filter(
+      //   (route) => route.category == 'Trail' || route.category == 'Detours'
+      // );
+      setLocations(data);
+      // setRoutes(routes);
     } catch (err) {
       Alert.alert('Failed retreiving locations from ' + url + ':\n' + err);
     }
@@ -269,9 +260,19 @@ const MapScreen: React.FC = ({ user }) => {
       latitude: number;
       longitude: number;
     };
-    data: object;
+    data: {
+      name: string;
+      coordinate: {
+        latitude: number;
+        longitude: number;
+      };
+      origin: { latitude: number; longitude: number };
+      destination: { latitude: number; longitude: number };
+      waypoints: { latitude: number; longitude: number }[];
+      color: string;
+      category: string;
+    };
     category: string;
-    shared: boolean;
     user_id: number;
   }
 
@@ -283,6 +284,7 @@ const MapScreen: React.FC = ({ user }) => {
       origin: { latitude: number; longitude: number };
       destination: { latitude: number; longitude: number };
       waypoints: { latitude: number; longitude: number }[];
+      color: string;
     };
   }
 
@@ -290,46 +292,50 @@ const MapScreen: React.FC = ({ user }) => {
     setLocations([...locations, data]);
   };
 
-  const getFilters = async () => {
-    let categories = locations.map((location) => location.category);
-    categories = ['All', ...new Set(categories)];
-    setFilters(categories);
-  };
-
-  const getTrailsFilters = async () => {
-    const trailNames = routes.map((route) => route.name.replace(/_/g, ' '));
-    setTrailsFilters(trailNames);
-  };
-
-  /* Function to filter locations by category
-  const filterByCategory = (locations, category) => {
-    return locations.filter(location => location.category === category);
-  }
-
-  (async () => {
-    await getLocations();  // This populates the `locations` state
-    const filters = filterByCategory(locations, 'Restroom');
-
-  })();
-  */
-
   useEffect(() => {
     getLocations();
-    getFilters();
   }, [user]);
 
   useEffect(() => {
-    setFilteredLocations(locations);
-    setFilteredRoutes(routes);
-    getTrailsFilters();
+    const newFilters = ['All', ...new Set(locations.map((loc) => loc.category))];
+    newFilters.sort();
+    setFilters(newFilters);
   }, [locations]);
 
-  const GOOGLE_MAPS_APIKEY = 'AIzaSyCISRwlj-aGFTavGORK9keVX_NDSQnddgg'; // API KEY GOES HERE
+  useEffect(() => {
+    setFilteredLocations(locations);
+  }, [locations]);
+
+  useEffect(() => {
+    const newTrailFilters = locations.filter((loc) => loc.category === 'Trail');
+    const trailNames = newTrailFilters.map((trail) => trail.name);
+    setTrailsFilters(trailNames);
+  }, [locations]);
+
+  const GOOGLE_MAPS_APIKEY = GOOGLE_MAPS_KEY; // API KEY GOES HERE;
 
   const [isFormShowing, setIsFormShowing] = useState(false);
 
   const showForm = () => {
     setIsFormShowing(!isFormShowing);
+  };
+
+  const MAX_WAYPOINTS_PER_SEGMENT = 25;
+
+  const segmentRoutes = (location: LocationData) => {
+    const segmentedRoutes = [];
+    const waypoints = location.data.waypoints;
+
+    for (let i = 0; i < waypoints.length; i += MAX_WAYPOINTS_PER_SEGMENT) {
+      const segment = waypoints.slice(i, i + MAX_WAYPOINTS_PER_SEGMENT);
+      segmentedRoutes.push({
+        origin: segment[0],
+        destination: segment[segment.length - 1],
+        waypoints: segment.slice(1, -1),
+      });
+    }
+
+    return segmentedRoutes;
   };
 
   return (
@@ -343,7 +349,7 @@ const MapScreen: React.FC = ({ user }) => {
         region={mapRegion}>
         {/* Render Locations */}
         {filteredLocations.map((location, index) => {
-          if (user && JSON.parse(user).id === location.user_id) {
+          if (location.category === 'User Created') {
             return (
               <Marker
                 pinColor="blue"
@@ -373,36 +379,38 @@ const MapScreen: React.FC = ({ user }) => {
                 icon={require('../assets/bathroom-icon.png')}
               />
             );
-          } else if (location.category === 'User Created' && location.shared === true) {
-            return (
-              <Marker
-                pinColor="violet"
-                key={index}
-                coordinate={location.data.coordinate}
-                title={location.name}
-                description="User Shared Location"
-              />
-            );
-          } else {
-            return (
-              <Marker key={index} coordinate={location.data.coordinate} title={location.name} />
-            );
+          } else if (location.category === 'Trail' || location.category === 'Detours') {
+            if (location.data.waypoints) {
+              const routeSegments = segmentRoutes(location);
+
+              return routeSegments.map((segment, segmentIndex) => (
+                <MapViewDirections
+                  key={`${index}-${segmentIndex}`}
+                  origin={segment.origin}
+                  destination={segment.destination}
+                  waypoints={segment.waypoints}
+                  apikey={GOOGLE_MAPS_APIKEY}
+                  strokeWidth={3}
+                  strokeColor={location.data.color}
+                  mode="BICYCLING"
+                />
+              ));
+            } else {
+              return (
+                <MapViewDirections
+                  key={index}
+                  origin={location.data.origin}
+                  destination={location.data.destination}
+                  waypoints={location.data.waypoints}
+                  apikey={GOOGLE_MAPS_APIKEY}
+                  strokeWidth={3}
+                  strokeColor={location.data.color}
+                  mode="BICYCLING"
+                />
+              );
+            }
           }
         })}
-
-        {/* Render routes */}
-        {filteredRoutes.map((route, index) => (
-          <MapViewDirections
-            key={index}
-            origin={route.data.origin}
-            destination={route.data.destination}
-            waypoints={route.data.waypoints}
-            apikey={GOOGLE_MAPS_APIKEY}
-            strokeWidth={3}
-            strokeColor={route.data.color}
-            mode="BICYCLING"
-          />
-        ))}
       </MapView>
 
       {/* <SaveLocationButton /> */}
