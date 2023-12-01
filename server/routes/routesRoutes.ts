@@ -4,6 +4,10 @@ import { createRoute, getRoutes, deleteRoute, updateRoute } from '../controllers
 
 const router = express.Router();
 
-router.route('/').get(getRoutes).post(createRoute).delete(deleteRoute).put(updateRoute);
+router.route('/')
+    .get(getRoutes)
+    .post(createRoute)
+    .delete(deleteRoute)
+    .put(updateRoute);
 
 module.exports = router;
