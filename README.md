@@ -11,6 +11,10 @@
 - [Resources](#resources)
 
 ## The Goal
+![image](https://github.com/AndOrangutan/csc190-beam-team/assets/40435989/85e31448-2f54-4cdf-a1fe-477f5fa351aa)
+
+![image](https://github.com/AndOrangutan/csc190-beam-team/assets/40435989/b73ac7a8-eb80-4371-8d2e-7da0a613cd6e)
+
 
 Create a mobile application for the American River Parkway Foundation
 that provides users with a user-friendly and convenient way to access information about the
