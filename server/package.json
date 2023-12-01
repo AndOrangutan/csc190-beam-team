@@ -21,7 +21,7 @@
     "build": "tsc",
     "start": "ts-node server.ts",
     "dev": "concurrently \"tsc --watch\" \"nodemon -q server.ts\"",
-    "test": "--setupFiles dotenv/config jest"
+    "test": "jest --setupFiles dotenv/config"
   },
   "devDependencies": {
     "@types/cors": "^2.8.14",
