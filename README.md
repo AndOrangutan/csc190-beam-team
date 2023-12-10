@@ -139,7 +139,7 @@ yarn test
 - Jesus Cervantes (jcervantes6@csus.edu)
 - Joseph Bayless (Jbayless@csus.edu)
 - Mark Burgasser (mburgasser@csus.edu)
-- Sahd Kahn (sahdkhan@csus.edu)
+- Sahd Khan (sahdkhan@csus.edu)
 - Sharon Deng (ydeng@csus.edu)
 - Ted Kim (tkim@csus.edu)
 - Von Mueller (vmueller@csus.edu)
