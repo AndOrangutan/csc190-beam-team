@@ -1328,7 +1328,7 @@
     node-forge "^1.2.1"
     nullthrows "^1.1.1"
 
-"@expo/config-plugins@6.0.2", "@expo/config-plugins@~6.0.0":
+"@expo/config-plugins@6.0.2", "@expo/config-plugins@~6.0.0", "@expo/config-plugins@~7.0.0", "@expo/config-plugins@~7.2.0":
   version "6.0.2"
   resolved "https://registry.npmjs.org/@expo/config-plugins/-/config-plugins-6.0.2.tgz"
   integrity sha512-Cn01fXMHwjU042EgO9oO3Mna0o/UCrW91MQLMbJa4pXM41CYGjNgVy1EVXiuRRx/upegHhvltBw5D+JaUm8aZQ==
@@ -1348,27 +1348,6 @@
     slash "^3.0.0"
     xcode "^3.0.1"
     xml2js "0.4.23"
-
-"@expo/config-plugins@~7.2.0":
-  version "7.2.5"
-  resolved "https://registry.npmjs.org/@expo/config-plugins/-/config-plugins-7.2.5.tgz"
-  integrity sha512-w+5ccu1IxBHgyQk9CPFKLZOk8yZQEyTjbJwOzESK1eR7QwosbcsLkN1c1WWUZYiCXwORu3UTwJYll4+X2xxJhQ==
-  dependencies:
-    "@expo/config-types" "^49.0.0-alpha.1"
-    "@expo/json-file" "~8.2.37"
-    "@expo/plist" "^0.0.20"
-    "@expo/sdk-runtime-versions" "^1.0.0"
-    "@react-native/normalize-color" "^2.0.0"
-    chalk "^4.1.2"
-    debug "^4.3.1"
-    find-up "~5.0.0"
-    getenv "^1.0.0"
-    glob "7.1.6"
-    resolve-from "^5.0.0"
-    semver "^7.5.3"
-    slash "^3.0.0"
-    xcode "^3.0.1"
-    xml2js "0.6.0"
 
 "@expo/config-types@^48.0.0":
   version "48.0.0"
@@ -1528,14 +1507,14 @@
     base64-js "^1.2.3"
     xmlbuilder "^14.0.0"
 
-"@expo/prebuild-config@6.0.1":
-  version "6.0.1"
-  resolved "https://registry.npmjs.org/@expo/prebuild-config/-/prebuild-config-6.0.1.tgz"
-  integrity sha512-WK3FDht1tdXZGCvtG5s7HSwzhsc7Tyu2DdqV9jVUsLtGD42oqUepk13mEWlU9LOTBgLsoEueKjoSK4EXOXFctw==
+"@expo/prebuild-config@6.0.1", "@expo/prebuild-config@~6.0.0":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@expo/prebuild-config/-/prebuild-config-6.0.2.tgz#61445ad2b21b502bfdd92b96ecb634edd0b29ade"
+  integrity sha512-NZ+duLodvHXVtcGYy/cu6BWxm5q7tvEMIuYrvbvMOW239S2J0SE4Jc83n64ZiUOHIWYEvYXGgGct/DL1lV4CQA==
   dependencies:
     "@expo/config" "~8.0.0"
-    "@expo/config-plugins" "~6.0.0"
-    "@expo/config-types" "^48.0.0"
+    "@expo/config-plugins" "~7.0.0"
+    "@expo/config-types" "^49.0.0-alpha.1"
     "@expo/image-utils" "0.3.22"
     "@expo/json-file" "^8.2.37"
     debug "^4.3.1"
@@ -10598,14 +10577,6 @@ xml2js@0.4.23:
   version "0.4.23"
   resolved "https://registry.npmjs.org/xml2js/-/xml2js-0.4.23.tgz"
   integrity sha512-ySPiMjM0+pLDftHgXY4By0uswI3SPKLDw/i3UXbnO8M/p28zqexCUoPmQFrYD+/1BzhGJSs2i1ERWKJAtiLrug==
-  dependencies:
-    sax ">=0.6.0"
-    xmlbuilder "~11.0.0"
-
-xml2js@0.6.0:
-  version "0.6.0"
-  resolved "https://registry.npmjs.org/xml2js/-/xml2js-0.6.0.tgz"
-  integrity sha512-eLTh0kA8uHceqesPqSE+VvO1CDDJWMwlQfB6LuN6T8w6MaDJ8Txm8P7s5cHD0miF0V+GGTZrDQfxPZQVsur33w==
   dependencies:
     sax ">=0.6.0"
     xmlbuilder "~11.0.0"

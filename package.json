@@ -81,5 +81,9 @@
   "private": true,
   "eslintConfig": {
     "extends": "universe/native"
+  },
+  "resolutions": {
+    "@expo/config-plugins": "~6.0.0",
+    "@expo/prebuild-config": "~6.0.0"
   }
 }
