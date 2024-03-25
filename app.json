@@ -1,40 +1,43 @@
 {
-  "expo": {
-    "name": "BT-56-skeleton-project",
-    "slug": "BT-56-skeleton-project",
-    "scheme": "arpf-app",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "config": {
-        "googleMapsApiKey": "GOOGLE_API_KEY"
-      }
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.andorangutan.BT56skeletonproject"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "d1f7a696-cac2-4b57-9aaf-31529ef82cbb"
-      }
+    "expo": {
+        "name": "BT-56-skeleton-project",
+        "slug": "BT-56-skeleton-project",
+        "scheme": "arpf-app",
+        "version": "1.0.0",
+        "jsEngine": "hermes",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "jsEngine": "jsc",
+            "supportsTablet": true,
+            "config": {
+                "googleMapsApiKey": "GOOGLE_API_KEY"
+            }
+        },
+        "android": {
+            "jsEngine": "hermes",
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            },
+            "package": "com.andorangutan.BT56skeletonproject"
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "d1f7a696-cac2-4b57-9aaf-31529ef82cbb"
+            }
+        }
     }
-  }
 }
