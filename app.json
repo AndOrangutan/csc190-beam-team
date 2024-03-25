@@ -6,6 +6,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "jsEngine": "hermes",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -16,10 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "config": {
-        "googleMapsApiKey": "GOOGLE_API_KEY"
-      }
+      "jsEngine": "jsc",
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -35,6 +34,15 @@
       "eas": {
         "projectId": "d1f7a696-cac2-4b57-9aaf-31529ef82cbb"
       }
-    }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/d1f7a696-cac2-4b57-9aaf-31529ef82cbb"
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }
